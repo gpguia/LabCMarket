@@ -1,0 +1,276 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		ED1B858B1E8A7889001730B9 /* main.c in Sources */ = {isa = PBXBuildFile; fileRef = ED1B858A1E8A7889001730B9 /* main.c */; };
+		ED7D82081E8C58A900FFF6DF /* LibServer.c in Sources */ = {isa = PBXBuildFile; fileRef = ED7D82061E8C58A900FFF6DF /* LibServer.c */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		ED1B85851E8A7889001730B9 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = /usr/share/man/man1/;
+			dstSubfolderSpec = 0;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		ED1B85871E8A7889001730B9 /* LabCMarketServer */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = LabCMarketServer; sourceTree = BUILT_PRODUCTS_DIR; };
+		ED1B858A1E8A7889001730B9 /* main.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = main.c; sourceTree = "<group>"; };
+		ED2E39F01E91306C00C78418 /* libsqlite3.0.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.0.tbd; path = usr/lib/libsqlite3.0.tbd; sourceTree = SDKROOT; };
+		ED3634031E927BA70067F8C2 /* users.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = users.txt; sourceTree = "<group>"; };
+		ED6CB0A51E8DB07B00FE78B2 /* stock.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = stock.txt; sourceTree = "<group>"; };
+		ED7D82061E8C58A900FFF6DF /* LibServer.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = LibServer.c; sourceTree = "<group>"; };
+		ED7D82071E8C58A900FFF6DF /* LibServer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LibServer.h; sourceTree = "<group>"; };
+		EDC6A5D91E9539F2000977A0 /* gestores.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = gestores.txt; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		ED1B85841E8A7889001730B9 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		ED1B857E1E8A7889001730B9 = {
+			isa = PBXGroup;
+			children = (
+				ED1B85891E8A7889001730B9 /* LabCMarketServer */,
+				ED1B85881E8A7889001730B9 /* Products */,
+				ED2E39EF1E91306C00C78418 /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		ED1B85881E8A7889001730B9 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				ED1B85871E8A7889001730B9 /* LabCMarketServer */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		ED1B85891E8A7889001730B9 /* LabCMarketServer */ = {
+			isa = PBXGroup;
+			children = (
+				ED1B858A1E8A7889001730B9 /* main.c */,
+				EDC6A5D91E9539F2000977A0 /* gestores.txt */,
+				ED7D82061E8C58A900FFF6DF /* LibServer.c */,
+				ED6CB0A51E8DB07B00FE78B2 /* stock.txt */,
+				ED3634031E927BA70067F8C2 /* users.txt */,
+				ED7D82071E8C58A900FFF6DF /* LibServer.h */,
+			);
+			path = LabCMarketServer;
+			sourceTree = "<group>";
+		};
+		ED2E39EF1E91306C00C78418 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				ED2E39F01E91306C00C78418 /* libsqlite3.0.tbd */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		ED1B85861E8A7889001730B9 /* LabCMarketServer */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = ED1B858E1E8A7889001730B9 /* Build configuration list for PBXNativeTarget "LabCMarketServer" */;
+			buildPhases = (
+				ED1B85831E8A7889001730B9 /* Sources */,
+				ED1B85841E8A7889001730B9 /* Frameworks */,
+				ED1B85851E8A7889001730B9 /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = LabCMarketServer;
+			productName = LabCMarketServer;
+			productReference = ED1B85871E8A7889001730B9 /* LabCMarketServer */;
+			productType = "com.apple.product-type.tool";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		ED1B857F1E8A7889001730B9 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0820;
+				ORGANIZATIONNAME = "Guilherme Guia";
+				TargetAttributes = {
+					ED1B85861E8A7889001730B9 = {
+						CreatedOnToolsVersion = 8.2.1;
+						ProvisioningStyle = Automatic;
+					};
+				};
+			};
+			buildConfigurationList = ED1B85821E8A7889001730B9 /* Build configuration list for PBXProject "LabCMarketServer" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = ED1B857E1E8A7889001730B9;
+			productRefGroup = ED1B85881E8A7889001730B9 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				ED1B85861E8A7889001730B9 /* LabCMarketServer */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXSourcesBuildPhase section */
+		ED1B85831E8A7889001730B9 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				ED7D82081E8C58A900FFF6DF /* LibServer.c in Sources */,
+				ED1B858B1E8A7889001730B9 /* main.c in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		ED1B858C1E8A7889001730B9 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "-";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.12;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		ED1B858D1E8A7889001730B9 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "-";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.12;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		ED1B858F1E8A7889001730B9 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		ED1B85901E8A7889001730B9 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		ED1B85821E8A7889001730B9 /* Build configuration list for PBXProject "LabCMarketServer" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				ED1B858C1E8A7889001730B9 /* Debug */,
+				ED1B858D1E8A7889001730B9 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		ED1B858E1E8A7889001730B9 /* Build configuration list for PBXNativeTarget "LabCMarketServer" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				ED1B858F1E8A7889001730B9 /* Debug */,
+				ED1B85901E8A7889001730B9 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = ED1B857F1E8A7889001730B9 /* Project object */;
+}
