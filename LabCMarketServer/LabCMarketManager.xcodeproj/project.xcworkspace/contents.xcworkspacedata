@@ -2,6 +2,6 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "self:LabCMarketServer.xcodeproj">
+      location = "self:/Users/guilhermeguia/Google Drive/School/UP/2Semestre/LabDeComp/Project/LabCMarketServer/LabCMarketManager.xcodeproj">
    </FileRef>
 </Workspace>

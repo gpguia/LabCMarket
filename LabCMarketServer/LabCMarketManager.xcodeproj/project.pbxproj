@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		ED1B858B1E8A7889001730B9 /* main.c in Sources */ = {isa = PBXBuildFile; fileRef = ED1B858A1E8A7889001730B9 /* main.c */; };
-		ED7D82081E8C58A900FFF6DF /* LibServer.c in Sources */ = {isa = PBXBuildFile; fileRef = ED7D82061E8C58A900FFF6DF /* LibServer.c */; };
+		ED7D82081E8C58A900FFF6DF /* LibManager.c in Sources */ = {isa = PBXBuildFile; fileRef = ED7D82061E8C58A900FFF6DF /* LibManager.c */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -24,13 +24,13 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		ED1B85871E8A7889001730B9 /* LabCMarketServer */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = LabCMarketServer; sourceTree = BUILT_PRODUCTS_DIR; };
+		ED1B85871E8A7889001730B9 /* LabCMarketManager */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = LabCMarketManager; sourceTree = BUILT_PRODUCTS_DIR; };
 		ED1B858A1E8A7889001730B9 /* main.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = main.c; sourceTree = "<group>"; };
 		ED2E39F01E91306C00C78418 /* libsqlite3.0.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.0.tbd; path = usr/lib/libsqlite3.0.tbd; sourceTree = SDKROOT; };
 		ED3634031E927BA70067F8C2 /* users.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = users.txt; sourceTree = "<group>"; };
 		ED6CB0A51E8DB07B00FE78B2 /* stock.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = stock.txt; sourceTree = "<group>"; };
-		ED7D82061E8C58A900FFF6DF /* LibServer.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = LibServer.c; sourceTree = "<group>"; };
-		ED7D82071E8C58A900FFF6DF /* LibServer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LibServer.h; sourceTree = "<group>"; };
+		ED7D82061E8C58A900FFF6DF /* LibManager.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = LibManager.c; sourceTree = "<group>"; };
+		ED7D82071E8C58A900FFF6DF /* LibManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LibManager.h; sourceTree = "<group>"; };
 		EDC6A5D91E9539F2000977A0 /* gestores.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = gestores.txt; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -57,7 +57,7 @@
 		ED1B85881E8A7889001730B9 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				ED1B85871E8A7889001730B9 /* LabCMarketServer */,
+				ED1B85871E8A7889001730B9 /* LabCMarketManager */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -67,10 +67,10 @@
 			children = (
 				ED1B858A1E8A7889001730B9 /* main.c */,
 				EDC6A5D91E9539F2000977A0 /* gestores.txt */,
-				ED7D82061E8C58A900FFF6DF /* LibServer.c */,
+				ED7D82061E8C58A900FFF6DF /* LibManager.c */,
 				ED6CB0A51E8DB07B00FE78B2 /* stock.txt */,
 				ED3634031E927BA70067F8C2 /* users.txt */,
-				ED7D82071E8C58A900FFF6DF /* LibServer.h */,
+				ED7D82071E8C58A900FFF6DF /* LibManager.h */,
 			);
 			path = LabCMarketServer;
 			sourceTree = "<group>";
@@ -86,9 +86,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		ED1B85861E8A7889001730B9 /* LabCMarketServer */ = {
+		ED1B85861E8A7889001730B9 /* LabCMarketManager */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = ED1B858E1E8A7889001730B9 /* Build configuration list for PBXNativeTarget "LabCMarketServer" */;
+			buildConfigurationList = ED1B858E1E8A7889001730B9 /* Build configuration list for PBXNativeTarget "LabCMarketManager" */;
 			buildPhases = (
 				ED1B85831E8A7889001730B9 /* Sources */,
 				ED1B85841E8A7889001730B9 /* Frameworks */,
@@ -98,9 +98,9 @@
 			);
 			dependencies = (
 			);
-			name = LabCMarketServer;
+			name = LabCMarketManager;
 			productName = LabCMarketServer;
-			productReference = ED1B85871E8A7889001730B9 /* LabCMarketServer */;
+			productReference = ED1B85871E8A7889001730B9 /* LabCMarketManager */;
 			productType = "com.apple.product-type.tool";
 		};
 /* End PBXNativeTarget section */
@@ -118,7 +118,7 @@
 					};
 				};
 			};
-			buildConfigurationList = ED1B85821E8A7889001730B9 /* Build configuration list for PBXProject "LabCMarketServer" */;
+			buildConfigurationList = ED1B85821E8A7889001730B9 /* Build configuration list for PBXProject "LabCMarketManager" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -130,7 +130,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				ED1B85861E8A7889001730B9 /* LabCMarketServer */,
+				ED1B85861E8A7889001730B9 /* LabCMarketManager */,
 			);
 		};
 /* End PBXProject section */
@@ -140,7 +140,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				ED7D82081E8C58A900FFF6DF /* LibServer.c in Sources */,
+				ED7D82081E8C58A900FFF6DF /* LibManager.c in Sources */,
 				ED1B858B1E8A7889001730B9 /* main.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -252,7 +252,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		ED1B85821E8A7889001730B9 /* Build configuration list for PBXProject "LabCMarketServer" */ = {
+		ED1B85821E8A7889001730B9 /* Build configuration list for PBXProject "LabCMarketManager" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				ED1B858C1E8A7889001730B9 /* Debug */,
@@ -261,7 +261,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		ED1B858E1E8A7889001730B9 /* Build configuration list for PBXNativeTarget "LabCMarketServer" */ = {
+		ED1B858E1E8A7889001730B9 /* Build configuration list for PBXNativeTarget "LabCMarketManager" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				ED1B858F1E8A7889001730B9 /* Debug */,
