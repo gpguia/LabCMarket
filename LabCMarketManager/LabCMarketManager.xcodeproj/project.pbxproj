@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		ED04193E1EB0A9F600B6FCB1 /* main.c in Sources */ = {isa = PBXBuildFile; fileRef = ED04193D1EB0A9F600B6FCB1 /* main.c */; };
+		ED0419461EB0AA1700B6FCB1 /* LibManager.c in Sources */ = {isa = PBXBuildFile; fileRef = ED0419441EB0AA1700B6FCB1 /* LibManager.c */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -25,6 +26,8 @@
 /* Begin PBXFileReference section */
 		ED04193A1EB0A9F600B6FCB1 /* LabCMarketManager */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = LabCMarketManager; sourceTree = BUILT_PRODUCTS_DIR; };
 		ED04193D1EB0A9F600B6FCB1 /* main.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = main.c; sourceTree = "<group>"; };
+		ED0419441EB0AA1700B6FCB1 /* LibManager.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = LibManager.c; sourceTree = "<group>"; };
+		ED0419451EB0AA1700B6FCB1 /* LibManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LibManager.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,6 +61,8 @@
 			isa = PBXGroup;
 			children = (
 				ED04193D1EB0A9F600B6FCB1 /* main.c */,
+				ED0419441EB0AA1700B6FCB1 /* LibManager.c */,
+				ED0419451EB0AA1700B6FCB1 /* LibManager.h */,
 			);
 			path = LabCMarketManager;
 			sourceTree = "<group>";
@@ -120,6 +125,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				ED04193E1EB0A9F600B6FCB1 /* main.c in Sources */,
+				ED0419461EB0AA1700B6FCB1 /* LibManager.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

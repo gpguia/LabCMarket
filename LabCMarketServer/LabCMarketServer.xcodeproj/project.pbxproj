@@ -28,6 +28,9 @@
 		ED0419271EB0A94E00B6FCB1 /* main.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = main.c; sourceTree = "<group>"; };
 		ED04192E1EB0A96600B6FCB1 /* LibServer.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = LibServer.c; sourceTree = "<group>"; };
 		ED04192F1EB0A96600B6FCB1 /* LibServer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LibServer.h; sourceTree = "<group>"; };
+		ED04194A1EB0AB3F00B6FCB1 /* users.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = users.txt; sourceTree = "<group>"; };
+		ED04194B1EB0AB4500B6FCB1 /* gestores.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = gestores.txt; sourceTree = "<group>"; };
+		ED04194C1EB0AB4E00B6FCB1 /* stock.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = stock.txt; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,6 +65,9 @@
 			children = (
 				ED0419271EB0A94E00B6FCB1 /* main.c */,
 				ED04192E1EB0A96600B6FCB1 /* LibServer.c */,
+				ED04194A1EB0AB3F00B6FCB1 /* users.txt */,
+				ED04194B1EB0AB4500B6FCB1 /* gestores.txt */,
+				ED04194C1EB0AB4E00B6FCB1 /* stock.txt */,
 				ED04192F1EB0A96600B6FCB1 /* LibServer.h */,
 			);
 			path = LabCMarketServer;
