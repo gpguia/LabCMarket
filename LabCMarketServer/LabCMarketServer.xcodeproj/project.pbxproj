@@ -7,11 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		ED04193E1EB0A9F600B6FCB1 /* main.c in Sources */ = {isa = PBXBuildFile; fileRef = ED04193D1EB0A9F600B6FCB1 /* main.c */; };
+		ED0419281EB0A94E00B6FCB1 /* main.c in Sources */ = {isa = PBXBuildFile; fileRef = ED0419271EB0A94E00B6FCB1 /* main.c */; };
+		ED0419301EB0A96600B6FCB1 /* LibServer.c in Sources */ = {isa = PBXBuildFile; fileRef = ED04192E1EB0A96600B6FCB1 /* LibServer.c */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		ED0419381EB0A9F600B6FCB1 /* CopyFiles */ = {
+		ED0419221EB0A94E00B6FCB1 /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = /usr/share/man/man1/;
@@ -23,12 +24,14 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		ED04193A1EB0A9F600B6FCB1 /* LabCMarketManager */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = LabCMarketManager; sourceTree = BUILT_PRODUCTS_DIR; };
-		ED04193D1EB0A9F600B6FCB1 /* main.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = main.c; sourceTree = "<group>"; };
+		ED0419241EB0A94E00B6FCB1 /* LabCMarketServer */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = LabCMarketServer; sourceTree = BUILT_PRODUCTS_DIR; };
+		ED0419271EB0A94E00B6FCB1 /* main.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = main.c; sourceTree = "<group>"; };
+		ED04192E1EB0A96600B6FCB1 /* LibServer.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = LibServer.c; sourceTree = "<group>"; };
+		ED04192F1EB0A96600B6FCB1 /* LibServer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LibServer.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		ED0419371EB0A9F600B6FCB1 /* Frameworks */ = {
+		ED0419211EB0A94E00B6FCB1 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -38,95 +41,98 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		ED0419311EB0A9F600B6FCB1 = {
+		ED04191B1EB0A94E00B6FCB1 = {
 			isa = PBXGroup;
 			children = (
-				ED04193C1EB0A9F600B6FCB1 /* LabCMarketManager */,
-				ED04193B1EB0A9F600B6FCB1 /* Products */,
+				ED0419261EB0A94E00B6FCB1 /* LabCMarketServer */,
+				ED0419251EB0A94E00B6FCB1 /* Products */,
 			);
 			sourceTree = "<group>";
 		};
-		ED04193B1EB0A9F600B6FCB1 /* Products */ = {
+		ED0419251EB0A94E00B6FCB1 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				ED04193A1EB0A9F600B6FCB1 /* LabCMarketManager */,
+				ED0419241EB0A94E00B6FCB1 /* LabCMarketServer */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		ED04193C1EB0A9F600B6FCB1 /* LabCMarketManager */ = {
+		ED0419261EB0A94E00B6FCB1 /* LabCMarketServer */ = {
 			isa = PBXGroup;
 			children = (
-				ED04193D1EB0A9F600B6FCB1 /* main.c */,
+				ED0419271EB0A94E00B6FCB1 /* main.c */,
+				ED04192E1EB0A96600B6FCB1 /* LibServer.c */,
+				ED04192F1EB0A96600B6FCB1 /* LibServer.h */,
 			);
-			path = LabCMarketManager;
+			path = LabCMarketServer;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		ED0419391EB0A9F600B6FCB1 /* LabCMarketManager */ = {
+		ED0419231EB0A94E00B6FCB1 /* LabCMarketServer */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = ED0419411EB0A9F600B6FCB1 /* Build configuration list for PBXNativeTarget "LabCMarketManager" */;
+			buildConfigurationList = ED04192B1EB0A94E00B6FCB1 /* Build configuration list for PBXNativeTarget "LabCMarketServer" */;
 			buildPhases = (
-				ED0419361EB0A9F600B6FCB1 /* Sources */,
-				ED0419371EB0A9F600B6FCB1 /* Frameworks */,
-				ED0419381EB0A9F600B6FCB1 /* CopyFiles */,
+				ED0419201EB0A94E00B6FCB1 /* Sources */,
+				ED0419211EB0A94E00B6FCB1 /* Frameworks */,
+				ED0419221EB0A94E00B6FCB1 /* CopyFiles */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
-			name = LabCMarketManager;
-			productName = LabCMarketManager;
-			productReference = ED04193A1EB0A9F600B6FCB1 /* LabCMarketManager */;
+			name = LabCMarketServer;
+			productName = LabCMarketServer;
+			productReference = ED0419241EB0A94E00B6FCB1 /* LabCMarketServer */;
 			productType = "com.apple.product-type.tool";
 		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
-		ED0419321EB0A9F600B6FCB1 /* Project object */ = {
+		ED04191C1EB0A94E00B6FCB1 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
 				LastUpgradeCheck = 0830;
 				ORGANIZATIONNAME = "Guilherme Guia";
 				TargetAttributes = {
-					ED0419391EB0A9F600B6FCB1 = {
+					ED0419231EB0A94E00B6FCB1 = {
 						CreatedOnToolsVersion = 8.3.2;
 						ProvisioningStyle = Automatic;
 					};
 				};
 			};
-			buildConfigurationList = ED0419351EB0A9F600B6FCB1 /* Build configuration list for PBXProject "LabCMarketManager" */;
+			buildConfigurationList = ED04191F1EB0A94E00B6FCB1 /* Build configuration list for PBXProject "LabCMarketServer" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
 			);
-			mainGroup = ED0419311EB0A9F600B6FCB1;
-			productRefGroup = ED04193B1EB0A9F600B6FCB1 /* Products */;
+			mainGroup = ED04191B1EB0A94E00B6FCB1;
+			productRefGroup = ED0419251EB0A94E00B6FCB1 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				ED0419391EB0A9F600B6FCB1 /* LabCMarketManager */,
+				ED0419231EB0A94E00B6FCB1 /* LabCMarketServer */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXSourcesBuildPhase section */
-		ED0419361EB0A9F600B6FCB1 /* Sources */ = {
+		ED0419201EB0A94E00B6FCB1 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				ED04193E1EB0A9F600B6FCB1 /* main.c in Sources */,
+				ED0419301EB0A96600B6FCB1 /* LibServer.c in Sources */,
+				ED0419281EB0A94E00B6FCB1 /* main.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin XCBuildConfiguration section */
-		ED04193F1EB0A9F600B6FCB1 /* Debug */ = {
+		ED0419291EB0A94E00B6FCB1 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -174,7 +180,7 @@
 			};
 			name = Debug;
 		};
-		ED0419401EB0A9F600B6FCB1 /* Release */ = {
+		ED04192A1EB0A94E00B6FCB1 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -215,14 +221,14 @@
 			};
 			name = Release;
 		};
-		ED0419421EB0A9F600B6FCB1 /* Debug */ = {
+		ED04192C1EB0A94E00B6FCB1 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
 		};
-		ED0419431EB0A9F600B6FCB1 /* Release */ = {
+		ED04192D1EB0A94E00B6FCB1 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -232,24 +238,24 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		ED0419351EB0A9F600B6FCB1 /* Build configuration list for PBXProject "LabCMarketManager" */ = {
+		ED04191F1EB0A94E00B6FCB1 /* Build configuration list for PBXProject "LabCMarketServer" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				ED04193F1EB0A9F600B6FCB1 /* Debug */,
-				ED0419401EB0A9F600B6FCB1 /* Release */,
+				ED0419291EB0A94E00B6FCB1 /* Debug */,
+				ED04192A1EB0A94E00B6FCB1 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		ED0419411EB0A9F600B6FCB1 /* Build configuration list for PBXNativeTarget "LabCMarketManager" */ = {
+		ED04192B1EB0A94E00B6FCB1 /* Build configuration list for PBXNativeTarget "LabCMarketServer" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				ED0419421EB0A9F600B6FCB1 /* Debug */,
-				ED0419431EB0A9F600B6FCB1 /* Release */,
+				ED04192C1EB0A94E00B6FCB1 /* Debug */,
+				ED04192D1EB0A94E00B6FCB1 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 		};
 /* End XCConfigurationList section */
 	};
-	rootObject = ED0419321EB0A9F600B6FCB1 /* Project object */;
+	rootObject = ED04191C1EB0A94E00B6FCB1 /* Project object */;
 }

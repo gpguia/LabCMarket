@@ -4,7 +4,7 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
-		<key>LabCMarketManager.xcscheme</key>
+		<key>LabCMarketServer.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
 			<integer>0</integer>
@@ -12,7 +12,7 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>ED0419391EB0A9F600B6FCB1</key>
+		<key>ED0419231EB0A94E00B6FCB1</key>
 		<dict>
 			<key>primary</key>
 			<true/>

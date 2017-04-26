@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
-   LastUpgradeVersion = "0820"
+   LastUpgradeVersion = "0830"
    version = "1.3">
    <BuildAction
       parallelizeBuildables = "YES"
@@ -14,10 +14,10 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "ED1B85861E8A7889001730B9"
-               BuildableName = "LabCMarketManager"
-               BlueprintName = "LabCMarketManager"
-               ReferencedContainer = "container:LabCMarketManager.xcodeproj">
+               BlueprintIdentifier = "ED0419231EB0A94E00B6FCB1"
+               BuildableName = "LabCMarketServer"
+               BlueprintName = "LabCMarketServer"
+               ReferencedContainer = "container:LabCMarketServer.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -32,10 +32,10 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "ED1B85861E8A7889001730B9"
-            BuildableName = "LabCMarketManager"
-            BlueprintName = "LabCMarketManager"
-            ReferencedContainer = "container:LabCMarketManager.xcodeproj">
+            BlueprintIdentifier = "ED0419231EB0A94E00B6FCB1"
+            BuildableName = "LabCMarketServer"
+            BlueprintName = "LabCMarketServer"
+            ReferencedContainer = "container:LabCMarketServer.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
       <AdditionalOptions>
@@ -55,10 +55,10 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "ED1B85861E8A7889001730B9"
-            BuildableName = "LabCMarketManager"
-            BlueprintName = "LabCMarketManager"
-            ReferencedContainer = "container:LabCMarketManager.xcodeproj">
+            BlueprintIdentifier = "ED0419231EB0A94E00B6FCB1"
+            BuildableName = "LabCMarketServer"
+            BlueprintName = "LabCMarketServer"
+            ReferencedContainer = "container:LabCMarketServer.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <AdditionalOptions>
@@ -74,10 +74,10 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "ED1B85861E8A7889001730B9"
-            BuildableName = "LabCMarketManager"
-            BlueprintName = "LabCMarketManager"
-            ReferencedContainer = "container:LabCMarketManager.xcodeproj">
+            BlueprintIdentifier = "ED0419231EB0A94E00B6FCB1"
+            BuildableName = "LabCMarketServer"
+            BlueprintName = "LabCMarketServer"
+            ReferencedContainer = "container:LabCMarketServer.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>
