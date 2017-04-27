@@ -115,75 +115,6 @@ Users* createUsers(){
     return NULL;
 }
 
-/*//Create new user in user.txt
-int createNewUser(){
-    char user[50], pass[50], contato[10], nome[255], balance[10];
-    char strUser[STR_MAX_SIZE];
-    int flag = 0,option = -2;
-    memset(strUser,0,STR_MAX_SIZE);
-    FILE *fp = NULL;
-    
-    while(flag == 0){
-        fp = fopen(dirUser, "r");
-        if(fp == NULL){
-            printf("Erro ao abrir o arquivo users.txt\n");
-            exit(1);
-        }
-        memset(nome,0,255);
-        memset(contato,0,10);
-        memset(user,0,50);
-        memset(pass,0,50);
-        printf("Digite o nome do novo usuario:\n");
-        scanf("%s",nome);
-        printf("Digite o contato do novo usuario:\n");
-        scanf("%9s",contato);
-        printf("Digite o username do novo usuario:\n");
-        scanf("%s",user);
-        printf("Digite o password do novo usuario:\n");
-        scanf("%s",pass);
-        printf("Digite o saldo do novo usuario:\n");
-        scanf("%9s",balance);
-        flag = 1;
-        while(fscanf(fp,"%s",strUser) == 1){
-            if(strcmp(user,getUserName(strUser)) == 0){
-                printf("Esse username ja existe.\n");
-                memset(strUser,0,STR_MAX_SIZE);
-                flag = 0;
-                fclose(fp);
-            }
-        }
-    }
-    fclose(fp);
-    
-    //Confirm the information
-    printf("Novo utilizador:\nNome: %s\nContato: %s\nUsuario: %s\nPassword: %s\nSaldo: %s\n",nome,contato,user,pass,balance);
-    printf("\nEssas informações estão corretas? (Digite: 1 para sim, 0 para nao, -1 para cancelar)\n");
-    scanf("%d",&option);
-    
-    if(option == 1){
-        
-        fp = fopen(dirUser, "a");
-        
-        fprintf(fp,"%s:",nome);
-        fprintf(fp,"%s:",contato);
-        fprintf(fp,"%s:",user);
-        fprintf(fp,"%s:",pass);
-        fprintf(fp,"%s\n",balance);
-        
-        fclose(fp);
-        
-        printf("Usuario criado com sucesso!(\n");
-        return 1;
-    }else if(option == -1){
-        flag = 1;
-        return -1;
-    }else if(option == 0){
-        createNewUser();
-    }
-    return -1;
-}
-*/
-
 //Add new user to the list
 Users* addUser(Users* lst, char nome[], char contato[], char user[], char pass[], char* balance){
     Users* novo = (Users*) malloc(sizeof(Users));
@@ -497,8 +428,7 @@ int validClient(Users* lst, char str[]){
 }
 
 
-void *connection_handler(void* socket_desc)
-{
+void *connection_handler(void* socket_desc){
     struct sockHandle *sh = socket_desc;
     //Get the socket descriptor
     //int sock = *(int*)socket_desc;
@@ -534,7 +464,7 @@ void *connection_handler(void* socket_desc)
     }
     
     //Free the socket pointer
-    free(sh);
+    free(socket_desc);
     
     return 0;
 }
