@@ -9,7 +9,15 @@
 #include "LibServ.h"
 
 int main(int argc, const char * argv[]) {
-    
+    if(DEBUG == 1){
+        FILE* fp;
+        fp = fopen(dirDebug,"w");
+        if(fp == NULL){
+            perror("Erro ao abrir o arquivo debug.txt (main)\n");
+            exit(1);
+        }
+        fclose(fp);
+    }
     //arrumar as structs pra funcionar
     Produto* noStock;
     noStock = createStock();
@@ -21,10 +29,5 @@ int main(int argc, const char * argv[]) {
     users = loadUsers(users);
     
     createConn(users,noStock);
-    
-    char msg[STR_MAX_SIZE];
-    
-    strcpy(msg, "2:gui:guia321");
-    getCommand(msg);
     return 0;
 }

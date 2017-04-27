@@ -36,29 +36,102 @@ int connToServer(){
     return sock;
 }
 
-char* writeToServer(int sock, char message[]){
+void writeToServer(int sock, char message[], char server_reply[]){
     
-    char* server_reply = (char*) malloc(2000 * sizeof(char));
-    memset(server_reply,0,2000);
+    memset(server_reply,0,STR_MAX_SIZE);
     
     if( send(sock , message , strlen(message) , 0) < 0)
     {
         puts("Send failed");
-        return "-1";
+        exit(1);
     }
     
-    if( recv(sock , server_reply , 2000 , 0) < 0)
+    if( recv(sock , server_reply , STR_MAX_SIZE , 0) < 0)
     {
         puts("recv failed");
-        return "-1";
+        exit(1);
     }
-    printf("%s\n",server_reply);
-    return server_reply;
+    
 }
 
+void manegeBalance(char server_replay[]){
+    int i=0,j=0;
+    char name[STR_MAX_SIZE],balance[STR_MAX_SIZE];
+    memset(name,0,STR_MAX_SIZE);
+    memset(balance,0,STR_MAX_SIZE);
+    
+    while(server_replay[i] != ':'){
+        name[i] = server_replay[i];
+        i++;
+    }
+    i++;
+    while(server_replay[i] != ':'){
+        balance[j] = server_replay[i];
+        i++;
+        j++;
+    }
+    printf("\t%s","** Saldo **\n");
+    printf("Nome: %s",name);
+    printf("\n");
+    printf("Saldo: %s",balance);
+    printf("\n");
+    printf("\t%s","** Fim Saldo **\n\n");
+    memset(server_replay,0,STR_MAX_SIZE);
+}
 
-void showMenu(){
+void showManageOptions(int sock, char username[], char server_replay[]){
+    int option=0;
+    char deposit[STR_MAX_SIZE];
+    char msg[STR_MAX_SIZE];
+    memset(deposit,0,STR_MAX_SIZE);
+    memset(msg,0,STR_MAX_SIZE);
+    
+    printf("1) Adicionar mais dinheiro\n");
+    printf("2) Voltar ao menu anterior\n");
+    scanf("%d",&option);
+    
+    while(option != 2){
+        if(option == 1){
+            option = 2;
+            system("clear");
+            printf("Digite a quantidade que deseja depositar: \n");
+            scanf("%s",deposit);
+            strcpy(msg,"4:");
+            strcat(msg,username);
+            strcat(msg,":");
+            strcat(msg,deposit);
+            strcat(msg,":");
+            writeToServer(sock,msg,server_replay);
+        }else if(option == 2){
+            return;
+        }else{
+            printf("Opcao nao reconhecida.\n");
+            printf("Tente novamente: \n");
+            scanf("%d",&option);
+        }
+    }
+    
+    memset(server_replay,0,STR_MAX_SIZE);
+}
+
+void listProducts(int sock, char server_replay[]){
+    char msg[STR_MAX_SIZE];
+    memset(msg,0,STR_MAX_SIZE);
+    strcpy(msg,"5:");
+    
+    writeToServer(sock,msg,server_replay);
+    
+    
+    
+    memset(server_replay,0,STR_MAX_SIZE);
+}
+
+void showMenu(int sock, char *username){
     int option;
+    char msg[STR_MAX_SIZE];
+    char server_repaly[STR_MAX_SIZE];
+    Carts* c;
+    
     printf("**MENU**\n");
     printf("1) Gerir Saldo\n");
     printf("2) Gerir Lista de Compras\n");
@@ -67,7 +140,25 @@ void showMenu(){
     scanf("%d",&option);
     while(option != 4){
         if(option == 1){
-            //manegeBalance(client);
+            option = -2;
+            system("clear");
+            memset(msg,0,STR_MAX_SIZE);
+            strcpy(msg,"3:");
+            strcat(msg,username);
+            strcat(msg,":");
+            writeToServer(sock,msg,server_repaly);
+            manegeBalance(server_repaly);
+            showManageOptions(sock,username,server_repaly);
+        }else if(option == 2){
+            
+        }else if(option == -2){
+            system("clear");
+            printf("**MENU**\n");
+            printf("1) Gerir Saldo\n");
+            printf("2) Gerir Lista de Compras\n");
+            printf("3) Ver Estatisticas\n");
+            printf("4) Logout\n");
+            scanf("%d",&option);
         }
     }
 }

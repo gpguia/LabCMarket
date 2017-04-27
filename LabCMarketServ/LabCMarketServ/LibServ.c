@@ -8,6 +8,19 @@
 
 #include "LibServ.h"
 
+char* itoa(int val, int base){
+    
+    static char buf[32] = {0};
+    
+    int i = 30;
+    
+    for(; val && i ; --i, val /= base)
+        
+        buf[i] = "0123456789abcdef"[val % base];
+    
+    return &buf[i+1];
+    
+}
 
 int createConn(Users* lst, Produto* stock){
     int socket_desc , client_sock , c ;//*new_sock;
@@ -106,6 +119,8 @@ int getCommand(char msg[]){
         fprintf(fp,"msg sem o comando: %s\n",msg);
         fprintf(fp,"Command: %d\n",command);
         fprintf(fp,"Fim getCommand Debug\n");
+        fprintf(fp,"\n");
+        fclose(fp);
     }
     return command;
 }
@@ -396,7 +411,7 @@ void printStock(Produto* stock){
     printf("\t\t\t**Fim da lista de produtos**\n");
 }
 
-
+//Valid client
 int validClient(Users* lst, char str[]){
     int i=0,j=0;
     char user[STR_MAX_SIZE],pass[STR_MAX_SIZE];
@@ -416,7 +431,21 @@ int validClient(Users* lst, char str[]){
         j++;
     }
     u = searchUser(lst,user);
-    
+    if(DEBUG == 1){
+        time_t t = time(NULL);
+        struct tm tm = *localtime(&t);
+        FILE*fp;
+        fp=fopen(dirDebug,"a");
+        if(fp == NULL){
+            perror("Erro ao abrir o debug.txt(ValidClient function)\n");
+            exit(1);
+        }
+        fprintf(fp,"Program Running on: %d-%d-%d %d:%d:%d\n", tm.tm_year + 1900, tm.tm_mon + 1, tm.tm_mday, tm.tm_hour, tm.tm_min, tm.tm_sec);
+        fprintf(fp,"Username: %s\n",user);
+        fprintf(fp,"Password: %s\n",pass);
+        fprintf(fp,"\n");
+        fclose(fp);
+    }
     if(u != NULL){
         if(strcmp(u->password,pass) == 0){
             return 1;
@@ -427,6 +456,80 @@ int validClient(Users* lst, char str[]){
     return 0;
 }
 
+int validManager(char str[]){
+    return 0;
+}
+
+void sendBalance(Users* lst, char str[], int sock){
+    char username[50];
+    char msg[STR_MAX_SIZE];
+    memset(msg,0,STR_MAX_SIZE);
+    
+    int i=0;
+    Users* u;
+    
+    while(str[i] != ':'){
+        username[i] = str[i];
+        i++;
+    }
+    u = searchUser(lst,username);
+    if(u == NULL){
+        strcpy(msg,"0");
+    }else{
+        strcpy(msg,u->nome);
+        strcat(msg,":");
+        strcat(msg,u->balance);
+        strcat(msg,":");
+    }
+    if(DEBUG == 1){
+        FILE *fp;
+        fp = fopen(dirDebug,"a");
+        if(fp == NULL){
+            perror("Erro ao abrir o debug.txt(sendBalance)\n");
+            exit(1);
+        }
+        fprintf(fp,"sendBalance Function\n");
+        fprintf(fp,"Msg enviada: %s\n",msg);
+        fprintf(fp,"\n");
+        fclose(fp);
+    }
+    write(sock,msg,strlen(msg));
+}
+
+void addBalance(Users* lst, char str[], int sock){
+    int i=0,j=0,newBalance=0;
+    Users* u;
+    char username[STR_MAX_SIZE], balance[STR_MAX_SIZE];
+    memset(username,0,STR_MAX_SIZE);
+    memset(balance,0,STR_MAX_SIZE);
+    
+    while(str[i] != ':'){
+        username[i] = str[i];
+        i++;
+    }
+    i++;
+    while(str[i] != ':'){
+        balance[j] = str[i];
+        i++;
+        j++;
+    }
+    u = searchUser(lst,username);
+    if(u == NULL){
+        perror("Erro, username nao encontrado.\n");
+        exit(1);
+    }
+    newBalance = atoi(u->balance);
+    newBalance = newBalance + atoi(balance);
+    
+    strcpy(u->balance,itoa(newBalance,10));
+    
+    write(sock,"1",strlen("1"));
+    
+}
+
+void sendListProdcut(Produto* p, int sock){
+    //TODO;
+}
 
 void *connection_handler(void* socket_desc){
     struct sockHandle *sh = socket_desc;
@@ -441,13 +544,31 @@ void *connection_handler(void* socket_desc){
     while( (read_size = (int)recv(sock , client_message , STR_MAX_SIZE , 0)) > 0 )
     {
         command = getCommand(client_message);
-        if(command == 1){
-            
-        }else if(command == 2){
-            if(validClient(sh->users,client_message) == 1){
+        printf("Command: %d\n",command);
+        if(command == 1){//To valid the manager
+            if(validManager(client_message) == 1){
                 
             }
+            
+        }else if(command == 2){//To Valid the client
+            if(validClient(sh->users,client_message) == 1){
+                write(sock,"1",2);
+            }else{
+                write(sock,"0",2);
+            }
+            memset(client_message,0,STR_MAX_SIZE);
+        }else if(command == 3){//Manager Balance(Client)
+            sendBalance(sh->users,client_message,sock);
+            memset(client_message,0,STR_MAX_SIZE);
+        }else if(command == 4){//Deposit money(Client)
+            addBalance(sh->users,client_message,sock);
+            memset(client_message,0,STR_MAX_SIZE);
+        }else if(command == 5){//List all the products
+            //PAREI AQUI!
+            sendListProdcut(sh->stock,sock);
         }
+        
+        
         //Send the message back to client
         write(sock , client_message , strlen(client_message));
         memset(client_message,0,STR_MAX_SIZE);
@@ -462,9 +583,6 @@ void *connection_handler(void* socket_desc){
     {
         perror("recv failed");
     }
-    
-    //Free the socket pointer
-    free(socket_desc);
     
     return 0;
 }

@@ -20,9 +20,9 @@
 #include<unistd.h>    //write
 #include<pthread.h>
 
-#define dirStock "/Users/guilhermeguia/Google Drive/School/UP/2Semestre/LabDeComp/Project/LabCMarketServer/LabCMarketServer/stock.txt"
-#define dirUser "/Users/guilhermeguia/Google Drive/School/UP/2Semestre/LabDeComp/Project/LabCMarketServer/LabCMarketServer/users.txt"
-#define dirGestor "/Users/guilhermeguia/Google Drive/School/UP/2Semestre/LabDeComp/Project/LabCMarketServer/LabCMarketServer/gestores.txt"
+#define dirStock "/Users/guilhermeguia/Google Drive/School/UP/2Semestre/LabDeComp/Project/LabCMarketServ/LabCMarketServ/stock.txt"
+#define dirUser "/Users/guilhermeguia/Google Drive/School/UP/2Semestre/LabDeComp/Project/LabCMarketServ/LabCMarketServ/users.txt"
+#define dirGestor "/Users/guilhermeguia/Google Drive/School/UP/2Semestre/LabDeComp/Project/LabCMarketServ/LabCMarketServ/gestores.txt"
 
 
 #define STR_MAX_SIZE 2000
@@ -69,7 +69,7 @@ struct sockHandle{
     Produto* stock;
 };
 
-
+char* itoa(int val, int base);
 int createConn(Users* lst, Produto* stock);
 int getCommand(char msg[]);
 void *connection_handler(void* socket_desc);
@@ -92,4 +92,9 @@ Produto *createStock();
 void printStock(Produto* stock);
 
 int validClient(Users* lst, char str[]);
+int validManager(char str[]);
+void addBalance(Users* lst, char str[], int sock);
+void sendListProdcut(Produto* p, int sock);
+
+void sendBalance(Users* lst, char str[], int sock);
 #endif /* LibServ_h */

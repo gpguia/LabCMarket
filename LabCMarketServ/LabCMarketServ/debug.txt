@@ -1,48 +1,68 @@
 getCommand Debug
-msg: gui:guia321
-Command; 2
-Fim getCommand Debug
-getCommand Debug
-msg sem o comando: gui:guia321
+msg sem o comando: gui:gui123:
 Command: 2
 Fim getCommand Debug
+
+Program Running on: 2017-4-27 17:11:1
+Username: gui
+Password: gui123
+
 getCommand Debug
-msg sem o comando: gui:guia321
+msg sem o comando: gui:
+Command: 3
+Fim getCommand Debug
+
+sendBalance Function
+Msg enviada: guilherme:10000:
+
+getCommand Debug
+msg sem o comando: gui:gui123:
 Command: 2
 Fim getCommand Debug
+
+Program Running on: 2017-4-27 17:11:30
+Username: gui
+Password: gui123
+
 getCommand Debug
-msg sem o comando: gui:guia321
+msg sem o comando: gui:
+Command: 3
+Fim getCommand Debug
+
+sendBalance Function
+Msg enviada: guilherme:10000:
+
+getCommand Debug
+msg sem o comando: gui:gui123:
 Command: 2
 Fim getCommand Debug
+
+Program Running on: 2017-4-27 17:13:39
+Username: gui
+Password: gui123
+
 getCommand Debug
-msg sem o comando: gui:guia321
+msg sem o comando: gui:
+Command: 3
+Fim getCommand Debug
+
+sendBalance Function
+Msg enviada: guilherme:10000:
+
+getCommand Debug
+msg sem o comando: gui:gui123:
 Command: 2
 Fim getCommand Debug
+
+Program Running on: 2017-4-27 17:30:5
+Username: gui
+Password: gui123
+
 getCommand Debug
-msg sem o comando: gui:guia321
-Command: 2
+msg sem o comando: gui:
+Command: 3
 Fim getCommand Debug
-getCommand Debug
-msg sem o comando: gui:guia321
-Command: 2
-Fim getCommand Debug
-getCommand Debug
-msg sem o comando: gui:guia321
-Command: 2
-Fim getCommand Debug
-getCommand Debug
-msg sem o comando: gui:guia321
-Command: 2
-Fim getCommand Debug
-getCommand Debug
-msg sem o comando: gui:guia321
-Command: 2
-Fim getCommand Debug
-getCommand Debug
-msg sem o comando: gui123
-Command: 0
-Fim getCommand Debug
-getCommand Debug
-msg sem o comando: asdÿ¯Ï
-Command: 0
-Fim getCommand Debug
+
+sendBalance Function
+Msg enviada: guilherme:10000:
+

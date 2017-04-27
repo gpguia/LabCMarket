@@ -12,9 +12,11 @@ int main(int argc, const char * argv[]) {
     system("clear");
     int sock;
     char username[50],password[50];
-    char message[2000];
+    char message[STR_MAX_SIZE];
+    char server_replay[STR_MAX_SIZE];
     memset(message,0,2000);
     sock = connToServer();
+    
     
     printf("Username: ");
     scanf("%s",username);
@@ -25,7 +27,8 @@ int main(int argc, const char * argv[]) {
     strcat(message,":");
     strcat(message,password);
     strcat(message,":");
-    while(strcmp(writeToServer(sock,message),"1") != 0){
+    writeToServer(sock,message,server_replay);
+    while(strcmp(server_replay,"1") != 0){
         system("clear");
         printf("Usuario invalido, tente novamente.\n");
         memset(username,0,50);
@@ -41,6 +44,8 @@ int main(int argc, const char * argv[]) {
         strcat(message,password);
         strcat(message,":");
     }
+    system("clear");
+    showMenu(sock,username);
     
     return 0;
 }
