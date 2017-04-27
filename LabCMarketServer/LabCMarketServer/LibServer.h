@@ -2,7 +2,7 @@
 //  LibServer.h
 //  LabCMarketServer
 //
-//  Created by Guilherme Guia on 4/26/17.
+//  Created by Guilherme Guia on 3/29/17.
 //  Copyright © 2017 Guilherme Guia. All rights reserved.
 //
 
@@ -10,22 +10,18 @@
 #define LibServer_h
 
 #include <stdio.h>
-#include <arpa/inet.h>
-#include <sys/socket.h>
-#include <sys/types.h>
-#include <pthread.h>
 #include <stdlib.h>
 #include <string.h>
-#include <sys/types.h>
-#include <netinet/in.h>
 #include <unistd.h>
+#include <stdbool.h>
 
+#define PORT 9999
+#define BUF_SIZE 2000
+#define CLADDR_LEN 100
+#define STR_MAX_SIZE 1024
 #define dirStock "/Users/guilhermeguia/Google Drive/School/UP/2Semestre/LabDeComp/Project/LabCMarketServer/LabCMarketServer/stock.txt"
 #define dirUser "/Users/guilhermeguia/Google Drive/School/UP/2Semestre/LabDeComp/Project/LabCMarketServer/LabCMarketServer/users.txt"
 #define dirGestor "/Users/guilhermeguia/Google Drive/School/UP/2Semestre/LabDeComp/Project/LabCMarketServer/LabCMarketServer/gestores.txt"
-#define STR_MAX_SIZE 1024
-
-
 
 typedef struct statistics Statistics;
 
@@ -61,48 +57,57 @@ struct users{
     Users* next;
 };
 
+char *write2SharedMem(char cpyMem[], char msg[]);
 
-/*
-==================================
-=========Stocks Functions=========
-==================================
-*/
-
-
-Produto *createStock();
+bool validGestor(char user[], char pass[]);
 Produto *loadStock(Produto *stock, char caminho[]);
-Produto *addProduto(Produto *stock, char str[]);
-char *getProductName(char str[]);
-int getProductCode(char str[]);
-char *getProductDes(char str[]);
-int getProductQtty(char str[]);
-float getProductCost(char str[]);
-float getProductPrice(char str[]);
-int getProductQtdSold(char str[]);
+Produto *addProduto(Produto *stock, char nome[], int codigo, char desc[], int qtd, float custo, float preco);
 Produto *searchProduct(Produto *stock, int codigo);
-void writeChanges(Produto* stock);
 void printStock(Produto* stock);
+char *validLogin(Users* lst, char login[]);
+void socketCreate();
+Produto *showOptions(Produto *stock, Users* usu);
+void waitBuyers(int newsockfd);
+int createNewUser();
+Produto* manageStock(Produto *stock);
+void writeChanges(Produto* stock);
+Produto* showIncludeOptions(Produto* stock);
+Produto* editProduct(Produto* stock);
 Produto* removeProduto(Produto* stock, int cod);
+Produto* sellProduct(Produto* stock, int codigo);
+char *getName(char str[]);
+char *getContact(char str[]);
+char *getUserName(char str[]);
+char *getPassword(char str[]);
+Users* createUsers();
+Users* addUser(Users* lst, char nome[], char contato[], char user[], char pass[], char* balance);
+Users* searchUser(Users* lst, char username[]);
+Users* loadUsers(Users* lst);
+Users* deleteListUsu(Users* usu);
+void printUsers(Users* usu);
+char* getBalance(char str[]);
 
-/*
-==================================
-========Socket Functions==========
-==================================
-*/
-
-int startServer();
-void *connection_handler(void *socket_desc);
-char* writeToClient(int socket, char message[]);
-
-
-/*
-======================================
-========Statistics Functions==========
-======================================
-*/
-
-
+//Statistics
+void showStatistics(Produto* stock,Users* usu);
+void showStasStock(Produto* stock);
+void showStatsUsuMenu(Users* usu, Produto* stock);
+void showStatsUsu(Users* usu,Produto* stock, char user[]);
+float calcPercentProfit(Produto* p);
+float calcPercentRemaining(Produto* p);
 Statistics* searchStats(Statistics* s, int cod);
 Statistics* updateStatistics(Statistics* s, int cod, int qtdCom);
+
+void updateStock(Produto* stock, int cod, int qtd);
+
+Users* updateBuyer(Users* usu, int cod, int qtdCom, char username[]);
+
+
+//Socket
+
+void *connection_handler(void *);
+
+
+
+
 
 #endif /* LibServer_h */

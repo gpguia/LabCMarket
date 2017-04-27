@@ -1,0 +1,48 @@
+getCommand Debug
+msg: gui:guia321
+Command; 2
+Fim getCommand Debug
+getCommand Debug
+msg sem o comando: gui:guia321
+Command: 2
+Fim getCommand Debug
+getCommand Debug
+msg sem o comando: gui:guia321
+Command: 2
+Fim getCommand Debug
+getCommand Debug
+msg sem o comando: gui:guia321
+Command: 2
+Fim getCommand Debug
+getCommand Debug
+msg sem o comando: gui:guia321
+Command: 2
+Fim getCommand Debug
+getCommand Debug
+msg sem o comando: gui:guia321
+Command: 2
+Fim getCommand Debug
+getCommand Debug
+msg sem o comando: gui:guia321
+Command: 2
+Fim getCommand Debug
+getCommand Debug
+msg sem o comando: gui:guia321
+Command: 2
+Fim getCommand Debug
+getCommand Debug
+msg sem o comando: gui:guia321
+Command: 2
+Fim getCommand Debug
+getCommand Debug
+msg sem o comando: gui:guia321
+Command: 2
+Fim getCommand Debug
+getCommand Debug
+msg sem o comando: gui123
+Command: 0
+Fim getCommand Debug
+getCommand Debug
+msg sem o comando: asdÿ¯Ï
+Command: 0
+Fim getCommand Debug

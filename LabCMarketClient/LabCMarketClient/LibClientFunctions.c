@@ -52,7 +52,7 @@ char* writeToServer(int sock, char message[]){
         puts("recv failed");
         return "-1";
     }
-    
+    printf("%s\n",server_reply);
     return server_reply;
 }
 
