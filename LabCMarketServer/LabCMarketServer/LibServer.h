@@ -57,8 +57,6 @@ struct users{
     Users* next;
 };
 
-char *write2SharedMem(char cpyMem[], char msg[]);
-
 bool validGestor(char user[], char pass[]);
 Produto *loadStock(Produto *stock, char caminho[]);
 Produto *addProduto(Produto *stock, char nome[], int codigo, char desc[], int qtd, float custo, float preco);
