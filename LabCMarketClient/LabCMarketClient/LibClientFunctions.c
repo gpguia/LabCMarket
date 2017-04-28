@@ -115,15 +115,81 @@ void showManageOptions(int sock, char username[], char server_replay[]){
 }
 
 void listProducts(int sock, char server_replay[]){
-    char msg[STR_MAX_SIZE];
+    int i=0,j=0;
+    char msg[STR_MAX_SIZE],tmp[STR_MAX_SIZE];
     memset(msg,0,STR_MAX_SIZE);
+    memset(tmp,0,STR_MAX_SIZE);
     strcpy(msg,"5:");
     
     writeToServer(sock,msg,server_replay);
     
-    
+    printf("\t\t\t** Lista dos produtos **\n");
+    printf("%6s","Produto");
+    printf("%14s","Descricao");
+    printf("%10s","Codigo");
+    printf("%15s","Quantidade");
+    printf("%10s","Preco");
+    printf("\n----------------------------------------------------------------------\n");
+    while(server_replay[i] != '\0'){
+        while(server_replay[i] != ':'){//print the name
+            tmp[j] = server_replay[i];
+            i++;
+            j++;
+        }
+        j=0;
+        i++;
+        printf("%6s",tmp);
+        memset(tmp,0,STR_MAX_SIZE);
+        while(server_replay[i] != ':'){//print the description
+            tmp[j] = server_replay[i];
+            i++;
+            j++;
+        }
+        i++;
+        j=0;
+        printf("%14s",tmp);
+        memset(tmp,0,STR_MAX_SIZE);
+        while(server_replay[i] != ':'){// print the code
+            tmp[j] = server_replay[i];
+            i++;
+            j++;
+        }
+        i++;
+        j=0;
+        printf("%10s",tmp);
+        memset(tmp,0,STR_MAX_SIZE);
+        while(server_replay[i] != ':'){//print the quantty
+            tmp[j] = server_replay[i];
+            i++;
+            j++;
+        }
+        i++;
+        j=0;
+        printf("%13s",tmp);
+        memset(tmp,0,STR_MAX_SIZE);
+        while(server_replay[i] != ':'){//print the price
+            tmp[j] = server_replay[i];
+            i++;
+            j++;
+        }
+        j=0;
+        
+        printf("\t   ");
+        while(j <= 3){
+            printf("%c",tmp[j]);
+            j++;
+        }
+        //printf("%14s",tmp);
+        printf("\n----------------------------------------------------------------------\n");
+        i++;
+        j=0;
+        memset(tmp,0,STR_MAX_SIZE);
+    }
+    printf("\n");
+    printf("\t\t\t**Fim da lista de produtos**\n");
     
     memset(server_replay,0,STR_MAX_SIZE);
+    return;
 }
 
 void showMenu(int sock, char *username){
@@ -150,7 +216,10 @@ void showMenu(int sock, char *username){
             manegeBalance(server_repaly);
             showManageOptions(sock,username,server_repaly);
         }else if(option == 2){
-            
+            option = -2;
+            system("clear");
+            listProducts(sock,server_repaly);
+            sleep(10);
         }else if(option == -2){
             system("clear");
             printf("**MENU**\n");

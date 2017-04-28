@@ -528,7 +528,27 @@ void addBalance(Users* lst, char str[], int sock){
 }
 
 void sendListProdcut(Produto* p, int sock){
-    //TODO;
+    Produto* p1;
+    char msg[STR_MAX_SIZE];
+    char tmp[STR_MAX_SIZE];
+    
+    memset(tmp,0,STR_MAX_SIZE);
+    memset(msg,0,STR_MAX_SIZE);
+    for(p1 = p; p1 != NULL; p1 = p1->next){
+        strcat(msg,p1->nome);
+        strcat(msg,":");
+        strcat(msg,p1->descricao);
+        strcat(msg,":");
+        strcat(msg,itoa(p1->codigo,10));
+        strcat(msg,":");
+        strcat(msg,itoa(p1->qtd,10));
+        strcat(msg,":");
+        snprintf(tmp,STR_MAX_SIZE,"%f", p1->preco);
+        strcat(msg,tmp);
+        memset(tmp,0,STR_MAX_SIZE);
+        strcat(msg,":");
+    }
+    write(sock,msg,strlen(msg));
 }
 
 void *connection_handler(void* socket_desc){
@@ -564,10 +584,9 @@ void *connection_handler(void* socket_desc){
             addBalance(sh->users,client_message,sock);
             memset(client_message,0,STR_MAX_SIZE);
         }else if(command == 5){//List all the products
-            //PAREI AQUI!
             sendListProdcut(sh->stock,sock);
+            memset(client_message,0,STR_MAX_SIZE);
         }
-        
         
         //Send the message back to client
         write(sock , client_message , strlen(client_message));
