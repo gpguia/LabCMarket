@@ -265,7 +265,7 @@ Carts *addProduct2Cart(int sock,char server_reply[] , Carts *lst, int code, int 
     return novo;
 }
 
-void listProductInCart(Carts *lst, int sock, char server_reply[]){
+float listProductInCart(Carts *lst, int sock, char server_reply[]){
     int i=0,j=0,k=0,qtdC[200];
     Carts *c;
     float precos[200],gasto=0;
@@ -320,15 +320,111 @@ void listProductInCart(Carts *lst, int sock, char server_reply[]){
     
     printf("\n\t\t\t**Fim da lista do carrinho**\n");
     memset(server_reply,0,STR_MAX_SIZE);
+    return gasto;
 }
 
-Carts *manageProducts(int sock, char server_reply[], Carts *c){
+//Verify if the user has the money, and subtract it.
+Carts *checkout(Carts *lst, char username[], char server_reply[], int sock, float total){
+    char msg[STR_MAX_SIZE];
+    memset(msg,0,STR_MAX_SIZE);
+    
+    strcpy(msg,"8:");
+    strcat(msg,username);
+    strcat(msg,":");
+    strcat(msg,itoa(total,10));
+    strcat(msg,":");
+    
+    
+    writeToServer(sock,msg,server_reply);
+    
+    if(strcmp(server_reply,"1") == 0){
+        printf("Compra finalizada com sucesso!\n");
+        sleep(2);
+    }else{
+        printf("Dinheiro insuficiente.\n");
+        sleep(2);
+        return lst;
+    }
+    
+    while(lst != NULL){
+        Carts *temp = lst;
+        free(temp);
+        lst = lst->next;
+    }
+    
+    memset(server_reply,0,STR_MAX_SIZE);
+    
+    return lst;
+}
+
+Carts *removeProductFromCart(Carts *lst, int code){
+    Carts *a = NULL; //Elemento anterior
+    Carts *c = lst; //Percorrer a lista
+    
+    //Search for the product ant keep saving the previous
+    while(c!=NULL && c->cod != code){
+        a = c;
+        c = c->next;
+    }
+    
+    //Verify if got the product
+    if (c == NULL){
+        return lst;
+    }
+    if(a == NULL){//Remove the first element
+        lst = c->next;
+    }else{
+        a->next = c->next;
+    }
+    free(c);
+    return lst;
+}
+
+Carts *manageCart(Carts *lst, int sock, char server_reply[], char username[]){
+    int option=0,codigo,TotalCart;
+    TotalCart = listProductInCart(lst,sock,server_reply);
+    printf("\n1) Finalizar compra.\n");
+    printf("2) Remover Produto.\n");
+    printf("3) Voltar.\n");
+    scanf("%d",&option);
+    while(option != 3){
+        if(option == 1){//Checkout
+            lst = checkout(lst,username,server_reply,sock,TotalCart);
+            return lst;
+        }else if(option == 2){//Delete product from the cart
+            printf("Digite o cod do produto que deseja remover: \n");
+            scanf("%d",&codigo);
+            while(searchCart(lst,codigo) == NULL){
+                printf("Produto nao esta no carrinho, tente novamente: \n");
+                scanf("%d",&codigo);
+            }
+            lst = removeProductFromCart(lst,codigo);
+            return lst;
+        }else if(option == 3){//Go back
+            return lst;
+        }else if(option == -2){
+            system("clear");
+            printf("\n1) Finalizar compra.\n");
+            printf("2) Remover Produto.\n");
+            printf("3) Voltar.\n");
+            scanf("%d",&option);
+        }else{
+            printf("Opcao nao encontrada, tente novamente: \n");
+            scanf("%d",&option);
+        }
+    }
+    
+    memset(server_reply,0,STR_MAX_SIZE);
+    return lst;
+}
+
+Carts *manageProducts(int sock, char server_reply[], Carts *c, char username[]){
     int option=0;
     int qtdProcut,qtdComprar=0,productExist=0;
     int codigos[200],code;
     printf("**Comprando Produtos**\n");
     printf("1) Adicionar produto ao carrinho.\n");
-    printf("2) Listar produtos do carrinho.\n");
+    printf("2) Listar produtos do carrinho (Verificar, remover, finalizar compra).\n");
     printf("3) Voltar.\n");
     scanf("%d",&option);
     while(option != 3){
@@ -361,8 +457,7 @@ Carts *manageProducts(int sock, char server_reply[], Carts *c){
         }else if(option == 2){
             option = -2;
             system("clear");
-            listProductInCart(c,sock,server_reply);
-            //manageCart();
+            c = manageCart(c,sock,server_reply,username);
         }else if(option == 3){
             return c;
         }else if(option == -2){
@@ -408,7 +503,7 @@ void showMenu(int sock, char *username){
             option = -2;
             system("clear");
             
-            c = manageProducts(sock,server_repaly,c);
+            c = manageProducts(sock,server_repaly,c,username);
         }else if(option == -2){
             system("clear");
             printf("**MENU**\n");

@@ -625,6 +625,53 @@ void sendAProduct(int sock, char msg[], Produto *stock){
     
 }
 
+
+void verifyMoney(int sock, char msg[], Users* usu){
+    int i=0,j=0;
+    Users *u;
+    char username[50];
+    char tmp[10],aux[STR_MAX_SIZE];
+    float total, balance;
+    
+    memset(aux,0,STR_MAX_SIZE);
+    memset(username,0,50);
+    memset(tmp,0,10);
+    
+    while(msg[i] != ':'){
+        username[i] = msg[i];
+        i++;
+    }
+    i++;
+    while(msg[i] != ':'){
+        tmp[j] = msg[i];
+        i++;
+        j++;
+    }
+    total = atof(tmp);
+    
+    printf("Username: %s\n",username);
+    printf("Total: %f\n",total);
+    
+    u = searchUser(usu,username);
+    balance = atof(u->balance);
+    
+    printf("Balance antes: %f\n",balance);
+    
+    if(balance >= total){
+        balance = balance - total;
+        snprintf(aux,STR_MAX_SIZE,"%f", balance);
+        printf("%s\n",aux);
+        strcpy(u->balance,aux);
+        write(sock,"1",strlen("1"));
+    }else{
+        write(sock,"0",strlen("0"));
+    }
+    
+    printf("Balance Depois: %s\n",u->balance);
+    
+    
+}
+
 void *connection_handler(void* socket_desc){
     struct sockHandle *sh = socket_desc;
     //Get the socket descriptor
@@ -664,6 +711,9 @@ void *connection_handler(void* socket_desc){
             memset(client_message,0,STR_MAX_SIZE);
         }else if(command == 7){//Return a specific product
             sendAProduct(sock,client_message,sh->stock);
+            memset(client_message,0,STR_MAX_SIZE);
+        }else if(command == 8){//Verify if the client has money to buy.
+            verifyMoney(sock,client_message,sh->users);
             memset(client_message,0,STR_MAX_SIZE);
         }
         

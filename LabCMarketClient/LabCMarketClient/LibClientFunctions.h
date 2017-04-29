@@ -48,16 +48,19 @@ void showMenu(int sock, char *username);
 void showManageOptions(int sock, char username[], char server_replay[]);
 void manegeBalance(char str[]);
 void listProducts(int sock, char server_replay[], int codigos[], int *qtdProduct);
-void listProductInCart(Carts *lst, int sock, char server_reply[]);
+float listProductInCart(Carts *lst, int sock, char server_reply[]);
 
 int connToServer();
 void writeToServer(int sock, char message[], char server_reply[]);
 
 
-Carts *manageProducts(int sock, char server_reply[], Carts *c);
+Carts *manageProducts(int sock, char server_reply[], Carts *c, char username[]);
 Carts *createCart();
 Carts *addProduct2Cart(int sock,char server_reply[] , Carts *lst, int code, int qtd);
 Carts *searchCart(Carts *lst, int code);
-
+Carts *manageCart(Carts *lst, int sock, char server_reply[], char username[]);
 int checkProductList(int qtdProduct, int lst[], int key);
+Carts *checkout(Carts *lst, char username[], char server_reply[], int sock, float total);
+Carts *removeProductFromCart(Carts *lst, int code);
+
 #endif /* LibClientFunctions_h */

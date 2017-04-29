@@ -58,7 +58,7 @@ struct users{
     char contato[10];
     char username[50];
     char password[50];
-    char balance[10];
+    char balance[100];
     Statistics* statUsu;
     Users* next;
 };
@@ -85,6 +85,7 @@ char *getUserName(char str[]);
 char *getPassword(char str[]);
 char *getBalance(char str[]);
 void printUsers(Users* usu);
+void verifyMoney(int sock, char msg[], Users* usu);
 
 Produto *addProduto(Produto *stock, char nome[], int codigo, char desc[], int qtd, float custo, float preco);
 Produto *loadStock(Produto *stock, char caminho[]);
