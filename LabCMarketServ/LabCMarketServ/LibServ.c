@@ -564,7 +564,6 @@ void *connection_handler(void* socket_desc){
     while( (read_size = (int)recv(sock , client_message , STR_MAX_SIZE , 0)) > 0 )
     {
         command = getCommand(client_message);
-        printf("Command: %d\n",command);
         if(command == 1){//To valid the manager
             if(validManager(client_message) == 1){
                 

@@ -36,6 +36,10 @@ int connToServer(){
     return sock;
 }
 
+Carts *createCart(){
+    return NULL;
+}
+
 void writeToServer(int sock, char message[], char server_reply[]){
     
     memset(server_reply,0,STR_MAX_SIZE);
@@ -114,8 +118,8 @@ void showManageOptions(int sock, char username[], char server_replay[]){
     memset(server_replay,0,STR_MAX_SIZE);
 }
 
-void listProducts(int sock, char server_replay[]){
-    int i=0,j=0;
+void listProducts(int sock, char server_replay[], int codigos[], int *qtdProduct){
+    int i=0,j=0,k=0;
     char msg[STR_MAX_SIZE],tmp[STR_MAX_SIZE];
     memset(msg,0,STR_MAX_SIZE);
     memset(tmp,0,STR_MAX_SIZE);
@@ -156,6 +160,8 @@ void listProducts(int sock, char server_replay[]){
         }
         i++;
         j=0;
+        codigos[k] = atoi(tmp);
+        k++;
         printf("%10s",tmp);
         memset(tmp,0,STR_MAX_SIZE);
         while(server_replay[i] != ':'){//print the quantty
@@ -187,9 +193,53 @@ void listProducts(int sock, char server_replay[]){
     }
     printf("\n");
     printf("\t\t\t**Fim da lista de produtos**\n");
-    
+    *qtdProduct = k;
     memset(server_replay,0,STR_MAX_SIZE);
     return;
+}
+
+int checkProductList(int qtdProduct, int lst[], int key){
+    int i;
+    
+    for(i=0;i<qtdProduct;i++){
+        if(lst[i] == key){
+            return 1;
+        }
+    }
+    return 0;
+}
+
+Carts *manageProducts(int sock, char server_reply[], Carts *c){
+    int option=0;
+    int i=0,qtdProcut,productExist=0;
+    int codigos[200],code;
+    printf("\n**Comprando Produtos**\n");
+    printf("1) Adicionar produto ao carrinho.\n");
+    printf("2) Listar produtos do carrinho.\n");
+    printf("3) Voltar.\n");
+    scanf("%d",&option);
+    while(option != 3){
+        if(option == 1){
+            system("clear");
+            listProducts(sock,server_reply,codigos,&qtdProcut);
+            printf("Digite o codigo do produto que deseja comprar: \n");
+            scanf("%d",&code);
+            productExist = checkProductList(qtdProcut, codigos, code);
+            if(productExist == 0){
+                //verifica se o codigo nao existe e pede pra inserir novamente.
+                //TODO.
+            }
+            
+        }else if(option == 2){
+            
+        }else if(option == 3){
+            
+        }else{
+            printf("Opcao inesistente, tente novamente: \n");
+            scanf("%d",&option);
+        }
+    }
+    return c;
 }
 
 void showMenu(int sock, char *username){
@@ -197,6 +247,7 @@ void showMenu(int sock, char *username){
     char msg[STR_MAX_SIZE];
     char server_repaly[STR_MAX_SIZE];
     Carts* c;
+    c = createCart();
     
     printf("**MENU**\n");
     printf("1) Gerir Saldo\n");
@@ -218,7 +269,8 @@ void showMenu(int sock, char *username){
         }else if(option == 2){
             option = -2;
             system("clear");
-            listProducts(sock,server_repaly);
+            
+            c = manageProducts(sock,server_repaly,c);
             sleep(10);
         }else if(option == -2){
             system("clear");

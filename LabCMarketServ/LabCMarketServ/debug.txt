@@ -3,7 +3,7 @@ msg sem o comando: gui:gui123:
 Command: 2
 Fim getCommand Debug
 
-Program Running on: 2017-4-28 13:0:12
+Program Running on: 2017-4-29 12:17:43
 Username: gui
 Password: gui123
 
@@ -17,7 +17,16 @@ msg sem o comando: gui:gui123:
 Command: 2
 Fim getCommand Debug
 
-Program Running on: 2017-4-28 13:0:49
+Program Running on: 2017-4-29 12:36:39
+Username: gui
+Password: gui123
+
+getCommand Debug
+msg sem o comando: gui:gui123:
+Command: 2
+Fim getCommand Debug
+
+Program Running on: 2017-4-29 12:37:5
 Username: gui
 Password: gui123
 
@@ -31,7 +40,34 @@ msg sem o comando: gui:gui123:
 Command: 2
 Fim getCommand Debug
 
-Program Running on: 2017-4-28 13:1:6
+Program Running on: 2017-4-29 12:38:6
+Username: gui
+Password: gui123
+
+getCommand Debug
+msg sem o comando: gui:gui123:
+Command: 2
+Fim getCommand Debug
+
+Program Running on: 2017-4-29 12:38:23
+Username: gui
+Password: gui123
+
+getCommand Debug
+msg sem o comando: gui:gui123:
+Command: 2
+Fim getCommand Debug
+
+Program Running on: 2017-4-29 12:40:44
+Username: gui
+Password: gui123
+
+getCommand Debug
+msg sem o comando: gui:gui123:
+Command: 2
+Fim getCommand Debug
+
+Program Running on: 2017-4-29 12:41:7
 Username: gui
 Password: gui123
 
@@ -45,21 +81,7 @@ msg sem o comando: gui:gui123:
 Command: 2
 Fim getCommand Debug
 
-Program Running on: 2017-4-28 13:1:15
-Username: gui
-Password: gui123
-
-getCommand Debug
-msg sem o comando: 
-Command: 5
-Fim getCommand Debug
-
-getCommand Debug
-msg sem o comando: gui:gui123:
-Command: 2
-Fim getCommand Debug
-
-Program Running on: 2017-4-28 13:1:30
+Program Running on: 2017-4-29 12:41:43
 Username: gui
 Password: gui123
 

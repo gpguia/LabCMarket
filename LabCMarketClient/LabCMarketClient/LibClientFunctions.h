@@ -45,9 +45,14 @@ void error(char *msg);
 void showMenu(int sock, char *username);
 void showManageOptions(int sock, char username[], char server_replay[]);
 void manegeBalance(char str[]);
-void listProducts(int sock, char server_replay[]);
+void listProducts(int sock, char server_replay[], int codigos[], int *qtdProduct);
 
 int connToServer();
 void writeToServer(int sock, char message[], char server_reply[]);
 
+
+Carts *manageProducts(int sock, char server_reply[], Carts *c);
+Carts *createCart();
+
+int checkProductList(int qtdProduct, int lst[], int key);
 #endif /* LibClientFunctions_h */
