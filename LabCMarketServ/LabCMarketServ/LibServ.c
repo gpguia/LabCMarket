@@ -343,7 +343,6 @@ void printUsers(Users* usu){
     printf("** Fim da lista de usuarios **\n");
 }
 
-
 //Create the very first element of the list, in this case is the empty list
 Produto *createStock(){
     return NULL;
@@ -551,6 +550,81 @@ void sendListProdcut(Produto* p, int sock){
     write(sock,msg,strlen(msg));
 }
 
+Produto *searchProduct(Produto *stock,int cod){
+    Produto *p;
+    
+    for(p = stock; p != NULL ;p = p->next){
+        if(p->codigo == cod){
+            return p;
+        }
+    }
+    return NULL;
+}
+
+Produto *updateProducts(Produto *stock,char msg[], int sock){
+    Produto *p;
+    int cod,i=0,j=0, qtdComprada;
+    char tmp[STR_MAX_SIZE];
+    memset(tmp,0,STR_MAX_SIZE);
+    
+    while (msg[i] != ':') {
+        tmp[i] = msg[i];
+        i++;
+    }
+    i++;
+    cod = atoi(tmp);
+    memset(tmp,0,STR_MAX_SIZE);
+    while(msg[i] != ':'){
+        tmp[j] = msg[i];
+        i++;
+        j++;
+    }
+    qtdComprada = atoi(tmp);
+    
+    p = searchProduct(stock,cod);
+    
+    p->qtd = p->qtd - qtdComprada;
+    
+    write(sock,"1",strlen("1"));
+    
+    return stock;
+}
+
+void sendAProduct(int sock, char msg[], Produto *stock){
+    Produto *p;
+    int i=0,code;
+    char str[STR_MAX_SIZE];
+    char tmp[STR_MAX_SIZE];
+    char aux[STR_MAX_SIZE];
+    
+    memset(aux,0,STR_MAX_SIZE);
+    memset(str,0,STR_MAX_SIZE);
+    memset(tmp,0,STR_MAX_SIZE);
+    
+    while(msg[i] != ':'){
+        str[i] = msg[i];
+        i++;
+    }
+    i++;
+    code = atoi(str);
+    
+    p = searchProduct(stock,code);
+    
+    memset(str,0,STR_MAX_SIZE);
+    
+    strcpy(str,p->nome);
+    strcat(str,":");
+    snprintf(tmp,STR_MAX_SIZE,"%f", p->preco);//Change float to string;
+    for(i=0;i<4;i++){//Make it like eg(1.00 and not 1.00000);
+        aux[i] = tmp[i];
+    }
+    strcat(str,aux);
+    strcat(str,":");
+    
+    write(sock,str,strlen(str));
+    
+}
+
 void *connection_handler(void* socket_desc){
     struct sockHandle *sh = socket_desc;
     //Get the socket descriptor
@@ -584,6 +658,12 @@ void *connection_handler(void* socket_desc){
             memset(client_message,0,STR_MAX_SIZE);
         }else if(command == 5){//List all the products
             sendListProdcut(sh->stock,sock);
+            memset(client_message,0,STR_MAX_SIZE);
+        }else if(command == 6){//Decress the number of a certan product that was add to the cart.
+            sh->stock = updateProducts(sh->stock,client_message,sh->sock);
+            memset(client_message,0,STR_MAX_SIZE);
+        }else if(command == 7){//Return a specific product
+            sendAProduct(sock,client_message,sh->stock);
             memset(client_message,0,STR_MAX_SIZE);
         }
         

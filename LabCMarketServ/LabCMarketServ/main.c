@@ -28,8 +28,6 @@ int main(int argc, const char * argv[]) {
     users = createUsers();
     users = loadUsers(users);
     
-    sendListProdcut(noStock,1);
-    
     createConn(users,noStock);
     return 0;
 }

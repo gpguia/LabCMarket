@@ -9,6 +9,20 @@
 #include "LibClientFunctions.h"
 
 
+char* itoa(int val, int base){
+    
+    static char buf[32] = {0};
+    
+    int i = 30;
+    
+    for(; val && i ; --i, val /= base)
+        
+        buf[i] = "0123456789abcdef"[val % base];
+    
+    return &buf[i+1];
+    
+}
+
 int connToServer(){
     int sock;
     struct sockaddr_in server;
@@ -181,7 +195,7 @@ void listProducts(int sock, char server_replay[], int codigos[], int *qtdProduct
         j=0;
         
         printf("\t   ");
-        while(j <= 3){
+        while(j <= 3){//Show something like 1.00 and not 1.000000
             printf("%c",tmp[j]);
             j++;
         }
@@ -209,11 +223,110 @@ int checkProductList(int qtdProduct, int lst[], int key){
     return 0;
 }
 
+Carts *searchCart(Carts *lst, int code){
+    Carts *c;
+    
+    for(c = lst; c!= NULL; c = c->next){
+        if(c->cod == code){
+            return c;
+        }
+    }
+    return NULL;
+}
+
+Carts *addProduct2Cart(int sock,char server_reply[] , Carts *lst, int code, int qtd){
+    char msg[STR_MAX_SIZE];
+    memset(msg,0,STR_MAX_SIZE);
+    Carts *c;
+    c = searchCart(lst,code);
+    if(c != NULL){//Verify if the product already exist in the cart
+        c->qtd += qtd;
+        return c;
+    }
+    
+    Carts *novo = (Carts*) malloc(sizeof(Carts));
+    
+    novo->cod = code;
+    novo->qtd = qtd;
+    novo->next = lst;
+    
+    
+    strcpy(msg,"6:");
+    strcat(msg,itoa(code,10));
+    strcat(msg,":");
+    strcat(msg,itoa(qtd,10));
+    strcat(msg,":");
+    
+    writeToServer(sock,msg,server_reply);
+    if(strcmp(server_reply,"1") == 0){
+        printf("Produto adicionado com sucesso!\n");
+    }
+    memset(server_reply,0,STR_MAX_SIZE);
+    return novo;
+}
+
+void listProductInCart(Carts *lst, int sock, char server_reply[]){
+    int i=0,j=0,k=0,qtdC[200];
+    Carts *c;
+    float precos[200],gasto=0;
+    char msg[STR_MAX_SIZE];
+    char nome[100],preco[10];
+    memset(msg,0,STR_MAX_SIZE);
+    memset(nome,0,100);
+    memset(preco,0,10);
+    
+    printf("\t**Lista dos produtos no carrinho**\n");
+    printf("%6s","Produto");
+    printf("%10s","Codigo");
+    printf("%15s","Quantidade");
+    printf("%10s","Preco");
+    printf("\n----------------------------------------------------------------------\n");
+    for(c = lst;c!=NULL;c = c->next){
+        memset(msg,0,STR_MAX_SIZE);
+        memset(preco,0,10);
+        memset(nome,0,100);
+        memset(server_reply,0,STR_MAX_SIZE);
+        strcpy(msg,"7:");
+        strcat(msg,itoa(c->cod,10));
+        strcat(msg,":");
+        writeToServer(sock,msg,server_reply);//Msg to get the name and the price of the product.
+        i=0;
+        j=0;
+        while(server_reply[i] != ':'){
+            nome[i] = server_reply[i];
+            i++;
+        }
+        i++;
+        while(server_reply[i] != ':'){
+            preco[j] = server_reply[i];
+            i++;
+            j++;
+        }
+        precos[k] = atof(preco);
+        qtdC[k] = c->qtd;
+        k++;
+        printf("%6s",nome);
+        printf("%10d",c->cod);
+        printf("%10d",c->qtd);
+        printf("%15s",preco);
+        printf("\n----------------------------------------------------------------------\n");
+    }
+    
+    for(i=0;i<k;i++){//Calculate all the money that will expand
+        gasto = (precos[i] * qtdC[i]) + gasto;
+    }
+    
+    printf("\n** Total gasto ate o momento: %.2f **\n",gasto);
+    
+    printf("\n\t\t\t**Fim da lista do carrinho**\n");
+    memset(server_reply,0,STR_MAX_SIZE);
+}
+
 Carts *manageProducts(int sock, char server_reply[], Carts *c){
     int option=0;
-    int i=0,qtdProcut,productExist=0;
+    int qtdProcut,qtdComprar=0,productExist=0;
     int codigos[200],code;
-    printf("\n**Comprando Produtos**\n");
+    printf("**Comprando Produtos**\n");
     printf("1) Adicionar produto ao carrinho.\n");
     printf("2) Listar produtos do carrinho.\n");
     printf("3) Voltar.\n");
@@ -222,18 +335,43 @@ Carts *manageProducts(int sock, char server_reply[], Carts *c){
         if(option == 1){
             system("clear");
             listProducts(sock,server_reply,codigos,&qtdProcut);
-            printf("Digite o codigo do produto que deseja comprar: \n");
+            printf("Digite o codigo do produto que deseja comprar: (-1 para cancelar)\n");
             scanf("%d",&code);
-            productExist = checkProductList(qtdProcut, codigos, code);
-            if(productExist == 0){
-                //verifica se o codigo nao existe e pede pra inserir novamente.
-                //TODO.
+            if(code == -1){
+                return c;
             }
-            
+            productExist = checkProductList(qtdProcut, codigos, code);
+            while(productExist == 0){
+                system("clear");
+                listProducts(sock,server_reply,codigos,&qtdProcut);
+                printf("Produto nao encontrado, porfavor digite novamente o codigo: (-1 para cancelar)\n");
+                scanf("%d",&code);
+                if(code == -1){
+                    return c;
+                }
+                productExist = checkProductList(qtdProcut, codigos, code);
+            }
+            printf("Digite a quantidade desejada: \n");
+            scanf("%d",&qtdComprar);
+            if(qtdComprar == 0){
+                return c;
+            }
+            c = addProduct2Cart(sock,server_reply,c,code,qtdComprar);
+            sleep(1);
         }else if(option == 2){
-            
+            option = -2;
+            system("clear");
+            listProductInCart(c,sock,server_reply);
+            //manageCart();
         }else if(option == 3){
-            
+            return c;
+        }else if(option == -2){
+            system("clear");
+            printf("\n**Comprando Produtos**\n");
+            printf("1) Adicionar produto ao carrinho.\n");
+            printf("2) Listar produtos do carrinho.\n");
+            printf("3) Voltar.\n");
+            scanf("%d",&option);
         }else{
             printf("Opcao inesistente, tente novamente: \n");
             scanf("%d",&option);
@@ -271,7 +409,6 @@ void showMenu(int sock, char *username){
             system("clear");
             
             c = manageProducts(sock,server_repaly,c);
-            sleep(10);
         }else if(option == -2){
             system("clear");
             printf("**MENU**\n");

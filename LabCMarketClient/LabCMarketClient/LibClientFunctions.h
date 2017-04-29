@@ -31,12 +31,14 @@ typedef struct cart Carts;
 struct cart{
     int cod;
     int qtd;
-    char nomeProduto[STR_MAX_SIZE];
     Carts* next;
 };
 
 
+
 void startProgram();
+
+char* itoa(int val, int base);
 
 bool validUser(char username[], char password[]);
 
@@ -46,6 +48,7 @@ void showMenu(int sock, char *username);
 void showManageOptions(int sock, char username[], char server_replay[]);
 void manegeBalance(char str[]);
 void listProducts(int sock, char server_replay[], int codigos[], int *qtdProduct);
+void listProductInCart(Carts *lst, int sock, char server_reply[]);
 
 int connToServer();
 void writeToServer(int sock, char message[], char server_reply[]);
@@ -53,6 +56,8 @@ void writeToServer(int sock, char message[], char server_reply[]);
 
 Carts *manageProducts(int sock, char server_reply[], Carts *c);
 Carts *createCart();
+Carts *addProduct2Cart(int sock,char server_reply[] , Carts *lst, int code, int qtd);
+Carts *searchCart(Carts *lst, int code);
 
 int checkProductList(int qtdProduct, int lst[], int key);
 #endif /* LibClientFunctions_h */

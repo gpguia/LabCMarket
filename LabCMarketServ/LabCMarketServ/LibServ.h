@@ -90,6 +90,9 @@ Produto *addProduto(Produto *stock, char nome[], int codigo, char desc[], int qt
 Produto *loadStock(Produto *stock, char caminho[]);
 Produto *createStock();
 void printStock(Produto* stock);
+Produto *updateProducts(Produto *stock,char msg[], int sock);
+Produto *searchProduct(Produto *stock,int cod);
+void sendAProduct(int sock, char msg[], Produto *stock);
 
 int validClient(Users* lst, char str[]);
 int validManager(char str[]);

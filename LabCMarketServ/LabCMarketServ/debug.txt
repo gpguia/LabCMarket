@@ -3,7 +3,7 @@ msg sem o comando: gui:gui123:
 Command: 2
 Fim getCommand Debug
 
-Program Running on: 2017-4-29 12:17:43
+Program Running on: 2017-4-29 17:39:31
 Username: gui
 Password: gui123
 
@@ -13,20 +13,71 @@ Command: 5
 Fim getCommand Debug
 
 getCommand Debug
-msg sem o comando: gui:gui123:
-Command: 2
+msg sem o comando: 10005:20:
+Command: 6
 Fim getCommand Debug
 
-Program Running on: 2017-4-29 12:36:39
-Username: gui
-Password: gui123
+getCommand Debug
+msg sem o comando: 
+Command: 5
+Fim getCommand Debug
+
+getCommand Debug
+msg sem o comando: 10003:20:
+Command: 6
+Fim getCommand Debug
+
+getCommand Debug
+msg sem o comando: 
+Command: 5
+Fim getCommand Debug
+
+getCommand Debug
+msg sem o comando: 10002:1:
+Command: 6
+Fim getCommand Debug
+
+getCommand Debug
+msg sem o comando: 
+Command: 5
+Fim getCommand Debug
+
+getCommand Debug
+msg sem o comando: 10006:20:
+Command: 6
+Fim getCommand Debug
+
+getCommand Debug
+msg sem o comando: 
+Command: 5
+Fim getCommand Debug
+
+getCommand Debug
+msg sem o comando: 10006:
+Command: 7
+Fim getCommand Debug
+
+getCommand Debug
+msg sem o comando: 10002:
+Command: 7
+Fim getCommand Debug
+
+getCommand Debug
+msg sem o comando: 10003:
+Command: 7
+Fim getCommand Debug
+
+getCommand Debug
+msg sem o comando: 10005:
+Command: 7
+Fim getCommand Debug
 
 getCommand Debug
 msg sem o comando: gui:gui123:
 Command: 2
 Fim getCommand Debug
 
-Program Running on: 2017-4-29 12:37:5
+Program Running on: 2017-4-29 17:43:42
 Username: gui
 Password: gui123
 
@@ -36,38 +87,61 @@ Command: 5
 Fim getCommand Debug
 
 getCommand Debug
-msg sem o comando: gui:gui123:
-Command: 2
+msg sem o comando: 10005:20:
+Command: 6
 Fim getCommand Debug
 
-Program Running on: 2017-4-29 12:38:6
-Username: gui
-Password: gui123
+getCommand Debug
+msg sem o comando: 
+Command: 5
+Fim getCommand Debug
+
+getCommand Debug
+msg sem o comando: 
+Command: 5
+Fim getCommand Debug
+
+getCommand Debug
+msg sem o comando: 10003:20:
+Command: 6
+Fim getCommand Debug
+
+getCommand Debug
+msg sem o comando: 
+Command: 5
+Fim getCommand Debug
+
+getCommand Debug
+msg sem o comando: 10006:20:
+Command: 6
+Fim getCommand Debug
+
+getCommand Debug
+msg sem o comando: 
+Command: 5
+Fim getCommand Debug
+
+getCommand Debug
+msg sem o comando: 10006:
+Command: 7
+Fim getCommand Debug
+
+getCommand Debug
+msg sem o comando: 10003:
+Command: 7
+Fim getCommand Debug
+
+getCommand Debug
+msg sem o comando: 10005:
+Command: 7
+Fim getCommand Debug
 
 getCommand Debug
 msg sem o comando: gui:gui123:
 Command: 2
 Fim getCommand Debug
 
-Program Running on: 2017-4-29 12:38:23
-Username: gui
-Password: gui123
-
-getCommand Debug
-msg sem o comando: gui:gui123:
-Command: 2
-Fim getCommand Debug
-
-Program Running on: 2017-4-29 12:40:44
-Username: gui
-Password: gui123
-
-getCommand Debug
-msg sem o comando: gui:gui123:
-Command: 2
-Fim getCommand Debug
-
-Program Running on: 2017-4-29 12:41:7
+Program Running on: 2017-4-29 17:45:51
 Username: gui
 Password: gui123
 
@@ -77,16 +151,214 @@ Command: 5
 Fim getCommand Debug
 
 getCommand Debug
+msg sem o comando: 10005:20:
+Command: 6
+Fim getCommand Debug
+
+getCommand Debug
+msg sem o comando: 
+Command: 5
+Fim getCommand Debug
+
+getCommand Debug
+msg sem o comando: 10003:1:
+Command: 6
+Fim getCommand Debug
+
+getCommand Debug
+msg sem o comando: 
+Command: 5
+Fim getCommand Debug
+
+getCommand Debug
+msg sem o comando: 10006:2:
+Command: 6
+Fim getCommand Debug
+
+getCommand Debug
+msg sem o comando: 
+Command: 5
+Fim getCommand Debug
+
+getCommand Debug
+msg sem o comando: 10006:
+Command: 7
+Fim getCommand Debug
+
+getCommand Debug
+msg sem o comando: 10003:
+Command: 7
+Fim getCommand Debug
+
+getCommand Debug
+msg sem o comando: 10005:
+Command: 7
+Fim getCommand Debug
+
+getCommand Debug
 msg sem o comando: gui:gui123:
 Command: 2
 Fim getCommand Debug
 
-Program Running on: 2017-4-29 12:41:43
+Program Running on: 2017-4-29 17:46:53
 Username: gui
 Password: gui123
 
 getCommand Debug
 msg sem o comando: 
 Command: 5
+Fim getCommand Debug
+
+getCommand Debug
+msg sem o comando: 10005:2:
+Command: 6
+Fim getCommand Debug
+
+getCommand Debug
+msg sem o comando: 
+Command: 5
+Fim getCommand Debug
+
+getCommand Debug
+msg sem o comando: 10003:1:
+Command: 6
+Fim getCommand Debug
+
+getCommand Debug
+msg sem o comando: 
+Command: 5
+Fim getCommand Debug
+
+getCommand Debug
+msg sem o comando: 10006:7:
+Command: 6
+Fim getCommand Debug
+
+getCommand Debug
+msg sem o comando: 
+Command: 5
+Fim getCommand Debug
+
+getCommand Debug
+msg sem o comando: 10006:
+Command: 7
+Fim getCommand Debug
+
+getCommand Debug
+msg sem o comando: 10003:
+Command: 7
+Fim getCommand Debug
+
+getCommand Debug
+msg sem o comando: 10005:
+Command: 7
+Fim getCommand Debug
+
+getCommand Debug
+msg sem o comando: gui:gui123:
+Command: 2
+Fim getCommand Debug
+
+Program Running on: 2017-4-29 17:49:40
+Username: gui
+Password: gui123
+
+getCommand Debug
+msg sem o comando: 
+Command: 5
+Fim getCommand Debug
+
+getCommand Debug
+msg sem o comando: 10005:2:
+Command: 6
+Fim getCommand Debug
+
+getCommand Debug
+msg sem o comando: 
+Command: 5
+Fim getCommand Debug
+
+getCommand Debug
+msg sem o comando: 10003:5:
+Command: 6
+Fim getCommand Debug
+
+getCommand Debug
+msg sem o comando: 
+Command: 5
+Fim getCommand Debug
+
+getCommand Debug
+msg sem o comando: 10006:1:
+Command: 6
+Fim getCommand Debug
+
+getCommand Debug
+msg sem o comando: 
+Command: 5
+Fim getCommand Debug
+
+getCommand Debug
+msg sem o comando: 10006:10:
+Command: 6
+Fim getCommand Debug
+
+getCommand Debug
+msg sem o comando: 
+Command: 5
+Fim getCommand Debug
+
+getCommand Debug
+msg sem o comando: 10006:
+Command: 7
+Fim getCommand Debug
+
+getCommand Debug
+msg sem o comando: 10006:
+Command: 7
+Fim getCommand Debug
+
+getCommand Debug
+msg sem o comando: 10003:
+Command: 7
+Fim getCommand Debug
+
+getCommand Debug
+msg sem o comando: 10005:
+Command: 7
+Fim getCommand Debug
+
+getCommand Debug
+msg sem o comando: gui:gui123:
+Command: 2
+Fim getCommand Debug
+
+Program Running on: 2017-4-29 17:56:43
+Username: gui
+Password: gui123
+
+getCommand Debug
+msg sem o comando: 
+Command: 5
+Fim getCommand Debug
+
+getCommand Debug
+msg sem o comando: 10005:6:
+Command: 6
+Fim getCommand Debug
+
+getCommand Debug
+msg sem o comando: 
+Command: 5
+Fim getCommand Debug
+
+getCommand Debug
+msg sem o comando: 
+Command: 5
+Fim getCommand Debug
+
+getCommand Debug
+msg sem o comando: 10005:
+Command: 7
 Fim getCommand Debug
 
