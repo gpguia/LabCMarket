@@ -429,6 +429,7 @@ Carts *manageProducts(int sock, char server_reply[], Carts *c, char username[]){
     scanf("%d",&option);
     while(option != 3){
         if(option == 1){
+            option = -2;
             system("clear");
             listProducts(sock,server_reply,codigos,&qtdProcut);
             printf("Digite o codigo do produto que deseja comprar: (-1 para cancelar)\n");
@@ -453,7 +454,6 @@ Carts *manageProducts(int sock, char server_reply[], Carts *c, char username[]){
                 return c;
             }
             c = addProduct2Cart(sock,server_reply,c,code,qtdComprar);
-            sleep(1);
         }else if(option == 2){
             option = -2;
             system("clear");

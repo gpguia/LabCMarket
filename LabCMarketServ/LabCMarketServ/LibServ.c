@@ -159,25 +159,19 @@ Users* deleteListUsu(Users* usu){
 }
 
 //get the name of the user in the file
-char *getName(char str[]){
+void getName(char str[], char name[]){
     int i=0;
-    char tmp[STR_MAX_SIZE];
-    memset(tmp,0,STR_MAX_SIZE);
-    
+    memset(name,0,255);
     while(str[i] != ':'){
-        tmp[i] = str[i];
+        name[i] = str[i];
         i++;
     }
-    memset(str,0,STR_MAX_SIZE);
-    strcpy(str,tmp);
-    return str;
 }
 
 //get contact from users file
-char *getContact(char str[]){
+void getContact(char str[], char contato[]){
     int i = 0, j = 0;
-    char tmp[STR_MAX_SIZE];
-    memset(tmp,0,STR_MAX_SIZE);
+    memset(contato,0,10);
     
     while(str[i] != ':'){
         i++;
@@ -185,19 +179,15 @@ char *getContact(char str[]){
     i++;
     
     while(str[i] != ':'){
-        tmp[j] = str[i];
+        contato[j] = str[i];
         i++;
         j++;
     }
-    memset(str,0,STR_MAX_SIZE);
-    strcpy(str,tmp);
-    return str;
 }
 
 //recive an string the way its saved in the file, and return the username
-char *getUserName(char str[]){
+void getUserName(char str[], char username[]){
     int i =0, j=0;
-    char username[50];
     memset(username,0,50);
     
     while(str[i] != ':'){
@@ -213,15 +203,12 @@ char *getUserName(char str[]){
         i++;
         j++;
     }
-    memset(str,0,STR_MAX_SIZE);
-    strcpy(str,username);
-    return str;
 }
 
 //recive an string the way its saved in the file, and return the username
-char *getPassword(char str[]){
+void getPassword(char str[],char pass[]){
     int i =0, j=0;
-    char pass[50];
+    memset(pass,0,50);
     
     while(str[i] != ':'){
         i++;
@@ -241,16 +228,10 @@ char *getPassword(char str[]){
         i++;
         j++;
     }
-    
-    memset(str,0,STR_MAX_SIZE);
-    strcpy(str,pass);
-    return str;
 }
 
-char* getBalance(char str[]){
-    char balance[10];
+void getBalance(char str[], char balance[]){
     int i=0,j=0;
-    
     memset(balance,0,10);
     
     while(str[i] != ':'){
@@ -275,9 +256,6 @@ char* getBalance(char str[]){
         i++;
         j++;
     }
-    memset(str,0,STR_MAX_SIZE);
-    strcpy(str,balance);
-    return str;
 }
 
 //Load all users from the users.txt to a linked list
@@ -287,6 +265,11 @@ Users* loadUsers(Users* lst){
     char nome[255], contato[10], username[50], password[50],balance[10];
     memset(str,0,STR_MAX_SIZE);
     memset(strTmp,0,STR_MAX_SIZE);
+    memset(nome,0,255);
+    memset(contato,0,10);
+    memset(username,0,50);
+    memset(password,0,50);
+    memset(balance,0,10);
     fp = fopen(dirUser,"r");
     if(fp == NULL){
         printf("Erro ao carregar os usuarios em memoria.\n");
@@ -294,22 +277,13 @@ Users* loadUsers(Users* lst){
     }
     
     while(fscanf(fp,"%s",str) == 1){
-        //printf("%s\n",str);
-        strcpy(strTmp,str);
-        strcpy(nome,getName(strTmp));
-        memset(strTmp,0,STR_MAX_SIZE);
-        strcpy(strTmp,str);
-        strcpy(contato,getContact(strTmp));
-        memset(strTmp,0,STR_MAX_SIZE);
-        strcpy(strTmp,str);
-        strcpy(username,getUserName(strTmp));
-        memset(strTmp,0,STR_MAX_SIZE);
-        strcpy(strTmp,str);
-        strcpy(password,getPassword(strTmp));
-        memset(strTmp,0,STR_MAX_SIZE);
-        strcpy(strTmp,str);
-        strcpy(balance,getBalance(strTmp));
+        getName(str,nome);
+        getContact(str,contato);
+        getUserName(str,username);
+        getPassword(str, password);
+        getBalance(str,balance);
         lst = addUser(lst, nome, contato, username, password, balance);
+        memset(str,0,STR_MAX_SIZE);
     }
     fclose(fp);
     return lst;
@@ -333,11 +307,13 @@ void printUsers(Users* usu){
     printf("%12s","Nome");
     printf("%15s","Contato");
     printf("%13s","Username\n");
+    printf("%13s","Password\n");
     printf("---------------------------------------------------------\n");
     for(u = usu;u!=NULL;u=u->next){
         printf("%12s",u->nome);
         printf("%15s",u->contato);
         printf("%12s",u->username);
+        printf("%12s",u->password);
         printf("\n---------------------------------------------------------\n");
     }
     printf("** Fim da lista de usuarios **\n");
@@ -413,11 +389,11 @@ void printStock(Produto* stock){
 //Valid client
 int validClient(Users* lst, char str[]){
     int i=0,j=0;
-    char user[STR_MAX_SIZE],pass[STR_MAX_SIZE];
+    char user[STR_MAX_SIZE],pass[50];
     Users* u;
     
     memset(user,0,STR_MAX_SIZE);
-    memset(pass,0,STR_MAX_SIZE);
+    memset(pass,0,50);
     
     while(str[i] != ':'){
         user[i] = str[i];
@@ -446,7 +422,7 @@ int validClient(Users* lst, char str[]){
         fclose(fp);
     }
     if(u != NULL){
-        if(strcmp(u->password,pass) == 0){
+        if(strcmp(pass,u->password) == 0){
             return 1;
         }
     }

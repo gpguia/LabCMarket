@@ -79,11 +79,11 @@ Users* addUser(Users* lst, char nome[], char contato[], char user[], char pass[]
 Users* searchUser(Users* lst, char username[]);
 Users* loadUsers(Users* lst);
 Users* deleteListUsu(Users* usu);
-char *getName(char str[]);
-char *getContact(char str[]);
-char *getUserName(char str[]);
-char *getPassword(char str[]);
-char *getBalance(char str[]);
+void getName(char str[], char name[]);
+void getContact(char str[], char contato[]);
+void getUserName(char str[], char username[]);
+void getPassword(char str[],char pass[]);
+void getBalance(char str[], char balance[]);
 void printUsers(Users* usu);
 void verifyMoney(int sock, char msg[], Users* usu);
 
