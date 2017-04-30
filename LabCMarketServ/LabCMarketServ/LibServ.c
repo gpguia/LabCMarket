@@ -696,7 +696,7 @@ void *connection_handler(void* socket_desc){
         }
         
         //Send the message back to client
-        write(sock , client_message , strlen(client_message));
+        //write(sock , client_message , strlen(client_message));
         memset(client_message,0,STR_MAX_SIZE);
     }
     

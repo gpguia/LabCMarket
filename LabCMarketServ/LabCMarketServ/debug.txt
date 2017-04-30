@@ -3,164 +3,9 @@ msg sem o comando: gui:gui123:
 Command: 2
 Fim getCommand Debug
 
-Program Running on: 2017-4-30 14:34:12
+Program Running on: 2017-4-30 15:34:41
 Username: gui
 Password: gui123
-
-getCommand Debug
-msg sem o comando: gui:gui123:
-Command: 2
-Fim getCommand Debug
-
-Program Running on: 2017-4-30 14:34:19
-Username: gui
-Password: gui123
-
-getCommand Debug
-msg sem o comando: 
-Command: 5
-Fim getCommand Debug
-
-getCommand Debug
-msg sem o comando: 10002:2:
-Command: 6
-Fim getCommand Debug
-
-getCommand Debug
-msg sem o comando: 10002:
-Command: 7
-Fim getCommand Debug
-
-getCommand Debug
-msg sem o comando: gui:gui123:
-Command: 2
-Fim getCommand Debug
-
-Program Running on: 2017-4-30 14:35:36
-Username: gui
-Password: gui123
-
-getCommand Debug
-msg sem o comando: 
-Command: 5
-Fim getCommand Debug
-
-getCommand Debug
-msg sem o comando: 10002:2:
-Command: 6
-Fim getCommand Debug
-
-getCommand Debug
-msg sem o comando: 
-Command: 5
-Fim getCommand Debug
-
-getCommand Debug
-msg sem o comando: gui:gui123:
-Command: 2
-Fim getCommand Debug
-
-Program Running on: 2017-4-30 15:4:58
-Username: gui
-Password: gui123
-
-getCommand Debug
-msg sem o comando: 
-Command: 5
-Fim getCommand Debug
-
-getCommand Debug
-msg sem o comando: 10002:2:
-Command: 6
-Fim getCommand Debug
-
-getCommand Debug
-msg sem o comando: gui:gui123:
-Command: 2
-Fim getCommand Debug
-
-Program Running on: 2017-4-30 15:5:35
-Username: gui
-Password: gui123
-
-getCommand Debug
-msg sem o comando: 
-Command: 5
-Fim getCommand Debug
-
-getCommand Debug
-msg sem o comando: 10002:2:
-Command: 6
-Fim getCommand Debug
-
-getCommand Debug
-msg sem o comando: 
-Command: 5
-Fim getCommand Debug
-
-getCommand Debug
-msg sem o comando: gui:gui123:
-Command: 2
-Fim getCommand Debug
-
-Program Running on: 2017-4-30 15:6:19
-Username: gui
-Password: gui123
-
-getCommand Debug
-msg sem o comando: 
-Command: 5
-Fim getCommand Debug
-
-getCommand Debug
-msg sem o comando: 10002:2:
-Command: 6
-Fim getCommand Debug
-
-getCommand Debug
-msg sem o comando: 
-Command: 5
-Fim getCommand Debug
-
-getCommand Debug
-msg sem o comando: 
-Command: 5
-Fim getCommand Debug
-
-getCommand Debug
-msg sem o comando: 10002:2:
-Command: 6
-Fim getCommand Debug
-
-getCommand Debug
-msg sem o comando: gui:gui123:
-Command: 2
-Fim getCommand Debug
-
-Program Running on: 2017-4-30 15:6:46
-Username: gui
-Password: gui123
-
-getCommand Debug
-msg sem o comando: gui:
-Command: 3
-Fim getCommand Debug
-
-sendBalance Function
-Msg enviada: guilherme:10:
-
-getCommand Debug
-msg sem o comando: gui:10000:
-Command: 4
-Fim getCommand Debug
-
-getCommand Debug
-msg sem o comando: gui:
-Command: 3
-Fim getCommand Debug
-
-sendBalance Function
-Msg enviada: guilherme:10010:
 
 getCommand Debug
 msg sem o comando: 
@@ -173,16 +18,43 @@ Command: 6
 Fim getCommand Debug
 
 getCommand Debug
-msg sem o comando: 
-Command: 5
+msg sem o comando: 10005:
+Command: 7
 Fim getCommand Debug
 
 getCommand Debug
-msg sem o comando: gui:gui123:
-Command: 2
+msg sem o comando: gui:80:
+Command: 8
 Fim getCommand Debug
 
-Program Running on: 2017-4-30 15:7:24
-Username: gui
-Password: gui123
+getCommand Debug
+msg sem o comando: gui:
+Command: 3
+Fim getCommand Debug
+
+sendBalance Function
+Msg enviada: guilherme:10:
+
+getCommand Debug
+msg sem o comando: gui:200:
+Command: 4
+Fim getCommand Debug
+
+getCommand Debug
+msg sem o comando: gui:
+Command: 3
+Fim getCommand Debug
+
+sendBalance Function
+Msg enviada: guilherme:210:
+
+getCommand Debug
+msg sem o comando: 10005:
+Command: 7
+Fim getCommand Debug
+
+getCommand Debug
+msg sem o comando: gui:80:
+Command: 8
+Fim getCommand Debug
 
