@@ -55,3 +55,134 @@ msg sem o comando:
 Command: 5
 Fim getCommand Debug
 
+getCommand Debug
+msg sem o comando: gui:gui123:
+Command: 2
+Fim getCommand Debug
+
+Program Running on: 2017-4-30 15:4:58
+Username: gui
+Password: gui123
+
+getCommand Debug
+msg sem o comando: 
+Command: 5
+Fim getCommand Debug
+
+getCommand Debug
+msg sem o comando: 10002:2:
+Command: 6
+Fim getCommand Debug
+
+getCommand Debug
+msg sem o comando: gui:gui123:
+Command: 2
+Fim getCommand Debug
+
+Program Running on: 2017-4-30 15:5:35
+Username: gui
+Password: gui123
+
+getCommand Debug
+msg sem o comando: 
+Command: 5
+Fim getCommand Debug
+
+getCommand Debug
+msg sem o comando: 10002:2:
+Command: 6
+Fim getCommand Debug
+
+getCommand Debug
+msg sem o comando: 
+Command: 5
+Fim getCommand Debug
+
+getCommand Debug
+msg sem o comando: gui:gui123:
+Command: 2
+Fim getCommand Debug
+
+Program Running on: 2017-4-30 15:6:19
+Username: gui
+Password: gui123
+
+getCommand Debug
+msg sem o comando: 
+Command: 5
+Fim getCommand Debug
+
+getCommand Debug
+msg sem o comando: 10002:2:
+Command: 6
+Fim getCommand Debug
+
+getCommand Debug
+msg sem o comando: 
+Command: 5
+Fim getCommand Debug
+
+getCommand Debug
+msg sem o comando: 
+Command: 5
+Fim getCommand Debug
+
+getCommand Debug
+msg sem o comando: 10002:2:
+Command: 6
+Fim getCommand Debug
+
+getCommand Debug
+msg sem o comando: gui:gui123:
+Command: 2
+Fim getCommand Debug
+
+Program Running on: 2017-4-30 15:6:46
+Username: gui
+Password: gui123
+
+getCommand Debug
+msg sem o comando: gui:
+Command: 3
+Fim getCommand Debug
+
+sendBalance Function
+Msg enviada: guilherme:10:
+
+getCommand Debug
+msg sem o comando: gui:10000:
+Command: 4
+Fim getCommand Debug
+
+getCommand Debug
+msg sem o comando: gui:
+Command: 3
+Fim getCommand Debug
+
+sendBalance Function
+Msg enviada: guilherme:10010:
+
+getCommand Debug
+msg sem o comando: 
+Command: 5
+Fim getCommand Debug
+
+getCommand Debug
+msg sem o comando: 10005:20:
+Command: 6
+Fim getCommand Debug
+
+getCommand Debug
+msg sem o comando: 
+Command: 5
+Fim getCommand Debug
+
+getCommand Debug
+msg sem o comando: gui:gui123:
+Command: 2
+Fim getCommand Debug
+
+Program Running on: 2017-4-30 15:7:24
+Username: gui
+Password: gui123
+

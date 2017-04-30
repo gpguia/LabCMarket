@@ -429,6 +429,7 @@ Carts *manageProducts(int sock, char server_reply[], Carts *c, char username[]){
     printf("2) Listar produtos do carrinho (Verificar, remover, finalizar compra).\n");
     printf("3) Voltar.\n");
     scanf("%d",&option);
+    system("clear");
     while(option != 3){
         if(option == 1){
             option = -2;
@@ -463,7 +464,6 @@ Carts *manageProducts(int sock, char server_reply[], Carts *c, char username[]){
         }else if(option == 3){
             return c;
         }else if(option == -2){
-            system("clear");
             printf("\n**Comprando Produtos**\n");
             printf("1) Adicionar produto ao carrinho.\n");
             printf("2) Listar produtos do carrinho.\n");
