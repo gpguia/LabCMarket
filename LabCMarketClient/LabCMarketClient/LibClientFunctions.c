@@ -244,12 +244,6 @@ Carts *addProduct2Cart(int sock,char server_reply[] , Carts *lst, int code, int 
         return c;
     }
     
-    Carts *novo = (Carts*) malloc(sizeof(Carts));
-    
-    novo->cod = code;
-    novo->qtd = qtd;
-    novo->next = lst;
-    
     
     strcpy(msg,"6:");
     strcat(msg,itoa(code,10));
@@ -259,10 +253,18 @@ Carts *addProduct2Cart(int sock,char server_reply[] , Carts *lst, int code, int 
     
     writeToServer(sock,msg,server_reply);
     if(strcmp(server_reply,"1") == 0){
+        Carts *novo = (Carts*) malloc(sizeof(Carts));
+        
+        novo->cod = code;
+        novo->qtd = qtd;
+        novo->next = lst;
         printf("Produto adicionado com sucesso!\n");
+        return novo;
+    }else{
+        printf("Nao pode adicionar mais do que esta a venda.\n");
     }
     memset(server_reply,0,STR_MAX_SIZE);
-    return novo;
+    return NULL;
 }
 
 float listProductInCart(Carts *lst, int sock, char server_reply[]){

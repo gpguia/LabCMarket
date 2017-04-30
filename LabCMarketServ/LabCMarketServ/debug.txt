@@ -3,7 +3,55 @@ msg sem o comando: gui:gui123:
 Command: 2
 Fim getCommand Debug
 
-Program Running on: 2017-4-30 14:28:29
+Program Running on: 2017-4-30 14:34:12
 Username: gui
 Password: gui123
+
+getCommand Debug
+msg sem o comando: gui:gui123:
+Command: 2
+Fim getCommand Debug
+
+Program Running on: 2017-4-30 14:34:19
+Username: gui
+Password: gui123
+
+getCommand Debug
+msg sem o comando: 
+Command: 5
+Fim getCommand Debug
+
+getCommand Debug
+msg sem o comando: 10002:2:
+Command: 6
+Fim getCommand Debug
+
+getCommand Debug
+msg sem o comando: 10002:
+Command: 7
+Fim getCommand Debug
+
+getCommand Debug
+msg sem o comando: gui:gui123:
+Command: 2
+Fim getCommand Debug
+
+Program Running on: 2017-4-30 14:35:36
+Username: gui
+Password: gui123
+
+getCommand Debug
+msg sem o comando: 
+Command: 5
+Fim getCommand Debug
+
+getCommand Debug
+msg sem o comando: 10002:2:
+Command: 6
+Fim getCommand Debug
+
+getCommand Debug
+msg sem o comando: 
+Command: 5
+Fim getCommand Debug
 

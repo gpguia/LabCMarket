@@ -558,11 +558,14 @@ Produto *updateProducts(Produto *stock,char msg[], int sock){
     qtdComprada = atoi(tmp);
     
     p = searchProduct(stock,cod);
+    if(qtdComprada > p->qtd){
+        write(sock,"0",strlen("0"));
+        
+    }else{
+        p->qtd = p->qtd - qtdComprada;
     
-    p->qtd = p->qtd - qtdComprada;
-    
-    write(sock,"1",strlen("1"));
-    
+        write(sock,"1",strlen("1"));
+    }
     return stock;
 }
 
@@ -600,7 +603,6 @@ void sendAProduct(int sock, char msg[], Produto *stock){
     write(sock,str,strlen(str));
     
 }
-
 
 void verifyMoney(int sock, char msg[], Users* usu){
     int i=0,j=0;
