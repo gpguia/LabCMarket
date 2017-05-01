@@ -35,6 +35,7 @@ struct statistics{
     int qtdComprada;
     int cod;
     struct tm tm;
+    float valorGasto;
     Statistics* next;
 };
 

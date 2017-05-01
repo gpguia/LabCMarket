@@ -26,3 +26,8 @@ para maiores informações, verifique o README.md dentro das respectivas pastas,
             
     
     4 - Logout.
+
+**Operações que podem ser realizadas com o Gerente:**
+
+**_Autenticar-se:_** Assim como o client, também é preciso fazer login com o gerente.
+
