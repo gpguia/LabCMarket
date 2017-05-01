@@ -2,12 +2,12 @@ Grupo:
 Guilherme Paiva Guia
 Jorge Sousa
 
-Este README, contem as caracteristicas funcionais do programa, nenhum aspecto tecnico será abordado aqui,
+Este README, contem as caracteristicas funcionais do programa, nenhum aspecto técnico será abordado aqui,
 para maiores informações, verifique o README.md dentro das respectivas pastas, seja do servidor, manager ou client.
 
-Operações que podem ser realizadas com o Client:
+**Operações que podem ser realizadas com o Client:**
 
-Autenticar-se: Antes de fazer qualquer coisa é necessário autenticar-se com o servidor.
+**Autenticar-se:** Antes de fazer qualquer coisa é necessário autenticar-se com o servidor.
     
     1 - Gerir Saldo - Nesta funcionalidade o client pode visualizar o Saldo da conta, adicionar mais fundo e voltar ao menu Anterior.
         Opções:
