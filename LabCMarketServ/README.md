@@ -11,12 +11,19 @@ Neste exemplo será validado o gestor com o login e senha apresentatos.
 **Lista de todos os comandos:** Estes comandos forma adotados de acordo com o desenvolvimento das funções.
 
 1 - Valida Gestor
+
 2 - Valida Client
+
 3 - Gerir Saldo
+
 4 - Depositar dinheiro
+
 5 - listar os todos os produtos
+
 6 - Produto foi add no carrinho, logo tem que diminuir q quantidade.
+
 7 - retorna 1 produto especifico
+
 8 - Verifica se o client tem dinheiro suficiente para a compra.
 
 
