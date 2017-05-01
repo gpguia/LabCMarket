@@ -34,6 +34,7 @@ typedef struct statistics Statistics;
 struct statistics{
     int qtdComprada;
     int cod;
+    struct tm tm;
     Statistics* next;
 };
 

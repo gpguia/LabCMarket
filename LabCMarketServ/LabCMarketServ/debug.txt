@@ -3,29 +3,9 @@ msg sem o comando: gui:gui123:
 Command: 2
 Fim getCommand Debug
 
-Program Running on: 2017-4-30 15:34:41
+Program Running on: 2017-5-1 21:15:1
 Username: gui
 Password: gui123
-
-getCommand Debug
-msg sem o comando: 
-Command: 5
-Fim getCommand Debug
-
-getCommand Debug
-msg sem o comando: 10005:20:
-Command: 6
-Fim getCommand Debug
-
-getCommand Debug
-msg sem o comando: 10005:
-Command: 7
-Fim getCommand Debug
-
-getCommand Debug
-msg sem o comando: gui:80:
-Command: 8
-Fim getCommand Debug
 
 getCommand Debug
 msg sem o comando: gui:
@@ -34,27 +14,4 @@ Fim getCommand Debug
 
 sendBalance Function
 Msg enviada: guilherme:10:
-
-getCommand Debug
-msg sem o comando: gui:200:
-Command: 4
-Fim getCommand Debug
-
-getCommand Debug
-msg sem o comando: gui:
-Command: 3
-Fim getCommand Debug
-
-sendBalance Function
-Msg enviada: guilherme:210:
-
-getCommand Debug
-msg sem o comando: 10005:
-Command: 7
-Fim getCommand Debug
-
-getCommand Debug
-msg sem o comando: gui:80:
-Command: 8
-Fim getCommand Debug
 
