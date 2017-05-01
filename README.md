@@ -7,7 +7,7 @@ para maiores informações, verifique o README.md dentro das respectivas pastas,
 
 **Operações que podem ser realizadas com o Client:**
 
-**Autenticar-se:** Antes de fazer qualquer coisa é necessário autenticar-se com o servidor.
+**_Autenticar-se:_** Antes de fazer qualquer coisa é necessário autenticar-se com o servidor.
     
     1 - Gerir Saldo - Nesta funcionalidade o client pode visualizar o Saldo da conta, adicionar mais fundo e voltar ao menu Anterior.
         Opções:
@@ -18,6 +18,9 @@ para maiores informações, verifique o README.md dentro das respectivas pastas,
         Opções:
             1 - Adicionar produto ao carrinho.
             2 - Listar produtos do carrinho. (Verificar, remover ou finalizar a compra).
+                1 - Finalizar compra.
+                2 - Remover produto.
+                3 - Voltar.
             3 - Voltar.
     3 - Ver Estatisticas - Mostra o histórico do client, mostra as ultimas compras, data e quanto gastou.
             

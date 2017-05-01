@@ -15,3 +15,12 @@ Fim getCommand Debug
 sendBalance Function
 Msg enviada: guilherme:10:
 
+getCommand Debug
+msg sem o comando: gui:gui123:
+Command: 2
+Fim getCommand Debug
+
+Program Running on: 2017-5-1 21:34:28
+Username: gui
+Password: gui123
+
