@@ -24,8 +24,9 @@ Neste exemplo será validado o gestor com o login e senha apresentatos.
 
 7 - retorna 1 produto especifico
 
-8 - Verifica se o client tem dinheiro suficiente para a compra.
+8 - Checkout, verifica se o client possui o dinheiro suficiente, e cria as statisticas caso a compra seja efetuado com sucesso.
 
+9 - Mostra as statisticas para o client;
 
 **Estruturas presentes no servidor:** Todas as estrutuas podem ser visulizadas no LibServ.h
 

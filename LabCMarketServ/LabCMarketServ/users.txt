@@ -1,3 +1,3 @@
-guilherme:123456789:gui:gui123:10
+guilherme:123456789:gui:gui123:1000
 jorge:912345678:jorge:braga:10000
 test:123456789:tst:tst2:1000

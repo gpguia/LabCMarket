@@ -36,6 +36,7 @@ struct statistics{
     int cod;
     struct tm tm;
     float valorGasto;
+    char nome[50];
     Statistics* next;
 };
 
@@ -87,7 +88,7 @@ void getUserName(char str[], char username[]);
 void getPassword(char str[],char pass[]);
 void getBalance(char str[], char balance[]);
 void printUsers(Users* usu);
-void verifyMoney(int sock, char msg[], Users* usu);
+void verifyMoney(int sock, char msg[], Users* usu, Produto* stock);
 
 Produto *addProduto(Produto *stock, char nome[], int codigo, char desc[], int qtd, float custo, float preco);
 Produto *loadStock(Produto *stock, char caminho[]);
@@ -96,6 +97,7 @@ void printStock(Produto* stock);
 Produto *updateProducts(Produto *stock,char msg[], int sock);
 Produto *searchProduct(Produto *stock,int cod);
 void sendAProduct(int sock, char msg[], Produto *stock);
+void sendStatistics(int sock, char msg[], Users* lst);
 
 int validClient(Users* lst, char str[]);
 int validManager(char str[]);
@@ -103,4 +105,7 @@ void addBalance(Users* lst, char str[], int sock);
 void sendListProdcut(Produto* p, int sock);
 
 void sendBalance(Users* lst, char str[], int sock);
+
+
+Statistics *addStatistics(Statistics* lst, int qtdComprada, int cod, struct tm timer, float valorGasto, char name[]);
 #endif /* LibServ_h */

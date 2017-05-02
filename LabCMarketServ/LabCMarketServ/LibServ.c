@@ -604,9 +604,22 @@ void sendAProduct(int sock, char msg[], Produto *stock){
     
 }
 
-void verifyMoney(int sock, char msg[], Users* usu){
-    int i=0,j=0;
+Statistics *addStatistics(Statistics* lst, int qtdComprada, int cod, struct tm timer, float valorGasto, char name[]){
+    Statistics *novo = (Statistics*) malloc(sizeof(Statistics));
+    
+    novo->cod = cod;
+    strcpy(novo->nome,name);
+    novo->qtdComprada = qtdComprada;
+    novo->tm = timer;
+    novo->valorGasto = valorGasto;
+    novo->next = lst;
+    return novo;
+}
+
+void verifyMoney(int sock, char msg[], Users* usu, Produto* stock){
+    int i=0,j=0,codigo;
     Users *u;
+    Produto* p;
     char username[50];
     char tmp[10],aux[STR_MAX_SIZE];
     float total, balance;
@@ -615,39 +628,86 @@ void verifyMoney(int sock, char msg[], Users* usu){
     memset(username,0,50);
     memset(tmp,0,10);
     
-    while(msg[i] != ':'){
+    while(msg[i] != ':'){//Username
         username[i] = msg[i];
         i++;
     }
     i++;
-    while(msg[i] != ':'){
+    j=0;
+    while(msg[i] != ':'){//Valor que será pago.
         tmp[j] = msg[i];
         i++;
         j++;
     }
+    i++;
     total = atof(tmp);
-    
-    printf("Username: %s\n",username);
-    printf("Total: %f\n",total);
-    
+    memset(aux,0,STR_MAX_SIZE);
+    j=0;
+    while(msg[i] != ':'){//codigo do produto.
+        aux[j] = msg[i];
+        i++;
+        j++;
+    }
+    codigo = atoi(aux);
     u = searchUser(usu,username);
+    p = searchProduct(stock,codigo);
     balance = atof(u->balance);
     
-    printf("Balance antes: %f\n",balance);
-    
+    memset(aux,0,STR_MAX_SIZE);
     if(balance >= total){
+        time_t t = time(NULL);
         balance = balance - total;
-        snprintf(aux,STR_MAX_SIZE,"%f", balance);
-        printf("%s\n",aux);
+        snprintf(aux,STR_MAX_SIZE,"%f\n", balance);
         strcpy(u->balance,aux);
+        u->statUsu = addStatistics(u->statUsu, (total / p->preco), codigo, *localtime(&t), total, p->nome);
         write(sock,"1",strlen("1"));
     }else{
         write(sock,"0",strlen("0"));
     }
     
-    printf("Balance Depois: %s\n",u->balance);
     
+}
+
+void sendStatistics(int sock, char msg[], Users* lst){
+    int i=0;
+    Statistics *s;
+    Users *u;
+    char username[50],serv_replay[STR_MAX_SIZE],aux[50];
+    memset(username,0,50);
+    memset(aux,0,50);
+    memset(serv_replay,0,STR_MAX_SIZE);
     
+    while(msg[i] != ':'){
+        username[i] = msg[i];
+        i++;
+    }
+    
+    u = searchUser(lst, username);
+    
+    if(u->statUsu == NULL){
+        write(sock,"0",strlen("0"));
+    }
+    
+    for(s = u->statUsu ; s != NULL ; s = s->next){
+        strcat(msg,itoa(s->cod,10));
+        strcat(msg,":");
+        strcat(msg,s->nome);
+        strcat(msg,":");
+        strcat(msg,itoa(s->qtdComprada,10));
+        strcat(msg,":");
+        snprintf(aux,50,"%f",s->valorGasto);
+        strcat(msg,aux);
+        strcat(msg,":");
+        strcat(msg,itoa(s->tm.tm_hour,10));
+        strcat(msg,":");
+        strcat(msg,itoa(s->tm.tm_min,10));
+        strcat(msg,":");
+        strcat(msg,itoa(s->tm.tm_mday,10));
+        strcat(msg,":");
+    }
+    
+    write(sock,msg,strlen(msg));
+    printf("%s\n",msg);
 }
 
 void *connection_handler(void* socket_desc){
@@ -691,7 +751,10 @@ void *connection_handler(void* socket_desc){
             sendAProduct(sock,client_message,sh->stock);
             memset(client_message,0,STR_MAX_SIZE);
         }else if(command == 8){//Verify if the client has money to buy.
-            verifyMoney(sock,client_message,sh->users);
+            verifyMoney(sock,client_message,sh->users,sh->stock);
+            memset(client_message,0,STR_MAX_SIZE);
+        }else if(command == 9){
+            sendStatistics(sock,client_message,sh->users);
             memset(client_message,0,STR_MAX_SIZE);
         }
         
