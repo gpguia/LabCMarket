@@ -668,17 +668,17 @@ void verifyMoney(int sock, char msg[], Users* usu, Produto* stock){
     
 }
 
-void sendStatistics(int sock, char msg[], Users* lst){
+void sendStatistics(int sock, char client_msg[], Users* lst){
     int i=0;
     Statistics *s;
     Users *u;
-    char username[50],serv_replay[STR_MAX_SIZE],aux[50];
+    char username[50],aux[50], msg[STR_MAX_SIZE];
     memset(username,0,50);
     memset(aux,0,50);
-    memset(serv_replay,0,STR_MAX_SIZE);
+    memset(msg,0,STR_MAX_SIZE);
     
-    while(msg[i] != ':'){
-        username[i] = msg[i];
+    while(client_msg[i] != ':'){
+        username[i] = client_msg[i];
         i++;
     }
     
@@ -707,7 +707,6 @@ void sendStatistics(int sock, char msg[], Users* lst){
     }
     
     write(sock,msg,strlen(msg));
-    printf("%s\n",msg);
 }
 
 void *connection_handler(void* socket_desc){

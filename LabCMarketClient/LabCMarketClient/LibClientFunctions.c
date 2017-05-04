@@ -393,7 +393,11 @@ Carts *manageCart(Carts *lst, int sock, char server_reply[], char username[]){
     scanf("%d",&option);
     while(option != 3){
         if(option == 1){//Checkout
-            lst = checkout(lst,username,server_reply,sock,TotalCart,lst->cod);
+            if(lst == NULL){
+                printf("Lista vazia, coloque alguns produtos no carrinho antes. \n");
+            }else{
+                lst = checkout(lst,username,server_reply,sock,TotalCart,lst->cod);
+            }
             return lst;
         }else if(option == 2){//Delete product from the cart
             printf("Digite o cod do produto que deseja remover: \n");
@@ -480,10 +484,10 @@ Carts *manageProducts(int sock, char server_reply[], Carts *c, char username[]){
 }
 
 void listStatistics(int sock, char username[], char server_repaly[]){
-    int i=0,j=0,codigo,qtdComprada,hora,min,dia;
+    int i=0,j=0,codigo,qtdComprada,hora,min,dia,option;
     char aux[STR_MAX_SIZE],nomeProduto[50];
     char msg[STR_MAX_SIZE];
-    float valorGasto;
+    float valorGasto,totalGastoMarket=0;
     memset(msg,0,STR_MAX_SIZE);
     memset(aux,0,STR_MAX_SIZE);
     memset(nomeProduto,0,50);
@@ -495,17 +499,24 @@ void listStatistics(int sock, char username[], char server_repaly[]){
     writeToServer(sock,msg,server_repaly);
     if(strcmp(server_repaly,"0") == 0){
         printf("Usuario nunca comprou nenhum produto.\n");
+        printf("Digite 0 para voltar: ");
+        scanf("%d",&option);
+        while(option != 0){
+            printf("Comando nao encontrado, tente novamente. (digite 0 para voltar): ");
+            scanf("%d",&option);
+        }
+        memset(server_repaly,0,STR_MAX_SIZE);
         return;
     }
     printf("\t** Estatisticas **\n");
     printf("%6s","Nome");
     printf("%8s","Codigo");
     printf("%15s","Qtd comprada");
-    printf("%14s","Valor Gasto");
+    printf("%15s","Valor Gasto");
     printf("%10s","Dia");
     printf("%10s","Hora");
     printf("%10s","Min");
-    printf("\n----------------------------------------------------------------------\n");
+    printf("\n--------------------------------------------------------------------------\n");
     while(server_repaly[i] != '\0'){
         while(server_repaly[i] != ':'){//COdigo
             aux[i] = server_repaly[i];
@@ -565,20 +576,30 @@ void listStatistics(int sock, char username[], char server_repaly[]){
         dia = atoi(aux);
         i++;    
         printf("%6s",nomeProduto);
-        printf("%6d",codigo);
+        printf("%8d",codigo);
         printf("%10d",qtdComprada);
-        printf("%10.2f",valorGasto);
-        printf("%6s",nomeProduto);
-        printf("%10d",dia);
-        printf("%10d",hora);
-        printf("%10d",min);
+        printf("%15.2f",valorGasto);
+        printf("%13d",dia);
+        printf("%11d",hora);
+        printf("%11d",min);
     
-        printf("\n----------------------------------------------------------------------\n");
-        printf("Aqui: %c\n",server_repaly[i]);
+        printf("\n--------------------------------------------------------------------------\n");
         memset(username,0,50);
         memset(aux,0,STR_MAX_SIZE);
+        totalGastoMarket += valorGasto;
     }
+    
+    printf("Valor total gasto no LabCMarket foi de: %.2f",totalGastoMarket);
+    
+    printf("\n\nDigite 0 para voltar: ");
+    scanf("%d",&option);
+    while(option != 0){
+        printf("Comando nao encontrado, tente novamente. (digite 0 para voltar): ");
+        scanf("%d",&option);
+    }
+    
     memset(server_repaly,0,STR_MAX_SIZE);
+    
 }
 
 void showMenu(int sock, char *username){

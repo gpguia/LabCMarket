@@ -97,7 +97,7 @@ void printStock(Produto* stock);
 Produto *updateProducts(Produto *stock,char msg[], int sock);
 Produto *searchProduct(Produto *stock,int cod);
 void sendAProduct(int sock, char msg[], Produto *stock);
-void sendStatistics(int sock, char msg[], Users* lst);
+void sendStatistics(int sock, char client_msg[], Users* lst);
 
 int validClient(Users* lst, char str[]);
 int validManager(char str[]);
