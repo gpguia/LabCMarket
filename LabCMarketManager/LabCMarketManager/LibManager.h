@@ -27,6 +27,8 @@ int connToServer();
 void validManager(int sock);
 void showOptions(int sock);
 
-char *write2Server(int sock, char msg[]);
+char *write2Server(int sock, char msg[], char server_reply[]);
 
+
+void addnewUser(int sock, char server_reply[]);
 #endif /* LibServer_h */

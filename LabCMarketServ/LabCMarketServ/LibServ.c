@@ -432,6 +432,62 @@ int validClient(Users* lst, char str[]){
 }
 
 int validManager(char str[]){
+    int i=0,j=0;
+    char username[50],password[50],fuser[50],fpass[50],gestores[STR_MAX_SIZE];
+    memset(username,0,50);
+    memset(password,0,50);
+    memset(fuser,0,50);
+    memset(fpass,0,50);
+    memset(gestores,0,STR_MAX_SIZE);
+    
+    while(str[i] != ':'){
+        username[i] = str[i];
+        i++;
+    }
+    i++;
+    while(str[i] != ':'){
+        password[j] = str[i];
+        i++;
+        j++;
+    }
+    
+    FILE *fp;
+    fp = fopen(dirGestor,"r");
+    if(fp == NULL){
+        printf("Erro ao abrir o arquivo dos gestores.\n");
+        exit(1);
+    }
+    i=0;
+    j=0;
+    while(fscanf(fp,"%s",gestores) == 1){
+        while(gestores[i] != ':'){
+            i++;
+        }
+        i++;
+        while(gestores[i] != ':'){
+            i++;
+        }
+        i++;
+        while(gestores[i] != ':'){
+            fuser[j] = gestores[i];
+            i++;
+            j++;
+        }
+        i++;
+        j=0;
+        while(gestores[i] != ':'){
+            fpass[j] = gestores[i];
+            i++;
+            j++;
+        }
+    }
+    
+    if(strcmp(username,fuser)==0){
+        if(strcmp(password,fpass) == 0){
+            return 1;
+        }
+    }
+    
     return 0;
 }
 
@@ -724,14 +780,15 @@ void *connection_handler(void* socket_desc){
         command = getCommand(client_message);
         if(command == 1){//To valid the manager
             if(validManager(client_message) == 1){
-                
+                write(sock,"1",strlen("1"));
+            }else{
+                write(sock,"0",strlen("0"));
             }
-            
         }else if(command == 2){//To Valid the client
             if(validClient(sh->users,client_message) == 1){
-                write(sock,"1",2);
+                write(sock,"1",strlen("1"));
             }else{
-                write(sock,"0",2);
+                write(sock,"0",strlen("0"));
             }
             memset(client_message,0,STR_MAX_SIZE);
         }else if(command == 3){//Manager Balance(Client)

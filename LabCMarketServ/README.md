@@ -28,6 +28,9 @@ Neste exemplo será validado o gestor com o login e senha apresentatos.
 
 9 - Mostra as statisticas para o client;
 
+10 - Adicionar novo usuario.
+
+
 **Estruturas presentes no servidor:** Todas as estrutuas podem ser visulizadas no LibServ.h
 
 
