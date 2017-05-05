@@ -30,5 +30,10 @@ void showOptions(int sock);
 char *write2Server(int sock, char msg[], char server_reply[]);
 
 
-void addnewUser(int sock, char server_reply[]);
+int addnewUser(int sock, char server_reply[]);
+void manageStock(int sock,char server_reply[]);
+void listStock(int sock, char server_reply[]);
+void includeNewProduct(int sock, char server_reply[]);
+void editStock(int sock, char server_reply[]);
+char* itoa(int val, int base);
 #endif /* LibServer_h */

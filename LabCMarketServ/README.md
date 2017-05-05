@@ -30,6 +30,19 @@ Neste exemplo será validado o gestor com o login e senha apresentatos.
 
 10 - Adicionar novo usuario.
 
+11 - listar todos os produtos (para o gestor);
+
+12 - incluir novo produto no stock.
+
+13 - retorna se um produto existe.(1 para sim, 0 para nao)
+
+14 - alterar a quantidade de um produto
+
+15 - alterar o custo de um produto
+
+16 - alterar o preco de um produto
+
+17 - remover um produto
 
 **Estruturas presentes no servidor:** Todas as estrutuas podem ser visulizadas no LibServ.h
 

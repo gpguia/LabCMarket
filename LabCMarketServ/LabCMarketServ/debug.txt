@@ -4,38 +4,13 @@ Command: 1
 Fim getCommand Debug
 
 getCommand Debug
-msg sem o comando: sadsad:asddas:
-Command: 1
-Fim getCommand Debug
-
-getCommand Debug
 msg sem o comando: 
-Command: 0
+Command: 11
 Fim getCommand Debug
 
 getCommand Debug
-msg sem o comando: asdasdasdasdasd:123123123:
-Command: 1
-Fim getCommand Debug
-
-getCommand Debug
-msg sem o comando: asdasdasdasd:asdasdda:
-Command: 1
-Fim getCommand Debug
-
-getCommand Debug
-msg sem o comando: 
-Command: 0
-Fim getCommand Debug
-
-getCommand Debug
-msg sem o comando: batatas:batatinha:
-Command: 1
-Fim getCommand Debug
-
-getCommand Debug
-msg sem o comando: 
-Command: 0
+msg sem o comando: sabonete:banho:10001:1.000000:2.000000:1000:
+Command: 12
 Fim getCommand Debug
 
 getCommand Debug
@@ -44,28 +19,8 @@ Command: 1
 Fim getCommand Debug
 
 getCommand Debug
-msg sem o comando: asdasdasdadasd:asdasdasdasdads:
-Command: 1
-Fim getCommand Debug
-
-getCommand Debug
-msg sem o comando: gui:gui123:
-Command: 1
-Fim getCommand Debug
-
-getCommand Debug
 msg sem o comando: 
-Command: 0
-Fim getCommand Debug
-
-getCommand Debug
-msg sem o comando: kkasdllasdklasd:a:
-Command: 1
-Fim getCommand Debug
-
-getCommand Debug
-msg sem o comando: asdjasdjsdkaksda:asdsadkjaskld:
-Command: 1
+Command: 11
 Fim getCommand Debug
 
 getCommand Debug
@@ -74,23 +29,23 @@ Command: 1
 Fim getCommand Debug
 
 getCommand Debug
-msg sem o comando: hu3hu3hu3:h3uh3u3h3:
-Command: 1
+msg sem o comando: 
+Command: 11
 Fim getCommand Debug
 
 getCommand Debug
-msg sem o comando: aspdlpsadlsap:sapldaplpllpd:
-Command: 1
+msg sem o comando: rato:novo:10002:1.000000:2.000000:10000:
+Command: 12
 Fim getCommand Debug
 
 getCommand Debug
-msg sem o comando: ahahahahahahah:hahahahaha:
-Command: 1
+msg sem o comando: rato:10010:10010:1.000000:2.000000:12:
+Command: 12
 Fim getCommand Debug
 
 getCommand Debug
-msg sem o comando: uasudhauhsuhushuhasusduhsuh:uahsdauhsshudhushusdhusdhu:
-Command: 1
+msg sem o comando: 
+Command: 11
 Fim getCommand Debug
 
 getCommand Debug

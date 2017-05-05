@@ -35,6 +35,19 @@ int connToServer(){
     return sock;
 }
 
+char* itoa(int val, int base){
+    
+    static char buf[32] = {0};
+    
+    int i = 30;
+    
+    for(; val && i ; --i, val /= base)
+        
+        buf[i] = "0123456789abcdef"[val % base];
+    
+    return &buf[i+1];
+    
+}
 
 void validManager(int sock){
     char username[50], password[50],server_reply[STR_MAX_SIZE];
@@ -73,7 +86,7 @@ void validManager(int sock){
     showOptions(sock);
 }
 
-void addnewUser(int sock, char server_reply[]){
+int addnewUser(int sock, char server_reply[]){
     int option=0;
     char msg[STR_MAX_SIZE];
     char nome[255],contato[10],username[50],password[50];
@@ -107,24 +120,336 @@ void addnewUser(int sock, char server_reply[]){
     strcat(msg,":");
     
     printf("Porfavor, confirme as informacoes: \n");
-    printf("Nome: %s\nContato: %s\nUsername: %s\n,Password: %s\n",nome,contato,username,password);
+    printf("Nome: %s\nContato: %s\nUsername: %s\nPassword: %s\n",nome,contato,username,password);
     printf("\nDigite 1 para confirmar, 0 para digitar novamente ou -1 para cancelar\n");
     scanf("%d",&option);
-    while(option == 1){
-      //AQUII
+    while(option != 1 && option != 0 && option != -1){
+        printf("Opcao nao reconhecida, tente novamente: \n");
+        scanf("%d",&option);;
+    }
+    if(option == 1){//Send the msg to the server, and see if it's ok.
+    
+        write2Server(sock,msg,server_reply);
+        if(strcmp(server_reply,"1") == 0){
+            system("clear");
+            printf("Usuario criado com sucesso!\n");
+            return 0;
+        }else{
+            printf("Erro ao criar o novo usuario.\n");
+            return 0;
+        }
+    }else if(option == -1){//Go back.
+        return 0;
+    }else{
+        while(option == 0){
+            system("clear");
+            //Clear all the mem that was written before(just to clear all garbage).
+            memset(nome,0,255);
+            memset(contato,0,10);
+            memset(username,0,50);
+            memset(password,0,50);
+            memset(msg,0,STR_MAX_SIZE);
+            printf("Digite o nome: \n");
+            scanf("%s",nome);
+            printf("Digite o contato (max 9 digitos): \n");
+            scanf("%s",contato);
+            printf("Digite o username: \n");
+            scanf("%s",username);
+            printf("Digite a senha: \n");
+            scanf("%s",password);
+            //Put it in one string to send to server
+            strcpy(msg,"10");
+            strcat(msg,":");
+            strcat(msg,nome);
+            strcat(msg,":");
+            strcat(msg,contato);
+            strcat(msg,":");
+            strcat(msg,username);
+            strcat(msg,":");
+            strcat(msg,password);
+            strcat(msg,":");
+            strcat(msg,"1000");
+            strcat(msg,":");
+            printf("Porfavor, confirme as informacoes: \n");
+            printf("Nome: %s\nContato: %s\nUsername: %s\nPassword: %s\n",nome,contato,username,password);
+            printf("\nDigite 1 para confirmar, 0 para digitar novamente ou -1 para cancelar\n");
+            scanf("%d",&option);
+        }
+        write2Server(sock,msg,server_reply);
+        if(strcmp(server_reply,"1") == 0){
+            printf("Usuario criado com sucesso!\n");
+        }else{
+            printf("Erro ao criar o novo usuario.\n");
+        }
     }
     
+    return 0;
+
+}
+
+void listStock(int sock, char server_reply[]){
+    char msg[STR_MAX_SIZE],tmp[STR_MAX_SIZE];
+    int i=0,j=0;
+    memset(msg,0,STR_MAX_SIZE);
+    memset(tmp,0,STR_MAX_SIZE);
+    strcpy(msg,"11:");
+    
     write2Server(sock,msg,server_reply);
-    if(strcmp(server_reply,"1") == 0){
-        printf("Usuario criado com sucesso!\n");
+    
+    printf("\t\t\t** Lista dos produtos **\n");
+    printf("%6s","Produto");
+    printf("%14s","Descricao");
+    printf("%10s","Codigo");
+    printf("%15s","Quantidade");
+    printf("%10s","Custo");
+    printf("%10s","Preco");
+    printf("\n----------------------------------------------------------------------\n");
+    while(server_reply[i] != '\0'){
+        j=0;
+        while(server_reply[i] != ':'){//print the name
+            tmp[j] = server_reply[i];
+            i++;
+            j++;
+        }
+        j=0;
+        i++;
+        printf("%6s",tmp);
+        memset(tmp,0,STR_MAX_SIZE);
+        while(server_reply[i] != ':'){//print the description
+            tmp[j] = server_reply[i];
+            i++;
+            j++;
+        }
+        i++;
+        j=0;
+        printf("%14s",tmp);
+        memset(tmp,0,STR_MAX_SIZE);
+        while(server_reply[i] != ':'){// print the code
+            tmp[j] = server_reply[i];
+            i++;
+            j++;
+        }
+        i++;
+        j=0;
+        printf("%10s",tmp);
+        memset(tmp,0,STR_MAX_SIZE);
+        while(server_reply[i] != ':'){//print the quantty
+            tmp[j] = server_reply[i];
+            i++;
+            j++;
+        }
+        i++;
+        j=0;
+        printf("%13s",tmp);
+        memset(tmp,0,STR_MAX_SIZE);
+        while(server_reply[i] != ':'){//print the cost
+            tmp[j] = server_reply[i];
+            i++;
+            j++;
+        }
+        i++;
+        j=0;
+        printf("%10.2f",atof(tmp));
+        memset(tmp,0,STR_MAX_SIZE);
+        while(server_reply[i] != ':'){//print the price
+            tmp[j] = server_reply[i];
+            i++;
+            j++;
+        }
+        printf("%14.2f",atof(tmp));
+        printf("\n----------------------------------------------------------------------\n");
+        i++;
+        memset(tmp,0,STR_MAX_SIZE);
+    }
+    printf("\n");
+    printf("\t\t\t**Fim da lista de produtos**\n");
+    memset(server_reply,0,STR_MAX_SIZE);
+
+}
+
+void includeNewProduct(int sock, char server_reply[]){
+    char msg[STR_MAX_SIZE],tmp[STR_MAX_SIZE];
+    char nome[50],descricao[50];
+    int codigo,qtd,option;
+    float custo,preco;
+    
+    memset(nome,0,50);
+    memset(descricao,0,50);
+    memset(msg,0,STR_MAX_SIZE);
+    memset(tmp,0,STR_MAX_SIZE);
+    
+    
+    
+    printf("Digite as seguintes informacoes do produto: \n");
+    printf("Nome: ");
+    scanf("%s",nome);
+    printf("Descricao: ");
+    scanf("%s",descricao);
+    printf("Codigo: ");
+    scanf("%d",&codigo);
+    printf("Custo: ");
+    scanf("%f",&custo);
+    printf("Preco: ");
+    scanf("%f",&preco);
+    printf("Quantidade: ");
+    scanf("%d",&qtd);
+    
+    
+    system("clear");
+    printf("Confirme as informacoes: \n");
+    printf("Nome: %s\nDescricao: %s\nCodigo: %d\nCusto: %.2f\nPreco: %.2f\nQuantidade: %d\n",nome,descricao,codigo,custo,preco,qtd);
+    printf("\nDigite 1 para confirmar ou 0 para digitar novamente.\n");
+    scanf("%d",&option);
+    
+    
+    while(option != 1 && option != 0){
+        printf("Comando nao reconhecido, tente novamente: \n");
+        scanf("%d",&option);
+    }
+    if(option == 1){
+        strcpy(msg,"12:");
+        strcat(msg,nome);
+        strcat(msg,":");
+        strcat(msg,descricao);
+        strcat(msg,":");
+        strcat(msg,itoa(codigo,10));
+        strcat(msg,":");
+        snprintf(tmp,STR_MAX_SIZE,"%f",custo);
+        strcat(msg,tmp);
+        memset(tmp,0,STR_MAX_SIZE);
+        strcat(msg,":");
+        snprintf(tmp,STR_MAX_SIZE,"%f",preco);
+        strcat(msg,tmp);
+        strcat(msg,":");
+        strcat(msg,itoa(qtd,10));
+        strcat(msg,":");
+        
+        write2Server(sock, msg, server_reply);
+        
+        if(strcmp(server_reply,"1") == 0){
+            printf("Produto criado com sucesso!\n");
+            return;
+        }else{
+            printf("Erro ao criar o produto.\n");
+        }
     }else{
-        printf("Algum erro ocorreu.]n");
+        return;
     }
     
 }
 
-void showOptions(int sock){
+void editStock(int sock, char server_reply[]){
+    listStock(sock, server_reply);
+    char msg[STR_MAX_SIZE],tmp[STR_MAX_SIZE];
+    memset(msg,0,STR_MAX_SIZE);
+    int cod = 0, flag = 1,option=0, changed;
+    float changedf;
+    printf("\n");
+    while(flag == 1){
+        printf("Digite o codigo do produto que deseja editar.\n");
+        scanf("%d",&cod);
+        memset(msg,0,STR_MAX_SIZE);
+        strcpy(msg,"13:");
+        strcat(msg,itoa(cod,10));
+        write2Server(sock,msg,server_reply);
+        if(strcmp(server_reply,"0") == 0){
+            printf("Codigo invalido, digite 1 para tentar novamente ou digite 0 para cancelar.\n");
+            scanf("%d",&flag);
+        }else{
+            flag = 2;
+        }
+    }
+    
+    if(flag == 0){
+        system("clear");
+        return;
+    }
+    
+    printf("1) Alterar quantidade\n");
+    printf("2) Alterar custo\n");
+    printf("3) Alterar preco\n");
+    printf("4) Remover produto\n");
+    scanf("%d",&option);
+    while(option != -3){
+        if(option == 1){
+            printf("Digite a nova quantidade: \n");
+            scanf("%d",&changed);
+            memset(msg,0,STR_MAX_SIZE);
+            strcpy(msg,"14:");
+            strcat(msg,itoa(changed,10));
+            write2Server(sock, msg, server_reply);
+            option = -3;
+        }else if(option == 2){
+            printf("Digite o novo custo: \n");
+            scanf("%f",&changedf);
+            memset(msg,0,STR_MAX_SIZE);
+            memset(tmp,0,STR_MAX_SIZE);
+            strcpy(msg,"15:");
+            snprintf(tmp, STR_MAX_SIZE, "%f",changedf);
+            strcat(msg,tmp);
+            write2Server(sock,msg, server_reply);
+            option = -3;
+        }else if(option == 3){
+            printf("Digite o novo preco: \n");
+            scanf("%f",&changedf);
+            memset(msg,0,STR_MAX_SIZE);
+            memset(tmp,0,STR_MAX_SIZE);
+            snprintf(tmp,STR_MAX_SIZE, "%f",changedf);
+            strcpy(msg,"16:");
+            strcat(msg,tmp);
+            write2Server(sock,msg, server_reply);
+            option = -3;
+        }else if(option == 4){
+            memset(msg,0,STR_MAX_SIZE);
+            strcpy(msg,"17:");
+            strcat(msg,itoa(cod,10));
+            write2Server(sock,msg, server_reply);
+            option = -3;
+        }else{
+            printf("Verifique a alterantiva selecionada.\n");
+        }
+    }
+    
+}
+
+void manageStock(int sock,char server_reply[]){
     int option;
+    printf("**Menu Gerir Stock**\n");
+    printf("1) Listar os produtos.\n");
+    printf("2) Incluir novo produto.\n");
+    printf("3) Editar produto existente.\n");
+    printf("4) Retornar ao menu principal.\n");
+    scanf("%d",&option);
+    
+    while(option != 4){
+        if(option == 1){
+            option = -2;
+            system("clear");
+            listStock(sock,server_reply);
+        }else if(option == 2){
+            option = -2;
+            includeNewProduct(sock,server_reply);
+        }else if(option == 3){
+            system("clear");
+            editStock(sock,server_reply);
+        }else if(option == 4){
+            return;
+        }else if(option == -2){
+            printf("**Menu Gerir Stock**\n");
+            printf("1) Listar os produtos.\n");
+            printf("2) Incluir novo produto.\n");
+            printf("3) Editar produto existente.\n");
+            printf("4) Retornar ao menu principal.\n");
+            scanf("%d",&option);
+        }else{
+            printf("Opcao nao reconhecida, tente novamente: \n");
+            scanf("%d",&option);
+        }
+    }
+}
+
+void showOptions(int sock){
+    int option,check=0;
     char server_reply[STR_MAX_SIZE];
     printf("**Menu Principal**\n");
     printf("1) Criar novo utilizador\n");
@@ -136,10 +461,14 @@ void showOptions(int sock){
         if(option == 1){
             system("clear");
             option = -2;
-            addnewUser(sock,server_reply);
+            check = addnewUser(sock,server_reply);
+            while(check == 1){
+                check = addnewUser(sock,server_reply);
+            }
         }else if(option == 2){
             system("clear");
             option = -2;
+            manageStock(sock,server_reply);
         }else if(option == 3){
             system("clear");
             option = -2;

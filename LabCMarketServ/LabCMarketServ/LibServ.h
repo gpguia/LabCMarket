@@ -61,7 +61,7 @@ struct users{
     char contato[10];
     char username[50];
     char password[50];
-    char balance[100];
+    char balance[20];
     Statistics* statUsu;
     Users* next;
 };
@@ -98,14 +98,19 @@ Produto *updateProducts(Produto *stock,char msg[], int sock);
 Produto *searchProduct(Produto *stock,int cod);
 void sendAProduct(int sock, char msg[], Produto *stock);
 void sendStatistics(int sock, char client_msg[], Users* lst);
-
 int validClient(Users* lst, char str[]);
 int validManager(char str[]);
 void addBalance(Users* lst, char str[], int sock);
 void sendListProdcut(Produto* p, int sock);
-
 void sendBalance(Users* lst, char str[], int sock);
 
+//Manager functions
+int validManager(char str[]);
+void createNewUser(int sock, char client_message[], Users* lst);
+void listProducts2Manager(int sock, Produto* lst);
+Produto* addNewProduct(int sock,char client_message[], Produto* stock);
+void verifyProduct(int sock, char client_message[], Produto* stock);
 
 Statistics *addStatistics(Statistics* lst, int qtdComprada, int cod, struct tm timer, float valorGasto, char name[]);
+
 #endif /* LibServ_h */

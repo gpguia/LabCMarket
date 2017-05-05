@@ -341,7 +341,7 @@ Produto *loadStock(Produto *stock, char caminho[]){
     while(fscanf(fp,"%s%d%s%d%f%f%d",nomeProduto,&codigo,desc,&qtd,&custo,&preco,&vendidos) == 7){
         stock = addProduto(stock, nomeProduto, codigo, desc, qtd, custo, preco);
     }
-    
+    fclose(fp);
     return stock;
 }
 
@@ -488,6 +488,7 @@ int validManager(char str[]){
         }
     }
     
+    fclose(fp);
     return 0;
 }
 
@@ -765,6 +766,191 @@ void sendStatistics(int sock, char client_msg[], Users* lst){
     write(sock,msg,strlen(msg));
 }
 
+void createNewUser(int sock, char client_message[], Users* lst){//Manger, create new user.
+    //Example of reciving data: guilherme:987654321:gui:gui321:1000:
+    int i=0,j=0;
+    char nome[255],contato[10],username[50],password[50],cBalance[10];
+    memset(nome,0,255);
+    memset(contato,0,10);
+    memset(username,0,50);
+    memset(password,0,50);
+    memset(cBalance,0,10);
+    
+    while(client_message[i] != ':'){
+        nome[i] = client_message[i];
+        i++;
+    }
+    i++;
+    while(client_message[i] != ':'){
+        contato[j] = client_message[i];
+        i++;
+        j++;
+    }
+    i++;
+    j=0;
+    while(client_message[i] != ':'){
+        username[j] = client_message[i];
+        i++;
+        j++;
+    }
+    i++;
+    j=0;
+    while(client_message[i] != ':'){
+        password[j] = client_message[i];
+        i++;
+        j++;
+    }
+    i++;
+    j=0;
+    while(client_message[i] != ':'){
+        cBalance[j] = client_message[i];
+        i++;
+        j++;
+    }
+    i++;
+    j=0;
+    
+    FILE *fp;
+    
+    fp = fopen(dirUser,"a");
+    if(fp == NULL){
+        printf("Erro ao abrir o arquivo dos usuarios (Create new user function).\n");
+        write(sock,"0",strlen("0"));
+        exit(1);
+    }
+    fprintf(fp,"%s",nome);
+    fprintf(fp,"%s",":");
+    fprintf(fp,"%s",contato);
+    fprintf(fp,"%s",":");
+    fprintf(fp,"%s",username);
+    fprintf(fp,"%s",":");
+    fprintf(fp,"%s",password);
+    fprintf(fp,"%s",":");
+    fprintf(fp,"%s\n",cBalance);
+    
+    fclose(fp);
+    
+    write(sock,"1",strlen("1"));
+    
+    
+}
+
+void listProducts2Manager(int sock, Produto* lst){
+    Produto* p1;
+    char msg[STR_MAX_SIZE];
+    char tmp[STR_MAX_SIZE];
+    
+    memset(tmp,0,STR_MAX_SIZE);
+    memset(msg,0,STR_MAX_SIZE);
+    for(p1 = lst; p1 != NULL; p1 = p1->next){
+        strcat(msg,p1->nome);
+        strcat(msg,":");
+        strcat(msg,p1->descricao);
+        strcat(msg,":");
+        strcat(msg,itoa(p1->codigo,10));
+        strcat(msg,":");
+        strcat(msg,itoa(p1->qtd,10));
+        strcat(msg,":");
+        snprintf(tmp,STR_MAX_SIZE,"%f",p1->custo);
+        strcat(msg,tmp);
+        memset(tmp,0,STR_MAX_SIZE);
+        strcat(msg,":");
+        snprintf(tmp,STR_MAX_SIZE,"%f", p1->preco);
+        strcat(msg,tmp);
+        memset(tmp,0,STR_MAX_SIZE);
+        strcat(msg,":");
+    }
+    write(sock,msg,strlen(msg));
+}
+
+Produto* addNewProduct(int sock,char client_message[], Produto* stock){
+    char nome[50],desc[50],tmp[STR_MAX_SIZE];
+    int codigo, qtd,i=0,j=0;
+    float custo,preco;
+    Produto *p;
+    memset(nome,0,50);
+    memset(desc,0,50);
+    memset(tmp,0,STR_MAX_SIZE);
+    
+    while(client_message[i] != ':'){//Get the name
+        nome[i] = client_message[i];
+        i++;
+    }
+    i++;
+    while(client_message[i] != ':'){//get description
+        desc[j] = client_message[i];
+        i++;
+        j++;
+    }
+    i++;
+    j=0;
+    while(client_message[i] != ':'){//get code
+        tmp[j] = client_message[i];
+        i++;
+        j++;
+    }
+    codigo = atoi(tmp); //change character to int;
+    i++;
+    j=0;
+    memset(tmp,0,STR_MAX_SIZE); //clear the mem to use tmp again.
+    while(client_message[i] != ':'){//get cost
+        tmp[j] = client_message[i];
+        i++;
+        j++;
+    }
+    i++;
+    j=0;
+    custo = atof(tmp);
+    memset(tmp,0,STR_MAX_SIZE);//Clear the mem to use tmp again
+    while(client_message[i] != ':'){//get price
+        tmp[j] = client_message[i];
+        i++;
+        j++;
+    }
+    i++;
+    j=0;
+    preco = atof(tmp);
+    memset(tmp,0,STR_MAX_SIZE);//Clear again.
+    while(client_message[i] != ':'){//get qtty
+        tmp[j] = client_message[i];
+        i++;
+        j++;
+    }
+    qtd = atoi(tmp);
+    i++;
+    j=0;
+    
+    p = searchProduct(stock, codigo);
+    if(p != NULL){//Send -1 to manager to inform that the code already exist.
+        write(sock,"-1",strlen("-1"));
+        return stock;
+    }
+    //add new product
+    stock = addProduto(stock,nome , codigo, desc, qtd, custo, preco);
+    
+    write(sock,"1",strlen("1"));
+    
+    return stock;
+    
+}
+
+void verifyProduct(int sock, char client_message[], Produto* stock){
+    Produto* p;
+    int codigo;
+    
+    codigo = atoi(client_message);
+    
+    p = searchProduct(stock, codigo);
+    
+    if(p != NULL){
+        write(sock,"1",strlen("1"));
+        return;
+    }
+    
+    write(sock,"0",strlen("0"));
+    
+}
+
 void *connection_handler(void* socket_desc){
     struct sockHandle *sh = socket_desc;
     //Get the socket descriptor
@@ -809,8 +995,20 @@ void *connection_handler(void* socket_desc){
         }else if(command == 8){//Verify if the client has money to buy.
             verifyMoney(sock,client_message,sh->users,sh->stock);
             memset(client_message,0,STR_MAX_SIZE);
-        }else if(command == 9){
+        }else if(command == 9){//Send data from the statistics of a user.
             sendStatistics(sock,client_message,sh->users);
+            memset(client_message,0,STR_MAX_SIZE);
+        }else if(command == 10){//Craete a new user for the market
+            createNewUser(sock,client_message,sh->users);
+            memset(client_message,0,STR_MAX_SIZE);
+        }else if(command == 11){
+            listProducts2Manager(sock,sh->stock);
+            memset(client_message,0,STR_MAX_SIZE);
+        }else if(command == 12){
+           sh->stock = addNewProduct(sock,client_message,sh->stock);
+            memset(client_message,0,STR_MAX_SIZE);
+        }else if(command == 13){
+            verifyProduct(sock,client_message,sh->stock);
             memset(client_message,0,STR_MAX_SIZE);
         }
         
