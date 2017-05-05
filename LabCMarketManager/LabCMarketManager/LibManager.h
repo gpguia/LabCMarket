@@ -23,6 +23,8 @@
 
 #define STR_MAX_SIZE 2000
 
+#define execServ "/Users/guilhermeguia/GoogleDrive/School/UP/2Semestre/LabDeComp/Project/LabCMarketServ/LabCMarketServ/gcc main.c LibServ.c -o serv && ./serv"
+
 int connToServer();
 void validManager(int sock);
 void showOptions(int sock);

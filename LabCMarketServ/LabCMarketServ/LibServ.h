@@ -20,9 +20,9 @@
 #include<unistd.h>    //write
 #include<pthread.h>
 
-#define dirStock "/Users/guilhermeguia/Google Drive/School/UP/2Semestre/LabDeComp/Project/LabCMarketServ/LabCMarketServ/stock.txt"
-#define dirUser "/Users/guilhermeguia/Google Drive/School/UP/2Semestre/LabDeComp/Project/LabCMarketServ/LabCMarketServ/users.txt"
-#define dirGestor "/Users/guilhermeguia/Google Drive/School/UP/2Semestre/LabDeComp/Project/LabCMarketServ/LabCMarketServ/gestores.txt"
+#define dirStock "/Users/guilhermeguia/GoogleDrive/School/UP/2Semestre/LabDeComp/Project/LabCMarketServ/LabCMarketServ/stock.txt"
+#define dirUser "/Users/guilhermeguia/GoogleDrive/School/UP/2Semestre/LabDeComp/Project/LabCMarketServ/LabCMarketServ/users.txt"
+#define dirGestor "/Users/guilhermeguia/GoogleDrive/School/UP/2Semestre/LabDeComp/Project/LabCMarketServ/LabCMarketServ/gestores.txt"
 
 
 #define STR_MAX_SIZE 2000

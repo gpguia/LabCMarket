@@ -455,9 +455,10 @@ void showOptions(int sock){
     printf("1) Criar novo utilizador\n");
     printf("2) Gerir Stocks\n");
     printf("3) Ver Estatisticas\n");
-    printf("4) Logout\n");
+    printf("4) Desligar servidor.\n");
+    printf("5) Logout\n");
     scanf("%d",&option);
-    while(option != 4){
+    while(option != 5){
         if(option == 1){
             system("clear");
             option = -2;
@@ -472,7 +473,7 @@ void showOptions(int sock){
         }else if(option == 3){
             system("clear");
             option = -2;
-        }else if(option == 4){
+        }else if(option == 5){
             return;
         }else if(option == -2){
             system("clear");
@@ -482,6 +483,8 @@ void showOptions(int sock){
             printf("3) Ver Estatisticas\n");
             printf("4) Logout\n");
             scanf("%d",&option);
+        }else if(option == 4){
+            return;
         }else{
             printf("Verifique o numero digitado.\n");
             scanf("%d",&option);
