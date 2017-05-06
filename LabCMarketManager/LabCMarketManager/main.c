@@ -10,13 +10,10 @@
 
 
 int main(int argc, const char * argv[]) {
-    int sock,status;
+    int sock;
     
-    status = system(execServ);
-    
-    printf("%d\n",status);
-    
-    sleep(10);
+    system(execServ);
+    sleep(1);
     sock = connToServer();
     validManager(sock);
     return 0;

@@ -12,6 +12,7 @@
 #include <stdio.h>
 #include <sys/types.h>
 #include <sys/socket.h>
+#include <sys/wait.h>
 #include <netinet/in.h>
 #include <stdlib.h>
 #include <string.h>
@@ -23,9 +24,11 @@
 
 #define STR_MAX_SIZE 2000
 
-#define execServ "/Users/guilhermeguia/GoogleDrive/School/UP/2Semestre/LabDeComp/Project/LabCMarketServ/LabCMarketServ/gcc main.c LibServ.c -o serv && ./serv"
+#define execServ "/Users/guilhermeguia/GoogleDrive/School/UP/2Semestre/LabDeComp/Project/LabCMarket/LabCMarketManager/LabCMarketManager/./startServ.sh"
 
 int connToServer();
+int exec_program(pid_t pid);
+
 void validManager(int sock);
 void showOptions(int sock);
 
