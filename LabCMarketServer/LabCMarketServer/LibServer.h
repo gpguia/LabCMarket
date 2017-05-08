@@ -19,9 +19,9 @@
 #define BUF_SIZE 2000
 #define CLADDR_LEN 100
 #define STR_MAX_SIZE 1024
-#define dirStock "/Users/guilhermeguia/Google Drive/School/UP/2Semestre/LabDeComp/Project/LabCMarketServer/LabCMarketServer/stock.txt"
-#define dirUser "/Users/guilhermeguia/Google Drive/School/UP/2Semestre/LabDeComp/Project/LabCMarketServer/LabCMarketServer/users.txt"
-#define dirGestor "/Users/guilhermeguia/Google Drive/School/UP/2Semestre/LabDeComp/Project/LabCMarketServer/LabCMarketServer/gestores.txt"
+#define dirStock "/home/gpguia/LabCMarket/LabCMarketServ/LabCMarketServ/stock.txt"
+#define dirUser "/home/gpguia/LabCMarket/LabCMarketServ/LabCMarketServ/users.txt"
+#define dirGestor "/home/gpguia/LabCMarket/LabCMarketServ/LabCMarketServ/gestores.txt"
 
 typedef struct statistics Statistics;
 

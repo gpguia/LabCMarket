@@ -20,14 +20,17 @@
 #include<unistd.h>    //write
 #include<pthread.h>
 
-#define dirStock "/Users/guilhermeguia/GoogleDrive/School/UP/2Semestre/LabDeComp/Project/LabCMarket/LabCMarketServ/LabCMarketServ/stock.txt"
-#define dirUser "/Users/guilhermeguia/GoogleDrive/School/UP/2Semestre/LabDeComp/Project/LabCMarket/LabCMarketServ/LabCMarketServ/users.txt"
-#define dirGestor "/Users/guilhermeguia/GoogleDrive/School/UP/2Semestre/LabDeComp/Project/LabCMarket/LabCMarketServ/LabCMarketServ/gestores.txt"
+#define dirStock "/home/gpguia/LabCMarket/LabCMarketServ/LabCMarketServ/stock.txt"
+#define dirUser "/home/gpguia/LabCMarket/LabCMarketServ/LabCMarketServ/users.txt"
+#define dirGestor "/home/gpguia/LabCMarket/LabCMarketServ/LabCMarketServ/gestores.txt"
 
 
 #define STR_MAX_SIZE 2000
+
+//If debug is set to 1, it will write some info in debug file, just for debug the program.
 #define DEBUG 1
-#define dirDebug "/Users/guilhermeguia/Google Drive/School/UP/2Semestre/LabDeComp/Project/LabCMarketServ/LabCMarketServ/debug.txt"
+
+#define dirDebug "/home/gpguia/LabCMarket/LabCMarketServ/LabCMarketServ/debug.txt"
 
 typedef struct statistics Statistics;
 
@@ -110,6 +113,12 @@ void createNewUser(int sock, char client_message[], Users* lst);
 void listProducts2Manager(int sock, Produto* lst);
 Produto* addNewProduct(int sock,char client_message[], Produto* stock);
 void verifyProduct(int sock, char client_message[], Produto* stock);
+Produto* editQtty(int sock, char client_message[], Produto* stock);
+Produto* editCost(int sock, char client_message[], Produto* stock);
+Produto* editPrice(int sock, char client_message[], Produto* stock);
+Produto* removeProduct(int sock,char client_message[] , Produto* stock);
+void listUsers2Manager(int sock,Users* lst);
+void verifyUserExist(int sock, char client_message[], Users* lst);
 
 Statistics *addStatistics(Statistics* lst, int qtdComprada, int cod, struct tm timer, float valorGasto, char name[]);
 

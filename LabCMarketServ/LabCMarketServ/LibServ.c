@@ -714,6 +714,7 @@ void verifyMoney(int sock, char msg[], Users* usu, Produto* stock){
     if(balance >= total){
         time_t t = time(NULL);
         balance = balance - total;
+        memset(aux,0,STR_MAX_SIZE);
         snprintf(aux,STR_MAX_SIZE,"%f\n", balance);
         strcpy(u->balance,aux);
         u->statUsu = addStatistics(u->statUsu, (total / p->preco), codigo, *localtime(&t), total, p->nome);
@@ -745,6 +746,7 @@ void sendStatistics(int sock, char client_msg[], Users* lst){
         write(sock,"0",strlen("0"));
     }
     
+    
     for(s = u->statUsu ; s != NULL ; s = s->next){
         strcat(msg,itoa(s->cod,10));
         strcat(msg,":");
@@ -762,7 +764,6 @@ void sendStatistics(int sock, char client_msg[], Users* lst){
         strcat(msg,itoa(s->tm.tm_mday,10));
         strcat(msg,":");
     }
-    
     write(sock,msg,strlen(msg));
 }
 
@@ -951,6 +952,177 @@ void verifyProduct(int sock, char client_message[], Produto* stock){
     
 }
 
+Produto* editQtty(int sock, char client_message[], Produto* stock){
+    int cod, i=0, j=0, qtd;
+    char msg[STR_MAX_SIZE],tmp[STR_MAX_SIZE];
+    Produto* p;
+    
+    memset(msg,0,STR_MAX_SIZE);
+    memset(tmp,0,STR_MAX_SIZE);
+    
+    while(client_message[i] != ':'){
+        tmp[i] = client_message[i];
+        i++;
+    }
+    i++;
+    qtd = atoi(tmp);
+    memset(tmp,0,STR_MAX_SIZE);
+    while(client_message[i] != ':'){
+        tmp[j] = client_message[i];
+        i++;
+        j++;
+    }
+    cod = atoi(tmp);
+    
+    p = searchProduct(stock,cod);
+    
+    p->qtd = qtd;
+    
+    write(sock,"1",strlen("1"));
+    
+    return stock;
+    
+}
+
+Produto* editCost(int sock, char client_message[], Produto* stock){
+    Produto* p;
+    char msg[STR_MAX_SIZE], tmp[STR_MAX_SIZE];
+    int i=0,j=0;
+    float custo, cod;
+    
+    memset(msg,0,STR_MAX_SIZE);
+    memset(tmp,0,STR_MAX_SIZE);
+    
+    while(client_message[i] != ':'){
+        tmp[i] = client_message[i];
+        i++;
+    }
+    i++;
+    custo = atof(tmp);
+    memset(tmp,0,STR_MAX_SIZE);
+    while(client_message[i] != ':'){
+        tmp[j] = client_message[i];
+        i++;
+        j++;
+    }
+    cod = atoi(tmp);
+    
+    p = searchProduct(stock, cod);
+    
+    p->custo = custo;
+    
+    write(sock,"1",strlen("1"));
+    
+    return stock;
+    
+}
+
+Produto* editPrice(int sock, char client_message[], Produto* stock){
+    Produto* p;
+    char msg[STR_MAX_SIZE], tmp[STR_MAX_SIZE];
+    int i=0,j=0;
+    float price, cod;
+    
+    memset(msg,0,STR_MAX_SIZE);
+    memset(tmp,0,STR_MAX_SIZE);
+    
+    while(client_message[i] != ':'){
+        tmp[i] = client_message[i];
+        i++;
+    }
+    i++;
+    price = atof(tmp);
+    memset(tmp,0,STR_MAX_SIZE);
+    while(client_message[i] != ':'){
+        tmp[j] = client_message[i];
+        i++;
+        j++;
+    }
+    cod = atoi(tmp);
+    
+    p = searchProduct(stock, cod);
+    
+    p->preco = price;
+    
+    write(sock,"1",strlen("1"));
+    
+    return stock;
+    
+}
+
+Produto* removeProduct(int sock,char client_message[] , Produto* stock){
+    Produto* a = NULL;
+    Produto* p = stock;
+    int i=0,cod;
+    char msg[STR_MAX_SIZE],tmp[STR_MAX_SIZE];
+    memset(msg,0,STR_MAX_SIZE);
+    memset(tmp,0,STR_MAX_SIZE);
+    
+    
+    while(client_message[i] != ':'){
+        tmp[i] = client_message[i];
+        i++;
+    }
+    i++;
+    cod = atoi(tmp);
+    
+    //Search for the product, keeping the previus one.
+    while(p != NULL && p->codigo != cod){
+        a = p;
+        p = p->next;
+    }
+    
+    //If dont find it, just leave the way it is;
+    if(p == NULL){
+        return stock;
+    }
+    
+    //If the product is the first one.
+    if(a == NULL){
+        stock = p->next;
+    }else{//Or not.
+        a->next = p->next;
+    }
+    //Realse memory
+    free(p);
+    
+    write(sock,"1",strlen("1"));
+    
+    //return
+    return stock;
+}
+
+void listUsers2Manager(int sock,Users* lst){
+    char msg[STR_MAX_SIZE];
+    Users* u;
+    memset(msg,0,STR_MAX_SIZE);
+    
+    for(u=lst;u!=NULL;u=u->next){
+        strcat(msg,u->nome);
+        strcat(msg,":");
+        strcat(msg,u->username);
+        strcat(msg,":");
+        strcat(msg,u->contato);
+        strcat(msg,":");
+    }
+    printf("%s\n",msg);
+    write(sock,msg,strlen(msg));
+    
+}
+
+void verifyUserExist(int sock, char client_message[], Users* lst){
+    Users* u;
+    
+    u = searchUser(lst, client_message);
+    
+    if(u == NULL){
+        write(sock,"0",strlen("0"));
+    }else{
+        write(sock,"1",strlen("1"));
+    }
+    
+}
+
 void *connection_handler(void* socket_desc){
     struct sockHandle *sh = socket_desc;
     //Get the socket descriptor
@@ -1001,14 +1173,32 @@ void *connection_handler(void* socket_desc){
         }else if(command == 10){//Craete a new user for the market
             createNewUser(sock,client_message,sh->users);
             memset(client_message,0,STR_MAX_SIZE);
-        }else if(command == 11){
+        }else if(command == 11){//List all products to manager
             listProducts2Manager(sock,sh->stock);
             memset(client_message,0,STR_MAX_SIZE);
-        }else if(command == 12){
+        }else if(command == 12){//Include new product (only manager)
            sh->stock = addNewProduct(sock,client_message,sh->stock);
             memset(client_message,0,STR_MAX_SIZE);
-        }else if(command == 13){
+        }else if(command == 13){//Return if a product exist.
             verifyProduct(sock,client_message,sh->stock);
+            memset(client_message,0,STR_MAX_SIZE);
+        }else if(command == 14){//Edit the qty of a product
+            sh->stock = editQtty(sock,client_message,sh->stock);
+            memset(client_message,0,STR_MAX_SIZE);
+        }else if(command == 15){//Edit the cost of a product
+            sh->stock = editCost(sock,client_message,sh->stock);
+            memset(client_message,0,STR_MAX_SIZE);
+        }else if(command == 16){//Edit the price of a product
+            sh->stock = editPrice(sock, client_message, sh->stock);
+            memset(client_message,0,STR_MAX_SIZE);
+        }else if(command == 17){//Remove a product from the list.
+            sh->stock = removeProduct(sock,client_message,sh->stock);
+            memset(client_message,0,STR_MAX_SIZE);
+        }else if(command == 18){//List all users to manager.
+            listUsers2Manager(sock,sh->users);
+            memset(client_message,0,STR_MAX_SIZE);
+        }else if(command == 19){//Verify if a user exist(based in username)
+            verifyUserExist(sock,client_message,sh->users);
             memset(client_message,0,STR_MAX_SIZE);
         }
         

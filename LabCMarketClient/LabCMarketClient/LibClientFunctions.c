@@ -338,7 +338,6 @@ Carts *checkout(Carts *lst, char username[], char server_reply[], int sock, floa
     strcat(msg,itoa(cod,10));
     strcat(msg,":");
     
-    printf("Msg: %s\n",msg);
     writeToServer(sock,msg,server_reply);
     
     if(strcmp(server_reply,"1") == 0){
@@ -518,12 +517,17 @@ void listStatistics(int sock, char username[], char server_repaly[]){
     printf("%10s","Min");
     printf("\n--------------------------------------------------------------------------\n");
     while(server_repaly[i] != '\0'){
+        memset(aux,0,STR_MAX_SIZE);
+        j=0;
         while(server_repaly[i] != ':'){//COdigo
-            aux[i] = server_repaly[i];
+            aux[j] = server_repaly[i];
             i++;
+            j++;
         }
         i++;
         codigo = atoi(aux);
+        j=0;
+        memset(nomeProduto,0,50);
         while(server_repaly[i] != ':'){//Nome do produto
             nomeProduto[j] = server_repaly[i];
             i++;
@@ -584,7 +588,6 @@ void listStatistics(int sock, char username[], char server_repaly[]){
         printf("%11d",min);
     
         printf("\n--------------------------------------------------------------------------\n");
-        memset(username,0,50);
         memset(aux,0,STR_MAX_SIZE);
         totalGastoMarket += valorGasto;
     }

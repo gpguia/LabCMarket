@@ -24,7 +24,7 @@
 
 #define STR_MAX_SIZE 2000
 
-#define execServ "/Users/guilhermeguia/GoogleDrive/School/UP/2Semestre/LabDeComp/Project/LabCMarket/LabCMarketManager/LabCMarketManager/./startServ.sh"
+#define execServ "/home/gpguia/LabCMarket/LabCMarketManager/LabCMarketManager/./startServ.sh"
 
 int connToServer();
 int exec_program(pid_t pid);
@@ -41,4 +41,7 @@ void listStock(int sock, char server_reply[]);
 void includeNewProduct(int sock, char server_reply[]);
 void editStock(int sock, char server_reply[]);
 char* itoa(int val, int base);
+void showStatisticsOptions(int sock,char server_reply[]);
+void listAllUsers(int sock,char server_reply[]);
+void listStatisticsSpecificUser(int sock, char server_reply[]);
 #endif /* LibServer_h */

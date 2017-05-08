@@ -377,6 +377,9 @@ void editStock(int sock, char server_reply[]){
             memset(msg,0,STR_MAX_SIZE);
             strcpy(msg,"14:");
             strcat(msg,itoa(changed,10));
+            strcat(msg,":");
+            strcat(msg,itoa(cod,10));
+            strcat(msg,":");
             write2Server(sock, msg, server_reply);
             option = -3;
         }else if(option == 2){
@@ -387,6 +390,9 @@ void editStock(int sock, char server_reply[]){
             strcpy(msg,"15:");
             snprintf(tmp, STR_MAX_SIZE, "%f",changedf);
             strcat(msg,tmp);
+            strcat(msg,":");
+            strcat(msg,itoa(cod,10));
+            strcat(msg,":");
             write2Server(sock,msg, server_reply);
             option = -3;
         }else if(option == 3){
@@ -397,12 +403,16 @@ void editStock(int sock, char server_reply[]){
             snprintf(tmp,STR_MAX_SIZE, "%f",changedf);
             strcpy(msg,"16:");
             strcat(msg,tmp);
+            strcat(msg,":");
+            strcat(msg,itoa(cod,10));
+            strcat(msg,":");
             write2Server(sock,msg, server_reply);
             option = -3;
         }else if(option == 4){
             memset(msg,0,STR_MAX_SIZE);
             strcpy(msg,"17:");
             strcat(msg,itoa(cod,10));
+            strcat(msg,":");
             write2Server(sock,msg, server_reply);
             option = -3;
         }else{
@@ -430,6 +440,7 @@ void manageStock(int sock,char server_reply[]){
             option = -2;
             includeNewProduct(sock,server_reply);
         }else if(option == 3){
+            option = -2;
             system("clear");
             editStock(sock,server_reply);
         }else if(option == 4){
@@ -448,6 +459,180 @@ void manageStock(int sock,char server_reply[]){
     }
 }
 
+void listAllUsers(int sock,char server_reply[]){
+    //Eg msg reciving: jorge:jorge:912345678:guilherme:gui:123456789:
+    // Name:username:contact
+    int i=0,j=0,contact;
+    char tmp[STR_MAX_SIZE];
+    write2Server(sock,"18:",server_reply);
+    memset(tmp,0,STR_MAX_SIZE);
+    
+    printf("%12s","Nome");
+    printf("%15s","Username");
+    printf("%15s","Contato");
+    printf("\n----------------------------------------------------------------------\n");
+    while(server_reply[i] != '\0'){//run untl the server_reply ends.
+        j=0;
+        while(server_reply[i] != ':'){//get the name and print it.
+            tmp[j] = server_reply[i];
+            i++;
+            j++;
+        }
+        i++;
+        j=0;
+        printf("%13s",tmp); // print the name
+        memset(tmp,0,STR_MAX_SIZE);//clear memory
+        while(server_reply[i] != ':'){//get username.
+            tmp[j] = server_reply[i];
+            i++;
+            j++;
+        }
+        i++;
+        j=0;
+        printf("%15s",tmp);//print username
+        memset(tmp,0,STR_MAX_SIZE);
+        while(server_reply[i] != ':'){//Get contact number
+            tmp[j] = server_reply[i];
+            i++;
+            j++;
+        }
+        i++;
+        j=0;
+        contact = atoi(tmp);//change char to int.
+        printf("%15d",contact);
+        printf("\n----------------------------------------------------------------------\n");
+    }
+    
+}
+
+void listStatisticsSpecificUser(int sock, char server_reply[]){
+    int i=0,j=0,codigo,qtdComprada,hora,min,dia;
+    char username[50],aux[STR_MAX_SIZE],nomeProduto[50];
+    float valorGasto,totalGastoMarket=0;
+    memset(username,0,50);
+    memset(aux,0,STR_MAX_SIZE);
+    
+    listAllUsers(sock,server_reply);
+    
+    printf("Digite o username: \n");
+    scanf("%s",username);
+    
+    write2Server(sock,username,server_reply);
+    while(strcmp(server_reply,"0") == 0){
+        printf("Usuario nao encontrado, tente novamente: \n");
+        scanf("%s",username);
+        memset(server_reply,0,STR_MAX_SIZE);
+        write2Server(sock,username,server_reply);
+    }
+    
+    write2Server(sock, "9:",server_reply);
+    
+    printf("\t** Estatisticas **\n");
+    printf("%6s","Nome");
+    printf("%8s","Codigo");
+    printf("%15s","Qtd comprada");
+    printf("%15s","Valor Gasto");
+    printf("%10s","Dia");
+    printf("%10s","Hora");
+    printf("%10s","Min");
+    printf("\n--------------------------------------------------------------------------\n");
+    while(server_reply[i] != '\0'){
+        while(server_reply[i] != ':'){//COdigo
+            aux[i] = server_reply[i];
+            i++;
+        }
+        i++;
+        codigo = atoi(aux);
+        while(server_reply[i] != ':'){//Nome do produto
+            nomeProduto[j] = server_reply[i];
+            i++;
+            j++;
+        }
+        i++;
+        j=0;
+        memset(aux,0,STR_MAX_SIZE);
+        while(server_reply[i] != ':'){//Qtd comprada
+            aux[j] = server_reply[i];
+            i++;
+            j++;
+        }
+        i++;
+        j=0;
+        qtdComprada = atoi(aux);
+        memset(aux,0,STR_MAX_SIZE);
+        while(server_reply[i] != ':'){//Valor Gasto
+            aux[j] = server_reply[i];
+            i++;
+            j++;
+        }
+        i++;
+        j=0;
+        valorGasto = atof(aux);
+        memset(aux,0,STR_MAX_SIZE);
+        while(server_reply[i] != ':'){//Hora
+            aux[j] = server_reply[i];
+            i++;
+            j++;
+        }
+        i++;
+        j=0;
+        hora = atoi(aux);
+        memset(aux,0,STR_MAX_SIZE);
+        while(server_reply[i] != ':'){//Min
+            aux[j] = server_reply[i];
+            i++;
+            j++;
+        }
+        i++;
+        j=0;
+        min = atoi(aux);
+        memset(aux,0,STR_MAX_SIZE);
+        while(server_reply[i] != ':'){//mDay
+            aux[j] = server_reply[i];
+            i++;
+            j++;
+        }
+        dia = atoi(aux);
+        i++;
+        printf("%6s",nomeProduto);
+        printf("%8d",codigo);
+        printf("%10d",qtdComprada);
+        printf("%15.2f",valorGasto);
+        printf("%13d",dia);
+        printf("%11d",hora);
+        printf("%11d",min);
+        
+        printf("\n--------------------------------------------------------------------------\n");
+        memset(username,0,50);
+        memset(aux,0,STR_MAX_SIZE);
+        totalGastoMarket += valorGasto;
+    }
+    
+    printf("Valor total gasto no LabCMarket foi de: %.2f",totalGastoMarket);
+    
+}
+
+void showStatisticsOptions(int sock,char server_reply[]){
+    int option;
+    
+    printf("Vers estatisticas de: \n");
+    printf("1) todos os usuarios.\n");
+    printf("2) um usuario especifico.\n");
+    printf("3) Voltar.\n");
+    scanf("%d",&option);
+    
+    if(option == 3){
+        return;
+    }else if(option == 1){
+        system("clear");
+    }else if(option == 2){
+        system("clear");
+        listStatisticsSpecificUser(sock, server_reply);
+        sleep(10);
+    }
+    
+}
+
 void showOptions(int sock){
     int option,check=0;
     char server_reply[STR_MAX_SIZE];
@@ -455,8 +640,7 @@ void showOptions(int sock){
     printf("1) Criar novo utilizador\n");
     printf("2) Gerir Stocks\n");
     printf("3) Ver Estatisticas\n");
-    printf("4) Desligar servidor.\n");
-    printf("5) Logout\n");
+    printf("4) Logout\n");
     scanf("%d",&option);
     while(option != 5){
         if(option == 1){
@@ -473,18 +657,16 @@ void showOptions(int sock){
         }else if(option == 3){
             system("clear");
             option = -2;
-        }else if(option == 5){
+            showStatisticsOptions(sock,server_reply);
+        }else if(option == 4){
             return;
         }else if(option == -2){
-            system("clear");
-            printf("**Menu**\n");
+            printf("**Menu Principal**\n");
             printf("1) Criar novo utilizador\n");
             printf("2) Gerir Stocks\n");
             printf("3) Ver Estatisticas\n");
             printf("4) Logout\n");
             scanf("%d",&option);
-        }else if(option == 4){
-            return;
         }else{
             printf("Verifique o numero digitado.\n");
             scanf("%d",&option);

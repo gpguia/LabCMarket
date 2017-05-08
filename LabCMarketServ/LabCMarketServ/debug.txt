@@ -1,0 +1,74 @@
+getCommand Debug
+msg sem o comando: gui:gui123:
+Command: 2
+Fim getCommand Debug
+
+Program Running on: 2017-5-8 15:25:18
+Username: gui
+Password: gui123
+
+getCommand Debug
+msg sem o comando: 
+Command: 5
+Fim getCommand Debug
+
+getCommand Debug
+msg sem o comando: 10005:10:
+Command: 6
+Fim getCommand Debug
+
+getCommand Debug
+msg sem o comando: 
+Command: 5
+Fim getCommand Debug
+
+getCommand Debug
+msg sem o comando: 10003:10:
+Command: 6
+Fim getCommand Debug
+
+getCommand Debug
+msg sem o comando: 10003:
+Command: 7
+Fim getCommand Debug
+
+getCommand Debug
+msg sem o comando: 10005:
+Command: 7
+Fim getCommand Debug
+
+getCommand Debug
+msg sem o comando: gui:90:10003:
+Command: 8
+Fim getCommand Debug
+
+getCommand Debug
+msg sem o comando: gui:
+Command: 9
+Fim getCommand Debug
+
+getCommand Debug
+msg sem o comando: 
+Command: 5
+Fim getCommand Debug
+
+getCommand Debug
+msg sem o comando: 10002:1:
+Command: 6
+Fim getCommand Debug
+
+getCommand Debug
+msg sem o comando: 10002:
+Command: 7
+Fim getCommand Debug
+
+getCommand Debug
+msg sem o comando: gui:2:10002:
+Command: 8
+Fim getCommand Debug
+
+getCommand Debug
+msg sem o comando: gui:
+Command: 9
+Fim getCommand Debug
+

@@ -44,6 +44,10 @@ Neste exemplo será validado o gestor com o login e senha apresentatos.
 
 17 - remover um produto
 
+18 - lista todos os usuarios para o manager.
+
+19 - verifica se um usuario existe.(retorna 1 se existir ou 0 se nao exisitr).
+
 **Estruturas presentes no servidor:** Todas as estrutuas podem ser visulizadas no LibServ.h
 
 
