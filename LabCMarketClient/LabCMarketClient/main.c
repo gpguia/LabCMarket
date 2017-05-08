@@ -50,6 +50,5 @@ int main(int argc, const char * argv[]) {
     }
     system("clear");
     showMenu(sock,username);
-    printf("%s\n",username);
     return 0;
 }

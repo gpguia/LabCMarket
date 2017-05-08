@@ -329,6 +329,8 @@ float listProductInCart(Carts *lst, int sock, char server_reply[]){
 Carts *checkout(Carts *lst, char username[], char server_reply[], int sock, float total, int cod){
     char msg[STR_MAX_SIZE];
     memset(msg,0,STR_MAX_SIZE);
+    Carts *c = lst;   //Cart
+    Carts *a = NULL;   //Previus cart
     
     strcpy(msg,"8:");
     strcat(msg,username);
@@ -342,18 +344,22 @@ Carts *checkout(Carts *lst, char username[], char server_reply[], int sock, floa
     
     if(strcmp(server_reply,"1") == 0){
         printf("Compra finalizada com sucesso!\n");
-        sleep(2);
     }else{
         printf("Dinheiro insuficiente.\n");
-        sleep(2);
         return lst;
     }
     
-    while(lst != NULL){
-        Carts *temp = lst;
-        free(temp);
-        lst = lst->next;
+    while(c != NULL && c->cod != cod){
+        a = c;
+        c = c->next;
     }
+    
+    if(a == NULL){
+        lst = c->next;
+    }else{
+        a->next=c->next;
+    }
+    free(c);
     
     memset(server_reply,0,STR_MAX_SIZE);
     
@@ -385,6 +391,7 @@ Carts *removeProductFromCart(Carts *lst, int code){
 
 Carts *manageCart(Carts *lst, int sock, char server_reply[], char username[]){
     int option=0,codigo,TotalCart;
+    Carts* c;
     TotalCart = listProductInCart(lst,sock,server_reply);
     printf("\n1) Finalizar compra.\n");
     printf("2) Remover Produto.\n");
@@ -395,7 +402,9 @@ Carts *manageCart(Carts *lst, int sock, char server_reply[], char username[]){
             if(lst == NULL){
                 printf("Lista vazia, coloque alguns produtos no carrinho antes. \n");
             }else{
-                lst = checkout(lst,username,server_reply,sock,TotalCart,lst->cod);
+                for(c=lst;c!=NULL;c = c->next){
+                    lst = checkout(lst,username,server_reply,sock,TotalCart,lst->cod);
+                }
             }
             return lst;
         }else if(option == 2){//Delete product from the cart
