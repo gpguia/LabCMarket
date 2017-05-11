@@ -23,7 +23,6 @@ para maiores informações, verifique o README.md dentro das respectivas pastas,
                 3 - Voltar.
             3 - Voltar.
     3 - Ver Estatisticas - Mostra o histórico do client, mostra as ultimas compras, data e quanto gastou.
-            
     
     4 - Logout.
 
@@ -31,3 +30,16 @@ para maiores informações, verifique o README.md dentro das respectivas pastas,
 
 **_Autenticar-se:_** Assim como o client, também é preciso fazer login com o gerente.
 
+		1 - Crira novo utilizado - Cria um novo client.
+		
+		2 - Gerir stock. - Opções para gerir o stock, listar, adicionar, editar e remover um produto especifico.
+			1 - Listar produtos.
+			2 - Incluir novo produto.
+			3 - Editar produto existente.
+			4 - Retornar ao menu anterior.
+			
+		3 - Ver estatisticas. - mostra as estatisticas dos usuarios, valores gastos, data da compra, hora, minutos.
+			2 - um usuario especifico.
+			3 - Voltar.
+			
+			

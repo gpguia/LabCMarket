@@ -1105,15 +1105,12 @@ void listUsers2Manager(int sock,Users* lst){
         strcat(msg,u->contato);
         strcat(msg,":");
     }
-    printf("%s\n",msg);
     write(sock,msg,strlen(msg));
     
 }
 
 void verifyUserExist(int sock, char client_message[], Users* lst){
     Users* u;
-    
-    printf("%s\n",client_message);
     
     u = searchUser(lst, client_message);
     
