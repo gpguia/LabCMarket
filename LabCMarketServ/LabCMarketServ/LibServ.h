@@ -23,14 +23,12 @@
 #define dirStock "/home/gpguia/LabCMarket/LabCMarketServ/LabCMarketServ/stock.txt"
 #define dirUser "/home/gpguia/LabCMarket/LabCMarketServ/LabCMarketServ/users.txt"
 #define dirGestor "/home/gpguia/LabCMarket/LabCMarketServ/LabCMarketServ/gestores.txt"
-
+#define dirDebug "/home/gpguia/LabCMarket/LabCMarketServ/LabCMarketServ/debug.txt"
 
 #define STR_MAX_SIZE 2000
 
 //If debug is set to 1, it will write some info in debug file, just for debug the program.
-#define DEBUG 1
-
-#define dirDebug "/home/gpguia/LabCMarket/LabCMarketServ/LabCMarketServ/debug.txt"
+#define DEBUG 0
 
 typedef struct statistics Statistics;
 
