@@ -7,7 +7,7 @@ para maiores informações, verifique o README.md dentro das respectivas pastas,
 
 
 **Configurações básicas**
-	Foi assumido que o programa foi extraido na pasta 'home' do usuario. (eg: ~/LabCMarket)
+Foi assumido que o programa foi extraido na pasta 'home' do usuario. (eg: ~/LabCMarket)
 
 	Em caso de não estar usando na pasta home, siga as seguintes instruções: 
 	
