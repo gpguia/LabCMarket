@@ -35,6 +35,7 @@ struct cart{
 };
 
 
+void authUser(int sock, char server_reply[]);
 
 void startProgram();
 

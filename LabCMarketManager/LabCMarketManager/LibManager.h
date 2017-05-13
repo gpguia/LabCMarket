@@ -24,7 +24,8 @@
 
 #define STR_MAX_SIZE 2000
 
-#define execServ "/home/gpguia/LabCMarket/LabCMarketManager/LabCMarketManager/./startServ.sh"
+//Change this path if it's necessary
+#define execServ "~/LabCMarket/LabCMarketManager/LabCMarketManager/./startServ.sh"
 
 int connToServer();
 int exec_program(pid_t pid);

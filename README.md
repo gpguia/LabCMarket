@@ -5,6 +5,31 @@ Jorge Sousa
 Este README, contem as caracteristicas funcionais do programa, nenhum aspecto técnico será abordado aqui,
 para maiores informações, verifique o README.md dentro das respectivas pastas, seja do servidor, manager ou client.
 
+
+**Configurações básicas**
+	Foi assumido que o programa foi extraido na pasta 'home' do usuario. (eg: ~/LabCMarket)
+
+	Em caso de não estar usando na pasta home, siga as seguintes instruções: 
+	
+	1 - Altere os caminhos dos defines no ficheiro: `/LabCMarket/LabCMarketServ/LabCMarketServ/LibServ.h` (stock,users,gestores,debug) 
+	
+	2 - Altere o caminho do script (startServ.sh) no ficheiro: `/LabCMarket/LabCMarketManager/LabCMarketManager/LibManager.h`
+	
+	3 - Compile o programa uasndo o seguinte comando:
+	
+	```
+	gcc <PATH TO FOLDER>/LabCMarketClient/LabCMarketClient/main.c <PATH TO FOLDER>/LabCMarketClient/LabCMarketClient/LibClientFunctions.c -o <PATH TO FOLDER>/LabCMarketClient/LabCMarketClient/client && chmod +x <PATH TO FOLDER>/LabCMarketClient/LabCMarketClient/client
+	gcc <PATH TO FOLDER>/LabCMarketManager/LabCMarketManager/main.c <PATH TO FOLDER>/LabCMarketManager/LabCMarketManager/LibManager.c -o <PATH TO FOLDER>/LabCMarketManager/LabCMarketManager/manager && chmod +x <PATH TO FOLDER>/LabCMarketManager/LabCMarketManager/manager
+	```
+	
+	o startServer.sh, é executado sempre que o manager abre, ou seja, ao executar o manager, ele executa o script, para que seja compilado e executado
+	o servidor.
+	
+	em seguida, execute os programas:
+	
+	./<PATH TO FOLDER>/manager
+	./<PATH TO FOLDER>/client
+	
 **Operações que podem ser realizadas com o Client:**
 
 **_Autenticar-se:_** Antes de fazer qualquer coisa é necessário autenticar-se com o servidor.
