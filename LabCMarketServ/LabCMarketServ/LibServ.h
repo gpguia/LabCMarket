@@ -22,10 +22,10 @@
 
 
 //Dont forget to change this, so the program can start.
-#define dirStock "~/LabCMarket/LabCMarketServ/LabCMarketServ/stock.txt"
-#define dirUser "~/LabCMarket/LabCMarketServ/LabCMarketServ/users.txt"
-#define dirGestor "~/LabCMarket/LabCMarketServ/LabCMarketServ/gestores.txt"
-#define dirDebug "~/LabCMarket/LabCMarketServ/LabCMarketServ/debug.txt"
+#define dirStock "/home/gpguia/LabCMarket/LabCMarketServ/LabCMarketServ/stock.txt"
+#define dirUser "/home/gpguia/LabCMarket/LabCMarketServ/LabCMarketServ/users.txt"
+#define dirGestor "/home/gpguia/LabCMarket/LabCMarketServ/LabCMarketServ/gestores.txt"
+#define dirDebug "/home/gpguia/LabCMarket/LabCMarketServ/LabCMarketServ/debug.txt"
 
 #define STR_MAX_SIZE 2000
 

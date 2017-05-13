@@ -13,6 +13,5 @@ then
 		ps -ef | grep "LabCServ" | grep -v grep | awk '{print $2}' | xargs kill
 else
 #If the program is not running, just compile it again and run it using screen.
-    cd /home/gpguia/LabCMarket/LabCMarketServ/LabCMarketServ && gcc main.c LibServ.c -o LabCServ -pthread && chmod +x LabCServ
-		screen -d -m ./LabCServ
+    echo "Server nao estava rodando."
 fi

@@ -637,25 +637,23 @@ void showStatisticsOptions(int sock,char server_reply[]){
     int option;
     
     printf("Vers estatisticas de: \n");
-    printf("1) todos os usuarios.\n");
-    printf("2) um usuario especifico.\n");
-    printf("3) Voltar.\n");
+    printf("1) um usuario especifico.\n");
+    printf("2) Voltar.\n");
     scanf("%d",&option);
     
     if(option == 3){
         return;
-    }else if(option == 1){
+    }else if(option == 2){
         option = -2;
         system("clear");
-    }else if(option == 2){
+    }else if(option == 1){
         option = -2;
         system("clear");
         listStatisticsSpecificUser(sock, server_reply);
     }else if(option == -2){
         printf("Vers estatisticas de: \n");
-        printf("1) todos os usuarios.\n");
-        printf("2) um usuario especifico.\n");
-        printf("3) Voltar.\n");
+        printf("1) um usuario especifico.\n");
+        printf("2) Voltar.\n");
         scanf("%d",&option);
     }else{
         printf("Opcao nao reconhecida, tente novamente: \n");

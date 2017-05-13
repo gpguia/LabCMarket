@@ -17,5 +17,6 @@ int main(int argc, const char * argv[]) {
     sleep(1);//Sleep so the server can open and then the manager can connect to it.
     sock = connToServer();
     validManager(sock);
+    system(stopServ);
     return 0;
 }
