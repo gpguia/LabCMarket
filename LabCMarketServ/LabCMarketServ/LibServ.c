@@ -529,7 +529,8 @@ void sendBalance(Users* lst, char str[], int sock){
 }
 
 void addBalance(Users* lst, char str[], int sock){
-    int i=0,j=0,newBalance=0;
+    int i=0,j=0;
+    float newBalance=0;
     Users* u;
     char username[STR_MAX_SIZE], balance[STR_MAX_SIZE];
     memset(username,0,STR_MAX_SIZE);
@@ -550,10 +551,15 @@ void addBalance(Users* lst, char str[], int sock){
         perror("Erro, username nao encontrado.\n");
         exit(1);
     }
-    newBalance = atoi(u->balance);
-    newBalance = newBalance + atoi(balance);
+    printf("Balance form clinet: %s\n",balance);
+    newBalance = atof(u->balance);
+    printf("Balance na conta: %f\n",newBalance);
+    newBalance = newBalance + atof(balance);
+    printf("Balance dps de add: %f\n",newBalance);
     
-    strcpy(u->balance,itoa(newBalance,10));
+    memset(balance,0,STR_MAX_SIZE);
+    snprintf(balance,STR_MAX_SIZE,"%f",newBalance);
+    strcpy(u->balance,balance);
     
     write(sock,"1",strlen("1"));
     
@@ -1122,6 +1128,144 @@ void verifyUserExist(int sock, char client_message[], Users* lst){
     
 }
 
+Produto* addProductBackToStock(int sock,char client_message[], Produto* stock){
+    Produto* p;
+    int code, i=0, qtd=0,j=0;
+    char codeChar[STR_MAX_SIZE],qtdChar[STR_MAX_SIZE];
+    
+    memset(codeChar,0,STR_MAX_SIZE);
+    memset(qtdChar,0,STR_MAX_SIZE);
+    
+    while(client_message[i] != ':'){
+        codeChar[i] = client_message[i];
+        i++;
+    }
+    i++;
+    while(client_message[i] != ':'){
+        qtdChar[j] = client_message[i];
+        i++;
+        j++;
+    }
+    
+    code = atoi(codeChar);
+    qtd = atoi(qtdChar);
+    
+    p = searchProduct(stock, code);
+    
+    if(p == NULL){//didnt find the product
+        write(sock,"0",strlen("0"));
+        return stock;
+    }
+    
+    p->qtd = p->qtd + qtd;
+    
+    write(sock,"1",strlen("1"));
+    
+    return stock;
+}
+
+//Save all progress to the files.(stock, statistics, users.)
+void writeToFiles(int sock, Produto* stock,Users* users){
+    Produto* p;
+    Users* u;
+    Statistics *s;
+    char write2File[STR_MAX_SIZE];
+    
+    FILE *fp,*fp2;
+    
+    fp = fopen(dirStock,"w");
+    
+    
+    
+    if(fp == NULL){
+        printf("Erro ao gravar o stock!\n");
+        write(sock,"0",strlen("0"));
+        exit(1);
+    }
+    
+    for(p = stock;p!=NULL;p = p->next){
+        fprintf(fp,"%s\n",p->nome);
+        fprintf(fp,"%d\n",p->codigo);
+        fprintf(fp,"%s\n",p->descricao);
+        fprintf(fp,"%d\n",p->qtd);
+        fprintf(fp,"%f\n",p->custo);
+        fprintf(fp,"%f\n",p->preco);
+        fprintf(fp,"%d\n",p->qtdSold);
+    }
+    fclose(fp);
+    
+    if(fp == NULL){
+        printf("Erro ao gravar os usuarios!\n");
+        write(sock,"0",strlen("0"));
+        exit(1);
+    }
+    
+    fp = fopen(dirUser,"w");
+    fp2 = fopen(dirStats,"w");
+    
+    for(u=users;u!=NULL;u=u->next){
+        memset(write2File,0,STR_MAX_SIZE);
+        strcpy(write2File,u->nome);
+        strcat(write2File,":");
+        strcat(write2File,u->contato);
+        strcat(write2File,":");
+        strcat(write2File,u->username);
+        strcat(write2File,":");
+        strcat(write2File,u->password);
+        strcat(write2File,":");
+        strcat(write2File,u->balance);
+        fprintf(fp,"%s\n",write2File);
+        for(s=u->statUsu;s!=NULL;s=s->next){
+            fprintf(fp2,"%s\n",u->username);
+            fprintf(fp2,"%s\n",s->nome);
+            fprintf(fp2,"%d\n",s->qtdComprada);
+            fprintf(fp2,"%d\n",s->cod);
+            fprintf(fp2,"%f\n",s->valorGasto);
+            fprintf(fp2,"%d\n",s->tm.tm_hour);
+            fprintf(fp2,"%d\n",s->tm.tm_min);
+            fprintf(fp2,"%d\n",s->tm.tm_mday);
+            fprintf(fp2,"%d\n",s->tm.tm_mon);
+        }
+    }
+    fclose(fp2);
+    fclose(fp);
+    
+    write(sock,"1",strlen("1"));
+
+    
+}
+
+void loadStatistics(Users* users){
+    Users* u;
+    FILE *fp;
+    struct tm tm;
+    char username[50],nomeProd[50];
+    int qtdComprada,codigo,hour,min,mday,mon;
+    float valorGasto;
+    
+    fp = fopen(dirStats,"r");
+    if(fp == NULL){
+        printf("Erro ao tentar ler o arquivo de statistics. \n");
+        printf("Verifique os defines no LibServ.h \n");
+        exit(1);
+    }
+    
+    while(fscanf(fp,"%s%s%d%d%f%d%d%d%d",username,nomeProd,&qtdComprada,&codigo,&valorGasto,&hour,&min,&mday,&mon) == 9){
+        tm.tm_hour = hour;
+        tm.tm_mon = mon;
+        tm.tm_mday = mday;
+        tm.tm_min = min;
+        u = searchUser(users, username);
+        if(u == NULL){
+            printf("Erro ao carregar as estatisticas, usuario nao encontrado. \n");
+            exit(1);
+        }
+        u->statUsu = addStatistics(u->statUsu, qtdComprada, codigo, tm, valorGasto, nomeProd);
+    }
+    
+    
+}
+
 void *connection_handler(void* socket_desc){
     struct sockHandle *sh = socket_desc;
     //Get the socket descriptor
@@ -1199,6 +1343,12 @@ void *connection_handler(void* socket_desc){
         }else if(command == 19){//Verify if a user exist(based in username)
             verifyUserExist(sock,client_message,sh->users);
             memset(client_message,0,STR_MAX_SIZE);
+        }else if(command == 20){//After a user remove the product from the cart, it goes back to stock
+            addProductBackToStock(sock,client_message,sh->stock);
+            memset(client_message,0,STR_MAX_SIZE);
+        }else if(command == 21){//Write the changes to the files in the end
+            writeToFiles(sock,sh->stock,sh->users);
+            memset(client_message,0,STR_MAX_SIZE);
         }
         
         //Send the message back to client
@@ -1218,3 +1368,4 @@ void *connection_handler(void* socket_desc){
     
     return 0;
 }
+

@@ -28,6 +28,9 @@ int main(int argc, const char * argv[]) {
     users = createUsers();
     users = loadUsers(users);
     
+    //Load statistics
+    loadStatistics(users);
+    
     createConn(users,noStock);
     return 0;
 }

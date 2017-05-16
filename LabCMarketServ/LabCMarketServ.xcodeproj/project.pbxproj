@@ -27,6 +27,7 @@
 		ED1DC3A01EB204500009E85E /* stock.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = stock.txt; sourceTree = "<group>"; };
 		ED1DC3A11EB204500009E85E /* gestores.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = gestores.txt; sourceTree = "<group>"; };
 		ED1DC3A21EB204500009E85E /* users.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = users.txt; sourceTree = "<group>"; };
+		ED338A061ECB6D28002C7EB6 /* statistics.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = statistics.txt; sourceTree = "<group>"; };
 		EDE1E6941EB1340500785292 /* LabCMarketServ */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = LabCMarketServ; sourceTree = BUILT_PRODUCTS_DIR; };
 		EDE1E6971EB1340500785292 /* main.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = main.c; sourceTree = "<group>"; };
 		EDE1E69E1EB1341400785292 /* LibServ.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = LibServ.c; sourceTree = "<group>"; };
@@ -67,6 +68,7 @@
 				ED1DC3A01EB204500009E85E /* stock.txt */,
 				ED1DC3A11EB204500009E85E /* gestores.txt */,
 				ED1DC3A21EB204500009E85E /* users.txt */,
+				ED338A061ECB6D28002C7EB6 /* statistics.txt */,
 				EDE1E6971EB1340500785292 /* main.c */,
 				EDE1E69E1EB1341400785292 /* LibServ.c */,
 				EDE1E69F1EB1341400785292 /* LibServ.h */,

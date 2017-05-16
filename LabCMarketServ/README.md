@@ -72,4 +72,9 @@ Neste exemplo será validado o gestor com o login e senha apresentatos.
 
 19 - verifica se um usuario existe.(retorna 1 se existir ou 0 se nao exisitr).
 
+20 - quando o usuario remover o produto do carrinho, voltar ele para o stock.
+
+21 - salva todas as informações nos arquivos.
+
+
 **Estruturas presentes no servidor:** Todas as estrutuas podem ser visulizadas no LibServ.h

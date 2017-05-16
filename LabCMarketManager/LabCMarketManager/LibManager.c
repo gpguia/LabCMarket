@@ -50,7 +50,7 @@ char* itoa(int val, int base){
 }
 
 void validManager(int sock){
-    char username[50], password[50],server_reply[STR_MAX_SIZE];
+    char username[50], *password,server_reply[STR_MAX_SIZE];
     char message[STR_MAX_SIZE];
     memset(message,0,STR_MAX_SIZE);
     memset(server_reply,0,STR_MAX_SIZE);
@@ -59,8 +59,7 @@ void validManager(int sock){
     printf("Autentique-se:\n");
     printf("Username: ");
     scanf("%s",username);
-    printf("Password: ");
-    scanf("%s",password);
+    password = getpass("Password:");
     strcpy(message,"1:");
     strcat(message,username);
     strcat(message,":");
@@ -73,8 +72,7 @@ void validManager(int sock){
         printf("Autentique-se:\n");
         printf("Username: ");
         scanf("%s",username);
-        printf("Password: ");
-        scanf("%s",password);
+        password = getpass("Password:");
         strcpy(message,"1:");
         strcat(message,username);
         strcat(message,":");
@@ -636,7 +634,7 @@ void listStatisticsSpecificUser(int sock, char server_reply[]){
 void showStatisticsOptions(int sock,char server_reply[]){
     int option;
     
-    printf("Vers estatisticas de: \n");
+    printf("Ver estatisticas de: \n");
     printf("1) um usuario especifico.\n");
     printf("2) Voltar.\n");
     scanf("%d",&option);
@@ -669,7 +667,8 @@ void showOptions(int sock){
     printf("1) Criar novo utilizador\n");
     printf("2) Gerir Stocks\n");
     printf("3) Ver Estatisticas\n");
-    printf("4) Logout\n");
+    printf("4) Salvar conteudo do servidor nos ficheiros.\n");
+    printf("5) Logout\n");
     scanf("%d",&option);
     while(option != 5){
         if(option == 1){
@@ -688,6 +687,15 @@ void showOptions(int sock){
             option = -2;
             showStatisticsOptions(sock,server_reply);
         }else if(option == 4){
+            option = -2;
+            write2Server(sock,"21:",server_reply);
+            if(strcmp(server_reply,"1")==0){
+                printf("Informacoes salvas com sucesso! \n");
+            }else{
+                printf("Erro ao salvar as informacoes.\n");
+            }
+            
+        }else if(option == 5){
             return;
         }else if(option == -2){
             printf("**Menu Principal**\n");

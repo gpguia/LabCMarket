@@ -63,7 +63,7 @@ Carts *searchCart(Carts *lst, int code);
 Carts *manageCart(Carts *lst, int sock, char server_reply[], char username[]);
 int checkProductList(int qtdProduct, int lst[], int key);
 Carts *checkout(Carts *lst, char username[], char server_reply[], int sock, float total, int cod);
-Carts *removeProductFromCart(Carts *lst, int code);
+Carts *removeProductFromCart(Carts *lst, int code, int sock, char server_reply[]);
 
 
 

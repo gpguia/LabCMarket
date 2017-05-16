@@ -26,6 +26,7 @@
 #define dirUser "/home/gpguia/LabCMarket/LabCMarketServ/LabCMarketServ/users.txt"
 #define dirGestor "/home/gpguia/LabCMarket/LabCMarketServ/LabCMarketServ/gestores.txt"
 #define dirDebug "/home/gpguia/LabCMarket/LabCMarketServ/LabCMarketServ/debug.txt"
+#define dirStats "/home/gpguia/LabCMarket/LabCMarketServ/LabCMarketServ/statistics.txt"
 
 #define STR_MAX_SIZE 2000
 
@@ -120,6 +121,10 @@ Produto* removeProduct(int sock,char client_message[] , Produto* stock);
 void listUsers2Manager(int sock,Users* lst);
 void verifyUserExist(int sock, char client_message[], Users* lst);
 
+Produto* addProductBackToStock(int sock,char client_message[], Produto* stock);
+
 Statistics *addStatistics(Statistics* lst, int qtdComprada, int cod, struct tm timer, float valorGasto, char name[]);
 
+void writeToFiles(int sock, Produto* stock,Users* users);
+void loadStatistics(Users* users);
 #endif /* LibServ_h */

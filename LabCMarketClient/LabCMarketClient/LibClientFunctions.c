@@ -54,6 +54,7 @@ Carts *createCart(){
     return NULL;
 }
 
+//function to write the string to the server and get the answer.
 void writeToServer(int sock, char message[], char server_reply[]){
     
     memset(server_reply,0,STR_MAX_SIZE);
@@ -72,9 +73,11 @@ void writeToServer(int sock, char message[], char server_reply[]){
     
 }
 
+//Print the balance from the users account
 void manegeBalance(char server_replay[]){
     int i=0,j=0;
     char name[STR_MAX_SIZE],balance[STR_MAX_SIZE];
+    float bal=0;
     memset(name,0,STR_MAX_SIZE);
     memset(balance,0,STR_MAX_SIZE);
     
@@ -91,15 +94,18 @@ void manegeBalance(char server_replay[]){
     printf("\t%s","** Saldo **\n");
     printf("Nome: %s",name);
     printf("\n");
-    printf("Saldo: %s",balance);
+    bal = atof(balance);
+    printf("Saldo: %.2f",bal);
     printf("\n");
     printf("\t%s","** Fim Saldo **\n\n");
     memset(server_replay,0,STR_MAX_SIZE);
 }
 
+//Display options to the user to add more money
 void showManageOptions(int sock, char username[], char server_replay[]){
     int option=0;
     char deposit[STR_MAX_SIZE];
+    float value=0;
     char msg[STR_MAX_SIZE];
     memset(deposit,0,STR_MAX_SIZE);
     memset(msg,0,STR_MAX_SIZE);
@@ -113,10 +119,11 @@ void showManageOptions(int sock, char username[], char server_replay[]){
             option = 2;
             system("clear");
             printf("Digite a quantidade que deseja depositar: \n");
-            scanf("%s",deposit);
+            scanf("%f",&value);
             strcpy(msg,"4:");
             strcat(msg,username);
             strcat(msg,":");
+            snprintf(deposit,STR_MAX_SIZE,"%f",value);
             strcat(msg,deposit);
             strcat(msg,":");
             writeToServer(sock,msg,server_replay);
@@ -132,6 +139,7 @@ void showManageOptions(int sock, char username[], char server_replay[]){
     memset(server_replay,0,STR_MAX_SIZE);
 }
 
+//List all products in the stock
 void listProducts(int sock, char server_replay[], int codigos[], int *qtdProduct){
     int i=0,j=0,k=0;
     char msg[STR_MAX_SIZE],tmp[STR_MAX_SIZE];
@@ -212,6 +220,7 @@ void listProducts(int sock, char server_replay[], int codigos[], int *qtdProduct
     return;
 }
 
+//Verify the number of the products in the cart.
 int checkProductList(int qtdProduct, int lst[], int key){
     int i;
     
@@ -223,6 +232,7 @@ int checkProductList(int qtdProduct, int lst[], int key){
     return 0;
 }
 
+//Search for a product in the cart
 Carts *searchCart(Carts *lst, int code){
     Carts *c;
     
@@ -234,6 +244,7 @@ Carts *searchCart(Carts *lst, int code){
     return NULL;
 }
 
+//Add a product to the cart
 Carts *addProduct2Cart(int sock,char server_reply[] , Carts *lst, int code, int qtd){
     char msg[STR_MAX_SIZE];
     memset(msg,0,STR_MAX_SIZE);
@@ -267,6 +278,7 @@ Carts *addProduct2Cart(int sock,char server_reply[] , Carts *lst, int code, int 
     return NULL;
 }
 
+//Show products in the cart
 float listProductInCart(Carts *lst, int sock, char server_reply[]){
     int i=0,j=0,k=0,qtdC[200];
     Carts *c;
@@ -366,9 +378,12 @@ Carts *checkout(Carts *lst, char username[], char server_reply[], int sock, floa
     return lst;
 }
 
-Carts *removeProductFromCart(Carts *lst, int code){
-    Carts *a = NULL; //Elemento anterior
-    Carts *c = lst; //Percorrer a lista
+//Remove a product from the cart.
+Carts *removeProductFromCart(Carts *lst, int code, int sock, char server_reply[]){
+    char msg[STR_MAX_SIZE];
+    
+    Carts *a = NULL; //Element before
+    Carts *c = lst; //Go through the list
     
     //Search for the product ant keep saving the previous
     while(c!=NULL && c->cod != code){
@@ -385,10 +400,23 @@ Carts *removeProductFromCart(Carts *lst, int code){
     }else{
         a->next = c->next;
     }
+    
+    strcpy(msg,"20:");
+    strcat(msg,itoa(code,10));
+    strcat(msg,":");
+    strcat(msg,itoa(c->qtd,10));
+    strcat(msg,":");
+    
+    writeToServer(sock, msg, server_reply);
+    
+    if(strcmp(server_reply,"1") == 0)
+        printf("Produto removido com sucesso!\n");
+    
     free(c);
     return lst;
 }
 
+//Show options from the cart, like: chekout, remove product...
 Carts *manageCart(Carts *lst, int sock, char server_reply[], char username[]){
     int option=0,codigo,TotalCart;
     Carts* c;
@@ -414,7 +442,7 @@ Carts *manageCart(Carts *lst, int sock, char server_reply[], char username[]){
                 printf("Produto nao esta no carrinho, tente novamente: \n");
                 scanf("%d",&codigo);
             }
-            lst = removeProductFromCart(lst,codigo);
+            lst = removeProductFromCart(lst,codigo,sock,server_reply);
             return lst;
         }else if(option == 3){//Go back
             return lst;
@@ -434,6 +462,7 @@ Carts *manageCart(Carts *lst, int sock, char server_reply[], char username[]){
     return lst;
 }
 
+//Function to manage Products to put it in the cart, or see remove...
 Carts *manageProducts(int sock, char server_reply[], Carts *c, char username[]){
     int option=0;
     int qtdProcut,qtdComprar=0,productExist=0;
@@ -491,6 +520,7 @@ Carts *manageProducts(int sock, char server_reply[], Carts *c, char username[]){
     return c;
 }
 
+//Show all statistics, from a user.
 void listStatistics(int sock, char username[], char server_repaly[]){
     int i=0,j=0,codigo,qtdComprada,hora,min,dia,option;
     char aux[STR_MAX_SIZE],nomeProduto[50];
@@ -614,6 +644,7 @@ void listStatistics(int sock, char username[], char server_repaly[]){
     
 }
 
+//Show the principal menu
 void showMenu(int sock, char *username){
     int option;
     char msg[STR_MAX_SIZE];

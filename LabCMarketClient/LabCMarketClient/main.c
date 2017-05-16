@@ -11,18 +11,16 @@
 int main(int argc, const char * argv[]) {
     system("clear");
     int sock;
-    char username[50],password[50];
+    char username[50],*password;
     char message[STR_MAX_SIZE];
     char server_replay[STR_MAX_SIZE];
     memset(message,0,STR_MAX_SIZE);
     memset(server_replay,0,STR_MAX_SIZE);
     sock = connToServer();
     
-    
     printf("Username: ");
     scanf("%s",username);
-    printf("Password: ");
-    scanf("%s",password);
+    password = getpass("Password:");
     strcpy(message,"2:");
     strcat(message,username);
     strcat(message,":");
@@ -39,8 +37,7 @@ int main(int argc, const char * argv[]) {
         memset(message,0,101);
         printf("Username: ");
         scanf("%s",username);
-        printf("Password: ");
-        scanf("%s",password);
+        password = getpass("Password:");
         strcpy(message,"2:");
         strcat(message,username);
         strcat(message,":");
