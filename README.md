@@ -12,16 +12,18 @@ para maiores informações, verifique o README.md dentro das respectivas pastas,
 Abra o terminal e vá até onde a pasta principal está(LabCMarket)
  
 Apenas na primeira execução é necessário executar o config.sh
-'''
+
+```
 ./config.sh
-'''
+```
+
 Esse script, irá alterar o caminho dos ficheiros stock.txt,users.txt,gestores.txt,statistics.txt e debug.txt no arquivo LibServ.h para que possa ficar compativel com o local onde foi extraido os arquivos.
 
 Em seguida, execute o start.sh
 
-'''
+```
 ./start.sh
-'''
+```
 
 Esse script irá compilar e abrir 3 novas telas do terminal, executando os 3 programas, o servidor, gestor e cliente.
 
