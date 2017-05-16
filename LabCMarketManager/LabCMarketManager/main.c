@@ -12,11 +12,9 @@
 
 int main(int argc, const char * argv[]) {
     int sock;
-    
-    //system(execServ);
-    //sleep(1);//Sleep so the server can open and then the manager can connect to it.
+
     sock = connToServer();
     validManager(sock);
-    system(stopServ);
+    
     return 0;
 }

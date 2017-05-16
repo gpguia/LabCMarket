@@ -9,7 +9,6 @@
 #include "LibClientFunctions.h"
 
 int main(int argc, const char * argv[]) {
-    system("clear");
     int sock;
     char username[50],*password;
     char message[STR_MAX_SIZE];
@@ -17,7 +16,9 @@ int main(int argc, const char * argv[]) {
     memset(message,0,STR_MAX_SIZE);
     memset(server_replay,0,STR_MAX_SIZE);
     sock = connToServer();
-    
+
+    system("clear");
+    printf("Cliente autentique-se: \n");
     printf("Username: ");
     scanf("%s",username);
     password = getpass("Password:");

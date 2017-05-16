@@ -4,7 +4,7 @@ Alterações necessárias para fazer o servidor funcionar:
 
 Antes de tudo, acesse o arquivo: /LabCMarket/LabCMarketServ/LabCMarketServ/LibServ.h 
 
-**Altere o caminho dos arquivos nos defines:(Caso já não tenha feito, ou não tenha extraido a pasta principal no diretorio 'home' do usuario.**
+
 
 ```
 #define dirStock ~/LabCMarket/LabCMarketServ/LabCMarketServ/stock.txt

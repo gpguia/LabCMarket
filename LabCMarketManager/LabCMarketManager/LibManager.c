@@ -56,7 +56,7 @@ void validManager(int sock){
     memset(server_reply,0,STR_MAX_SIZE);
     
     system("clear");
-    printf("Autentique-se:\n");
+    printf("Manager autentique-se:\n");
     printf("Username: ");
     scanf("%s",username);
     password = getpass("Password:");

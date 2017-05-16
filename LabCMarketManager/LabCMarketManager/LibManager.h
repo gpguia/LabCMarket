@@ -24,11 +24,6 @@
 
 #define STR_MAX_SIZE 2000
 
-//Change this path if it's necessary
-#define execServ "~/LabCMarket/LabCMarketManager/LabCMarketManager/./startServ.sh"
-#define stopServ "~/LabCMarket/LabCMarketManager/LabCMarketManager/./stopServ.sh"
-
-
 int connToServer();
 int exec_program(pid_t pid);
 

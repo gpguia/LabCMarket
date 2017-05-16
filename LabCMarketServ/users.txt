@@ -1,2 +1,0 @@
-guilherme:123456789:gui:gui123:1000
-jorge:912345678:jorge:braga:10000
