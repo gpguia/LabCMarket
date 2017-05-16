@@ -1,1 +1,1 @@
-jorge:123456789:pato:patolas:
+administrador:000000000:admin:admin:

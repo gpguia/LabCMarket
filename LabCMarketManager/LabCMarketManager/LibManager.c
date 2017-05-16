@@ -702,7 +702,8 @@ void showOptions(int sock){
             printf("1) Criar novo utilizador\n");
             printf("2) Gerir Stocks\n");
             printf("3) Ver Estatisticas\n");
-            printf("4) Logout\n");
+            printf("4) Salvar conteudo do servidor nos ficheiros.\n");
+            printf("5) Logout\n");
             scanf("%d",&option);
         }else{
             printf("Verifique o numero digitado.\n");

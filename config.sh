@@ -8,12 +8,11 @@
 ##  Copyright © 2017 Guilherme Guia. All rights reserved.
 ##
 
-dir=$(pwd)
+caminho=$(pwd)
+path2lib="$caminho/LabCMarketServ/LabCMarketServ/LibServ.h"
 
-#sed -i 's|foo|bar|g' filename
-
-sed -i -e 's|pathtostock|"'"$dir"'/LabCMarketServ/LabCMarketServ/stock.txt"|g' ''"$dir"'/LabCMarketServ/LabCMarketServ/﻿﻿LibServ.h'
-sed -i -e 's|pathtousers|"'"$dir"'/LabCMarketServ/LabCMarketServ/users.txt"|g' ''"$dir"'/LabCMarketServ/LabCMarketServ/﻿﻿LibServ.h'
-sed -i -e 's|pathtogestores|"'"$dir"'/LabCMarketServ/LabCMarketServ/gestores.txt"|g' ''"$dir"'/LabCMarketServ/LabCMarketServ/﻿﻿LibServ.h'
-sed -i -e 's|pathtodebug|"'"$dir"'/LabCMarketServ/LabCMarketServ/debug.txt"|g' ''"$dir"'/LabCMarketServ/LabCMarketServ/﻿﻿LibServ.h'
-sed -i -e 's|pathtostatistics|"'"$dir"'/LabCMarketServ/LabCMarketServ/statistics.txt"|g' ''"$dir"'/LabCMarketServ/LabCMarketServ/﻿LibServ.h'
+sed -i -e 's|pathtostock|"'"$caminho"'/LabCMarketServ/LabCMarketServ/stock.txt"|g' "$path2lib"
+sed -i -e 's|pathtousers|"'"$caminho"'/LabCMarketServ/LabCMarketServ/users.txt"|g' "$path2lib"
+sed -i -e 's|pathtogestores|"'"$caminho"'/LabCMarketServ/LabCMarketServ/gestores.txt"|g' "$path2lib"
+sed -i -e 's|pathtodebug|"'"$caminho"'/LabCMarketServ/LabCMarketServ/debug.txt"|g' "$path2lib"
+sed -i -e 's|pathtostatistics|"'"$caminho"'/LabCMarketServ/LabCMarketServ/statistics.txt"|g' "$path2lib"
