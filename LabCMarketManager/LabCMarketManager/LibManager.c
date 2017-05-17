@@ -187,7 +187,7 @@ int addnewUser(int sock, char server_reply[]){
 
 void listStock(int sock, char server_reply[]){
     char msg[STR_MAX_SIZE],tmp[STR_MAX_SIZE];
-    int i=0,j=0;
+    int i=0,j=0,qtd;
     memset(msg,0,STR_MAX_SIZE);
     memset(tmp,0,STR_MAX_SIZE);
     strcpy(msg,"11:");
@@ -238,7 +238,8 @@ void listStock(int sock, char server_reply[]){
         }
         i++;
         j=0;
-        printf("%13s",tmp);
+        qtd = atoi(tmp);
+        printf("%13d",qtd);
         memset(tmp,0,STR_MAX_SIZE);
         while(server_reply[i] != ':'){//print the cost
             tmp[j] = server_reply[i];

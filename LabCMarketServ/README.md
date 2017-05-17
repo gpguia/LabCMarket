@@ -2,17 +2,6 @@ Este arquivo contém as informações técnicas relacionadas ao servidor.
 
 Alterações necessárias para fazer o servidor funcionar:
 
-Antes de tudo, acesse o arquivo: /LabCMarket/LabCMarketServ/LabCMarketServ/LibServ.h 
-
-
-
-```
-#define dirStock ~/LabCMarket/LabCMarketServ/LabCMarketServ/stock.txt
-#define dirUser ~/LabCMarket/LabCMarketServ/LabCMarketServ/users.txt
-#define dirGestor ~/LabCMarket/LabCMarketServ/LabCMarketServ/gestores.txt
-#define dirDebug ~/LabCMarket/LabCMarketServ/LabCMarketServ/debug.txt
-```
-
 **Debug**
 
 Caso o define DEBUG for setado para 1, ele gera o arquivo para debug.txt, esse arquivo é apagado sempre que iniciar o servidor.
@@ -23,7 +12,6 @@ Caso o define DEBUG for setado para 1, ele gera o arquivo para debug.txt, esse a
 
 
 Todas as formas de dados são carregadas em memoria ao iniciar, os arquivos existentes, são usados para carregar as memorias.
-
 
 A forma de comunicação entre o servidor, clients e gerente, são feitas através de sockets. O servidor recebe uma string e devolve uma string. Para isso, antes de cada informação passada para o servidor é passado um comando com a seguinte forma "numero:inforação".
 

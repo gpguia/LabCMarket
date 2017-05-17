@@ -141,7 +141,7 @@ void showManageOptions(int sock, char username[], char server_replay[]){
 
 //List all products in the stock
 void listProducts(int sock, char server_replay[], int codigos[], int *qtdProduct){
-    int i=0,j=0,k=0;
+    int i=0,j=0,k=0,qtd;
     char msg[STR_MAX_SIZE],tmp[STR_MAX_SIZE];
     memset(msg,0,STR_MAX_SIZE);
     memset(tmp,0,STR_MAX_SIZE);
@@ -193,7 +193,8 @@ void listProducts(int sock, char server_replay[], int codigos[], int *qtdProduct
         }
         i++;
         j=0;
-        printf("%13s",tmp);
+        qtd = atoi(tmp);
+        printf("%13d",qtd);
         memset(tmp,0,STR_MAX_SIZE);
         while(server_replay[i] != ':'){//print the price
             tmp[j] = server_replay[i];

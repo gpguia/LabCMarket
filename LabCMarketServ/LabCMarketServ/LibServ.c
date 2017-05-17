@@ -625,9 +625,13 @@ Produto *updateProducts(Produto *stock,char msg[], int sock){
         write(sock,"0",strlen("0"));
         
     }else{
-        p->qtd = p->qtd - qtdComprada;
-    
-        write(sock,"1",strlen("1"));
+        if(qtdComprada == p->qtd){
+            p->qtd = 0;
+            write(sock,"1",strlen("1"));
+        }else{
+            p->qtd = p->qtd - qtdComprada;
+            write(sock,"1",strlen("1"));
+        }
     }
     return stock;
 }
