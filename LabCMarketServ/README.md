@@ -124,7 +124,15 @@ struct users{
 
 Estrutura do handler:
 
-Estra estrutura teve que ser criada pois quando se cria um novo handler de conexão, só é possível passar um ponteiro,
+```
+struct sockHandle{
+    int sock;
+    Users* users;
+    Produto* stock;
+};
+```
+
+Essa estrutura teve que ser criada pois quando se cria um novo handler de conexão, só é possível passar um ponteiro,
 e como era necessário passar as informações do sock, e as listas de usuarios e produtos, foi criado essa estrutura para isso.
 
 Isso pode ser visto na função:
@@ -138,14 +146,7 @@ e na função:
 ```
 void *connection_handler(void* socket_desc)
 ```
-ambas dentro do LibServ.c
+ambas dentro do LibServ.c  
 
-```
-struct sockHandle{
-    int sock;
-    Users* users;
-    Produto* stock;
-};
-```
 
 
