@@ -31,22 +31,22 @@ int connToServer(){
     sock = socket(AF_INET , SOCK_STREAM , 0);
     if (sock == -1)
     {
-        printf("Could not create socket");
+        printf("Erro ao criar o socket");
     }
-    puts("Socket created");
+    puts("Socket criado com sucesso!");
     
     server.sin_addr.s_addr = inet_addr("127.0.0.1");
-    server.sin_family = AF_INET;
+    server.sin_family = AF_INET; //TCP
     server.sin_port = htons( 8888 );
     
     //Connect to remote server
     if (connect(sock , (struct sockaddr *)&server , sizeof(server)) < 0)
     {
-        perror("connect failed. Error");
+        perror("Erro ao conectar.");
         return 1;
     }
     
-    puts("Connected\n");
+    puts("Conectado!\n");
     return sock;
 }
 
@@ -383,6 +383,11 @@ Carts *checkout(Carts *lst, char username[], char server_reply[], int sock, floa
 Carts *removeProductFromCart(Carts *lst, int code, int sock, char server_reply[]){
     char msg[STR_MAX_SIZE];
     
+    if(lst == NULL){
+        printf("Carrinho ja esta vazio, tente adicionar algo antes de remover.\n");
+        return lst;
+    }
+    
     Carts *a = NULL; //Element before
     Carts *c = lst; //Go through the list
     
@@ -429,7 +434,7 @@ Carts *manageCart(Carts *lst, int sock, char server_reply[], char username[]){
     while(option != 3){
         if(option == 1){//Checkout
             if(lst == NULL){
-                printf("Lista vazia, coloque alguns produtos no carrinho antes. \n");
+                printf("Carrinho vazio, coloque alguns produtos no carrinho antes. \n");
             }else{
                 for(c=lst;c!=NULL;c = c->next){
                     lst = checkout(lst,username,server_reply,sock,TotalCart,lst->cod);
@@ -437,6 +442,10 @@ Carts *manageCart(Carts *lst, int sock, char server_reply[], char username[]){
             }
             return lst;
         }else if(option == 2){//Delete product from the cart
+            if(lst == NULL){
+                printf("Carrinho ja esta vazio, tente adicionar algo antes de remover.\n");
+                return lst;
+            }
             printf("Digite o cod do produto que deseja remover: \n");
             scanf("%d",&codigo);
             while(searchCart(lst,codigo) == NULL){

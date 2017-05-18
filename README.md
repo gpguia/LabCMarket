@@ -3,7 +3,7 @@ Guilherme Paiva Guia
 Jorge Sousa
 
 Este README, contem as caracteristicas funcionais do programa, nenhum aspecto técnico será abordado aqui,
-para maiores informações, verifique o README.md dentro das respectivas pastas, seja do servidor, manager ou client.
+para maiores informações, verifique o README.md dentro da pasta LabCMarketServ.
 
 
 **Configurações básicas**

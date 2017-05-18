@@ -23,7 +23,7 @@ char* itoa(int val, int base){
 }
 
 int createConn(Users* lst, Produto* stock){
-    int socket_desc , client_sock , c ;//*new_sock;
+    int socket_desc , client_sock , c ;//new_sock;
     struct sockaddr_in server , client;
     struct sockHandle sh;
     sh.stock = stock;
@@ -33,12 +33,12 @@ int createConn(Users* lst, Produto* stock){
     socket_desc = socket(AF_INET , SOCK_STREAM , 0);
     if (socket_desc == -1)
     {
-        printf("Could not create socket");
+        printf("Erro ao criar a socket.\n (funcao createConn)");
     }
-    puts("Socket created");
+    puts("Socket criada.\n");
     
     //Prepare the sockaddr_in structure
-    server.sin_family = AF_INET;
+    server.sin_family = AF_INET; //TCP
     server.sin_addr.s_addr = INADDR_ANY;
     server.sin_port = htons( 8888 );
     
@@ -46,25 +46,25 @@ int createConn(Users* lst, Produto* stock){
     if( bind(socket_desc,(struct sockaddr *)&server , sizeof(server)) < 0)
     {
         //print the error message
-        perror("bind failed. Error");
+        perror("Erro ao dar o bind no endereco. \n (funcao createConn");
         return 1;
     }
-    puts("bind done");
+    puts("bind feito com sucesso!\n");
     
     //Listen
     listen(socket_desc , 3);
     
     //Accept and incoming connection
-    puts("Waiting for incoming connections...");
+    puts("Esperando por conexoes...");
     c = sizeof(struct sockaddr_in);
     
     
     //Accept and incoming connection
-    puts("Waiting for incoming connections...");
+    puts("Esperando por novas conexoes...");
     c = sizeof(struct sockaddr_in);
     while( (client_sock = accept(socket_desc, (struct sockaddr *)&client, (socklen_t*)&c)) )
     {
-        puts("Connection accepted");
+        puts("Conexao aceita.");
         
         pthread_t sniffer_thread;
         //new_sock = malloc(1);
@@ -74,24 +74,25 @@ int createConn(Users* lst, Produto* stock){
         
         if( pthread_create( &sniffer_thread , NULL ,  connection_handler ,&sh) < 0)
         {
-            perror("could not create thread");
+            perror("Erro ao criar o novo thread.");
             return 1;
         }
         
         //Now join the thread , so that we dont terminate before the thread
         //pthread_join( sniffer_thread , NULL);
-        puts("Handler assigned");
+        puts("Handler criado com sucesso!");
     }
     
     if (client_sock < 0)
     {
-        perror("accept failed");
+        perror("Erro na aceitacao.");
         return 1;
     }
     
     return 0;
 }
 
+//Get the first number from the client/manager string, where its allways a number to do something(look at readme.md inside LabCMarketServ folder)
 int getCommand(char msg[]){
     int command = 0;
     int i=0,j=0;

@@ -81,6 +81,7 @@ int createConn(Users* lst, Produto* stock);
 int getCommand(char msg[]);
 void *connection_handler(void* socket_desc);
 
+//Users functions
 Users* createUsers();
 Users* addUser(Users* lst, char nome[], char contato[], char user[], char pass[], char* balance);
 Users* searchUser(Users* lst, char username[]);
@@ -93,7 +94,7 @@ void getPassword(char str[],char pass[]);
 void getBalance(char str[], char balance[]);
 void printUsers(Users* usu);
 void verifyMoney(int sock, char msg[], Users* usu, Produto* stock);
-
+//Stock functions
 Produto *addProduto(Produto *stock, char nome[], int codigo, char desc[], int qtd, float custo, float preco);
 Produto *loadStock(Produto *stock, char caminho[]);
 Produto *createStock();
