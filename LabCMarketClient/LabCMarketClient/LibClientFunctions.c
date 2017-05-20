@@ -256,7 +256,6 @@ Carts *addProduct2Cart(int sock,char server_reply[] , Carts *lst, int code, int 
         return c;
     }
     
-    
     strcpy(msg,"6:");
     strcat(msg,itoa(code,10));
     strcat(msg,":");
@@ -504,7 +503,7 @@ Carts *manageProducts(int sock, char server_reply[], Carts *c, char username[]){
                 }
                 productExist = checkProductList(qtdProcut, codigos, code);
             }
-            printf("Digite a quantidade desejada: \n");
+            printf("Digite a quantidade que deseja comprar: \n");
             scanf("%d",&qtdComprar);
             if(qtdComprar == 0){
                 return c;

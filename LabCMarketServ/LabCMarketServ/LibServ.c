@@ -552,11 +552,8 @@ void addBalance(Users* lst, char str[], int sock){
         perror("Erro, username nao encontrado.\n");
         exit(1);
     }
-    printf("Balance form clinet: %s\n",balance);
     newBalance = atof(u->balance);
-    printf("Balance na conta: %f\n",newBalance);
     newBalance = newBalance + atof(balance);
-    printf("Balance dps de add: %f\n",newBalance);
     
     memset(balance,0,STR_MAX_SIZE);
     snprintf(balance,STR_MAX_SIZE,"%f",newBalance);
@@ -620,11 +617,9 @@ Produto *updateProducts(Produto *stock,char msg[], int sock){
         j++;
     }
     qtdComprada = atoi(tmp);
-    
     p = searchProduct(stock,cod);
     if(qtdComprada > p->qtd){
         write(sock,"0",strlen("0"));
-        
     }else{
         if(qtdComprada == p->qtd){
             p->qtd = 0;

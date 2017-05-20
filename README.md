@@ -32,7 +32,18 @@ Siga as instruções para uso:
 **Operações que podem ser realizadas com o Cliente:**
 
 **_Autenticar-se:_** Antes de fazer qualquer coisa é necessário autenticar-se com o servidor.
-    
+
+Login e senha para o cliente:
+
+```
+login: gui
+senha: gui123
+ou
+login: jorge
+senha: braga
+```
+ 
+ 
     1 - Gerir Saldo - Nesta funcionalidade o client pode visualizar o Saldo da conta, adicionar mais fundo e voltar ao menu Anterior.
         Opções:
             1 - Adicionar mais dinheiro.
@@ -55,6 +66,13 @@ Siga as instruções para uso:
 **Operações que podem ser realizadas com o Gerente:**
 
 **_Autenticar-se:_** Assim como o client, também é preciso fazer login com o gerente.
+
+Login e senha para o gestor:
+
+```
+login: admin
+senha: admin
+```
 
 		1 - Crira novo utilizado - Cria um novo client.
 		
