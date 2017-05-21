@@ -2,8 +2,8 @@
 //  LibServ.c
 //  LabCMarketServ
 //
-//  Created by Guilherme Guia on 4/26/17.
-//  Copyright © 2017 Guilherme Guia. All rights reserved.
+//  Created by Guilherme Guia and Jorge Sousa on 4/26/17.
+//  Copyright © 2017 Guilherme Guia and Jorge Sousa. All rights reserved.
 //
 
 #include "LibServ.h"

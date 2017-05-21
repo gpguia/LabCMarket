@@ -2,8 +2,8 @@
 //  LibServer.h
 //  LabCMarketServer
 //
-//  Created by Guilherme Guia on 3/29/17.
-//  Copyright © 2017 Guilherme Guia. All rights reserved.
+//  Created by Guilherme Guia and Jorge Sousa on 3/29/17.
+//  Copyright © 2017 Guilherme Guia and Jorge Sousa. All rights reserved.
 //
 
 #ifndef LibServer_h

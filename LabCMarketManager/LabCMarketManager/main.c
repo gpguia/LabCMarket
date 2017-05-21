@@ -2,8 +2,8 @@
 //  main.c
 //  LabCMarketServer
 //
-//  Created by Guilherme Guia on 3/28/17.
-//  Copyright © 2017 Guilherme Guia. All rights reserved.
+//  Created by Guilherme Guia and Jorge Sousa on 3/28/17.
+//  Copyright © 2017 Guilherme Guia and Jorge Sousa. All rights reserved.
 //
 
 #include "LibManager.h"
