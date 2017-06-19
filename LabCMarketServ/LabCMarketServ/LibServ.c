@@ -52,7 +52,7 @@ int createConn(Users* lst, Produto* stock){
     puts("bind feito com sucesso!\n");
     
     //Listen
-    listen(socket_desc , 3);
+    listen(socket_desc , 5);
     
     //Accept and incoming connection
     puts("Esperando por conexoes...");
